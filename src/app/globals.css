@@ -5,11 +5,10 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-primary-bg: #f7f9fc;
+  --color-primary: #2196f3;
+  --color-text-primary: red;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,3 +19,7 @@
 }
 
 
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}
