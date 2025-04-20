@@ -27,6 +27,11 @@ function SideBar() {
             icon: <AppstoreOutlined />,
         },
         {
+            key: 'employee',
+            label: 'Employee',
+            icon: <AppstoreOutlined />,
+        },
+        {
             key: 'sub4',
             label: 'Navigation Three',
             icon: <SettingOutlined />,
