@@ -249,6 +249,11 @@ const EditTaskModal = ({
             />
             <span className="text-[#5F6F94] text-sm font-semibold">Mark as done</span>
           </div>
+          <span
+            className={`${task.tagBgColor} ${task.tagTextColor} text-xs font-semibold rounded-lg px-4 py-1.5`}
+          >
+            {task.tag}
+          </span>
         </div>
 
         <Form.Item
