@@ -2,7 +2,6 @@
 import { HeaderCustom, SideBar } from '@/layouts';
 import PrivateRoutes from '@/routing/PrivateRoute';
 import { ConfigProvider, Layout } from 'antd';
-import { Provider } from 'react-redux';
 
 const { Content } = Layout;
 
@@ -28,8 +27,7 @@ export default function RootLayout(props: IPops) {
         },
     }
     return (
-        <Provider store={store}>
- <PrivateRoutes>
+        <PrivateRoutes>
             <ConfigProvider theme={theme}>
                 <Layout className='h-screen'>
                     <SideBar />
@@ -42,7 +40,5 @@ export default function RootLayout(props: IPops) {
                 </Layout>
             </ConfigProvider>
         </PrivateRoutes>
-        </Provider>
-       
     );
 }

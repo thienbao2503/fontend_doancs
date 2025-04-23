@@ -470,7 +470,7 @@ export default function About() {
         <div className="space-y-8">
           <Calendar />
           {/* Tasks List */}
-          <div className="space-y-4 max-w-[320px] mx-auto lg:mx-0">
+          <div className="space-y-4 max-w-full mx-auto lg:mx-0">
             {tasks.map((task, index) => (
               <div
                 key={index}
