@@ -37,7 +37,8 @@ export default function Employees() {
   ];
 
   return (
-<div className="bg-gray-50 min-h-screen flex flex-col items-start justify-start p-6 max-w-full mx-auto">        <header className="w-full max-w-6xl bg-white rounded-lg shadow-lg flex justify-between items-center px-6 py-4 mb-8">
+<div className="bg-gray-50 min-h-screen flex flex-col items-start justify-start max-w-full mx-auto">        
+  <header className="w-full max-w-6xl bg-white rounded-lg shadow-lg flex justify-between items-center px-6 py-4 mb-8">
         <h1 className="text-gray-800 font-semibold text-xl">Your Contacts</h1>
         <div className="flex items-center space-x-4">
           <button
@@ -68,8 +69,7 @@ export default function Employees() {
       </header>
 
       <main
-        className={`w-full max-w-6xl gap-6 ${view === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col space-y-4"}`}
-      >
+  className={`w-full gap-6 ${view === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col space-y-4"}`}>
         {contacts.map((contact) => (
           <section
             key={contact.id}

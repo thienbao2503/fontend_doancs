@@ -1,15 +1,31 @@
 "use client";
+
 import { useState } from "react";
-import { Modal, Form, Input, DatePicker, Button, Select } from "antd";
+import { Modal, Form, Input, DatePicker, Button, Select, Popconfirm, message } from "antd";
+import moment from "moment";
+
 import {
   ClipboardIcon,
   ChatBubbleLeftRightIcon,
   CalendarIcon as CalendarIconHero,
   ChevronDownIcon,
+  EyeIcon,
+  PencilIcon,
+  XMarkIcon,
+  PlusIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
+
+// Define Project type
+interface Project {
+  id: string;
+  name: string;
+}
 
 // Define Task type
 interface Task {
+  id: string;
+  projectId: string;
   title: string;
   progress: string;
   comments: string;
@@ -18,17 +34,57 @@ interface Task {
   tagTextColor: string;
   buttonBgColor: string;
   buttonTextColor: string;
+  assignedTo: string;
+  dueDate: string;
+  description: string;
+  checklist: { label: string; checked: boolean }[];
+  attachments: string[];
+  completed?: boolean;
 }
 
-// NewTaskModal Component
-const NewTaskModal = ({
+// Helper function to generate tag styles based on category
+const getTagStyles = (category: string) => {
+  switch (category) {
+    case "Design":
+      return {
+        tagBgColor: "bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA]",
+        tagTextColor: "text-[#4F63F6]",
+        buttonBgColor: "bg-[#B7C7FF]",
+        buttonTextColor: "text-[#4F63F6]",
+      };
+    case "Development":
+      return {
+        tagBgColor: "bg-[#B9D9D5]",
+        tagTextColor: "text-[#3B8B84]",
+        buttonBgColor: "bg-[#B9D9D5]",
+        buttonTextColor: "text-[#3B8B84]",
+      };
+    case "Testing":
+      return {
+        tagBgColor: "bg-[#F9B5A7]",
+        tagTextColor: "text-[#D95D39]",
+        buttonBgColor: "bg-[#F9B5A7]",
+        buttonTextColor: "text-[#D95D39]",
+      };
+    default:
+      return {
+        tagBgColor: "bg-[#B7C7FF]",
+        tagTextColor: "text-[#4F63F6]",
+        buttonBgColor: "bg-[#B7C7FF]",
+        buttonTextColor: "text-[#4F63F6]",
+      };
+  }
+};
+
+// NewProjectModal Component
+const NewProjectModal = ({
   isOpen,
   onClose,
   onSave,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (task: Task) => void;
+  onSave: (project: Project) => void;
 }) => {
   const [form] = Form.useForm();
 
@@ -38,18 +94,123 @@ const NewTaskModal = ({
     form
       .validateFields()
       .then((values) => {
+        const newProject: Project = {
+          id: Date.now().toString(),
+          name: values.projectName || "Untitled Project",
+        };
+        onSave(newProject);
+        form.resetFields();
+        onClose();
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
+  };
+
+ 
+
+  return (
+    <Modal
+      open={isOpen}
+      onCancel={onClose}
+      footer={null}
+      width={500}
+      centered
+      className="rounded-2xl"
+    >
+      <Form form={form} layout="vertical" className="p-6">
+        <h2 className="text-[#0B0E3F] text-xl font-bold mb-6">Create New Project</h2>
+        <Form.Item
+          label={<span className="text-[#0B0E3F] text-sm font-semibold">Project Name</span>}
+          name="projectName"
+          rules={[{ required: true, message: "Please enter the project name" }]}
+        >
+          <Input
+            placeholder="Enter project name"
+            className="rounded-lg border-[#E6E8F0] text-sm text-[#5F6F94] focus:ring-[#4F63F6] bg-[#F9FAFF] p-3"
+          />
+        </Form.Item>
+        <div className="flex justify-end space-x-3">
+          <Button
+            onClick={onClose}
+            className="bg-[#E6E8F0] text-[#5F6F94] rounded-lg px-5 py-2 h-auto font-semibold"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSave}
+            className="bg-gradient-to-r from-[#4F63F6] to-[#647AFA] text-white rounded-lg px-5 py-2 h-auto font-semibold"
+          >
+            Save Project
+          </Button>
+        </div>
+      </Form>
+    </Modal>
+  );
+};
+
+// NewTaskModal Component
+const NewTaskModal = ({
+  isOpen,
+  onClose,
+  onSave,
+  projects,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (task: Task) => void;
+  projects: Project[];
+}) => {
+  const [form] = Form.useForm();
+  const [checklistItems, setChecklistItems] = useState<{ label: string; checked: boolean }[]>([]);
+  const [newChecklistItem, setNewChecklistItem] = useState("");
+
+  if (!isOpen) return null;
+
+  const addChecklistItem = () => {
+    if (newChecklistItem.trim() === "") {
+      message.warning("Checklist item cannot be empty");
+      return;
+    }
+    if (checklistItems.some((item) => item.label === newChecklistItem.trim())) {
+      message.warning("Checklist item already exists");
+      return;
+    }
+    setChecklistItems([...checklistItems, { label: newChecklistItem.trim(), checked: false }]);
+    setNewChecklistItem("");
+  };
+
+  const removeChecklistItem = (index: number) => {
+    const updatedItems = [...checklistItems];
+    updatedItems.splice(index, 1);
+    setChecklistItems(updatedItems);
+  };
+
+  const handleSave = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        const category = values.category || "Design";
+        const tagStyles = getTagStyles(category);
+
         const newTask: Task = {
+          id: Date.now().toString(),
+          projectId: values.projectId,
           title: values.taskName || "Untitled Task",
           progress: "0/10",
           comments: "0",
-          tag: values.category || "Design",
-          tagBgColor: "bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA]",
-          tagTextColor: "text-[#4F63F6]",
-          buttonBgColor: "bg-[#B7C7FF]",
-          buttonTextColor: "text-[#4F63F6]",
+          tag: category,
+          ...tagStyles,
+          assignedTo: values.assignedTo,
+          dueDate: values.dueDate ? values.dueDate.format("DD/MM/YYYY") : "",
+          description: values.description || "",
+          checklist: checklistItems,
+          attachments: [],
+          completed: false,
         };
         onSave(newTask);
         form.resetFields();
+        setChecklistItems([]);
         onClose();
       })
       .catch((info) => {
@@ -68,6 +229,23 @@ const NewTaskModal = ({
     >
       <Form form={form} layout="vertical" className="p-6">
         <h2 className="text-[#0B0E3F] text-xl font-bold mb-6">Create New Task</h2>
+
+        <Form.Item
+          label={<span className="text-[#0B0E3F] text-sm font-semibold">Project</span>}
+          name="projectId"
+          rules={[{ required: true, message: "Please select a project" }]}
+        >
+          <Select
+            placeholder="Select project"
+            className="rounded-lg text-sm text-[#5F6F94] bg-[#F9FAFF]"
+          >
+            {projects.map((project) => (
+              <Select.Option key={project.id} value={project.id}>
+                {project.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
 
         <Form.Item
           label={<span className="text-[#0B0E3F] text-sm font-semibold">Task Name</span>}
@@ -93,6 +271,7 @@ const NewTaskModal = ({
             >
               <Select.Option value="Team A">Team A</Select.Option>
               <Select.Option value="Team B">Team B</Select.Option>
+              <Select.Option value="Team C">Team C</Select.Option>
             </Select>
           </Form.Item>
 
@@ -135,15 +314,51 @@ const NewTaskModal = ({
           />
         </Form.Item>
 
-        <Form.Item
-          label={<span className="text-[#0B0E3F] text-sm font-semibold">Checklist</span>}
-          name="checklist"
-        >
-          <Input
-            placeholder="Add checklist item"
-            className="rounded-lg border-[#E6E8F0] text-sm text-[#5F6F94] focus:ring-[#4F63F6] bg-[#F9FAFF] p-3"
-          />
-        </Form.Item>
+        <div className="mb-5">
+          <label className="block text-[#0B0E3F] text-sm font-semibold mb-2">Checklist</label>
+          <div className="flex items-center space-x-2 mb-3">
+            <Input
+              placeholder="Add checklist item"
+              value={newChecklistItem}
+              onChange={(e) => setNewChecklistItem(e.target.value)}
+              onPressEnter={addChecklistItem}
+              className="flex-1 rounded-lg border-[#E6E8F0] text-sm text-[#5F6F94] focus:ring-[#4F63F6] bg-[#F9FAFF] p-3"
+            />
+            <Button
+              onClick={addChecklistItem}
+              className="bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA] text-[#4F63F6] rounded-lg px-3 py-2 h-auto font-semibold"
+            >
+              Add
+            </Button>
+          </div>
+          {checklistItems.length > 0 && (
+            <div className="grid grid-cols-1 gap-2 mt-2 max-h-32 overflow-y-auto">
+              {checklistItems.map((item, index) => (
+                <div key={index} className="flex items-center justify-between bg-[#F9FAFF] p-2 rounded-lg">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={item.checked}
+                      onChange={() => {
+                        const updatedItems = [...checklistItems];
+                        updatedItems[index].checked = !updatedItems[index].checked;
+                        setChecklistItems(updatedItems);
+                      }}
+                      className="w-4 h-4 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6]"
+                    />
+                    <span className="text-[#5F6F94] text-sm">{item.label}</span>
+                  </div>
+                  <button
+                    onClick={() => removeChecklistItem(index)}
+                    className="text-[#5F6F94] hover:text-red-500"
+                  >
+                    <XMarkIcon className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         <Form.Item
           label={<span className="text-[#0B0E3F] text-sm font-semibold">Attachments</span>}
@@ -180,29 +395,160 @@ const NewTaskModal = ({
   );
 };
 
+// ViewTaskModal Component
+const ViewTaskModal = ({
+  isOpen,
+  onClose,
+  task,
+  projectName,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  task: Task | null;
+  projectName: string;
+}) => {
+  if (!isOpen || !task) return null;
+
+  return (
+    <Modal
+      open={isOpen}
+      onCancel={onClose}
+      footer={null}
+      width={500}
+      centered
+      className="rounded-2xl"
+    >
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-[#0B0E3F] text-xl font-bold">{task.title}</h2>
+          <span
+            className={`${task.tagBgColor} ${task.tagTextColor} text-xs font-semibold rounded-lg px-4 py-1.5`}
+          >
+            {task.tag}
+          </span>
+        </div>
+
+        <div className="space-y-4 mb-6">
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Project</label>
+            <p className="text-[#5F6F94] text-sm mt-1">{projectName}</p>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Assigned to</label>
+            <p className="text-[#5F6F94] text-sm mt-1">{task.assignedTo}</p>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Due Date</label>
+            <p className="text-[#5F6F94] text-sm mt-1">{task.dueDate}</p>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Progress</label>
+            <p className="text-[#5F6F94] text-sm mt-1">{task.progress}</p>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Description</label>
+            <p className="text-[#5F6F94] text-sm mt-1 bg-[#F9FAFF] p-3 rounded-lg border border-[#E6E8F0]">
+              {task.description || "No description provided."}
+            </p>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Checklist</label>
+            <div className="mt-2">
+              {task.checklist.length > 0 ? (
+                <div className="bg-[#F9FAFF] p-3 rounded-lg border border-[#E6E8F0] max-h-40 overflow-y-auto">
+                  {task.checklist.map((item, index) => (
+                    <div key={index} className="flex items-center space-x-2 py-1 border-b border-[#E6E8F0] last:border-0">
+                      <input
+                        type="checkbox"
+                        checked={item.checked}
+                        disabled
+                        className="w-4 h-4 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6]"
+                      />
+                      <span className={`text-sm ${item.checked ? "line-through text-gray-400" : "text-[#5F6F94]"}`}>
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-[#5F6F94] text-sm mt-1 bg-[#F9FAFF] p-3 rounded-lg border border-[#E6E8F0]">
+                  No checklist items.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[#0B0E3F] text-sm font-semibold">Attachments</label>
+            <p className="text-[#5F6F94] text-sm mt-1 bg-[#F9FAFF] p-3 rounded-lg border border-[#E6E8F0]">
+              {task.attachments.length > 0 ? task.attachments.join(", ") : "No attachments."}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-end">
+          <Button
+            onClick={onClose}
+            className="bg-[#E6E8F0] text-[#5F6F94] rounded-lg px-5 py-2 h-auto font-semibold"
+          >
+            Close
+          </Button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
 // EditTaskModal Component
 const EditTaskModal = ({
   isOpen,
   onClose,
   task,
   onSave,
+  projects,
 }: {
   isOpen: boolean;
   onClose: () => void;
   task: Task;
   onSave: (task: Task) => void;
+  projects: Project[];
 }) => {
   const [form] = Form.useForm();
-  const [checklist, setChecklist] = useState([
-    { label: "Design mobile version", checked: false },
-    { label: "Use images of unsplash.com", checked: false },
-    { label: "Vector images of small size.", checked: false },
-    { label: "Design mobile version", checked: false },
-    { label: "Use images of unsplash.com", checked: false },
-    { label: "Vector images of small size..", checked: false },
-  ]);
+  const [checklist, setChecklist] = useState(task.checklist || []);
+  const [newChecklistItem, setNewChecklistItem] = useState("");
+  const [completed, setCompleted] = useState(task.completed || false);
 
   if (!isOpen) return null;
+
+  const addChecklistItem = () => {
+    if (newChecklistItem.trim() === "") {
+      message.warning("Checklist item cannot be empty");
+      return;
+    }
+    if (checklist.some((item) => item.label === newChecklistItem.trim())) {
+      message.warning("Checklist item already exists");
+      return;
+    }
+    setChecklist([...checklist, { label: newChecklistItem.trim(), checked: false }]);
+    setNewChecklistItem("");
+  };
+
+  const removeChecklistItem = (index: number) => {
+    const updatedChecklist = [...checklist];
+    updatedChecklist.splice(index, 1);
+    setChecklist(updatedChecklist);
+  };
+
+  const toggleChecklistItem = (index: number) => {
+    const updatedChecklist = [...checklist];
+    updatedChecklist[index].checked = !updatedChecklist[index].checked;
+    setChecklist(updatedChecklist);
+  };
 
   const handleSave = () => {
     form
@@ -210,7 +556,13 @@ const EditTaskModal = ({
       .then((values) => {
         const updatedTask: Task = {
           ...task,
+          projectId: values.projectId,
           title: values.taskName,
+          assignedTo: values.assignedTo,
+          dueDate: values.dueDate ? values.dueDate.format("DD/MM/YYYY") : task.dueDate,
+          description: values.description,
+          checklist: checklist,
+          completed: completed,
         };
         onSave(updatedTask);
         onClose();
@@ -218,12 +570,6 @@ const EditTaskModal = ({
       .catch((info) => {
         console.log("Validate Failed:", info);
       });
-  };
-
-  const toggleChecklistItem = (index: number) => {
-    setChecklist((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, checked: !item.checked } : item))
-    );
   };
 
   return (
@@ -239,15 +585,23 @@ const EditTaskModal = ({
         form={form}
         layout="vertical"
         className="p-6"
-        initialValues={{ taskName: task.title }}
+        initialValues={{
+          projectId: task.projectId,
+          taskName: task.title,
+          assignedTo: task.assignedTo,
+          dueDate: task.dueDate ? moment(task.dueDate, "DD/MM/YYYY") : null, // Parse dueDate with moment
+          description: task.description,
+        }}
       >
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"
+              checked={completed}
+              onChange={() => setCompleted(!completed)}
               className="w-4 h-4 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6]"
             />
-            <span className="text-[#5F6F94] text-sm font-semibold">Mark as done</span>
+            <span className="text-[#5F6F94] text-sm font-semibold">Mark as completed</span>
           </div>
           <span
             className={`${task.tagBgColor} ${task.tagTextColor} text-xs font-semibold rounded-lg px-4 py-1.5`}
@@ -257,6 +611,24 @@ const EditTaskModal = ({
         </div>
 
         <Form.Item
+          label={<span className="text-[#0B0E3F] text-sm font-semibold">Project</span>}
+          name="projectId"
+          rules={[{ required: true, message: "Please select a project" }]}
+        >
+          <Select
+            placeholder="Select project"
+            className="rounded-lg text-sm text-[#5F6F94] bg-[#F9FAFF]"
+          >
+            {projects.map((project) => (
+              <Select.Option key={project.id} value={project.id}>
+                {project.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          label={<span className="text-[#0B0E3F] text-sm font-semibold">Task Name</span>}
           name="taskName"
           rules={[{ required: true, message: "Please enter the task name" }]}
         >
@@ -267,8 +639,8 @@ const EditTaskModal = ({
 
         <div className="flex space-x-4 mb-5">
           <Form.Item
-            label={<span className="text-[#0B0E3F] text-sm font-semibold">Members</span>}
-            name="members"
+            label={<span className="text-[#0B0E3F] text-sm font-semibold">Assigned to</span>}
+            name="assignedTo"
             rules={[{ required: true, message: "Please select members" }]}
             className="flex-1"
           >
@@ -278,11 +650,12 @@ const EditTaskModal = ({
             >
               <Select.Option value="Team A">Team A</Select.Option>
               <Select.Option value="Team B">Team B</Select.Option>
+              <Select.Option value="Team C">Team C</Select.Option>
             </Select>
           </Form.Item>
 
           <Form.Item
-            label={<span className="text-[#0B0E3F] text-sm font-semibold">Due Dates*</span>}
+            label={<span className="text-[#0B0E3F] text-sm font-semibold">Due Date*</span>}
             name="dueDate"
             rules={[{ required: true, message: "Please select the due date" }]}
             className="flex-1"
@@ -299,7 +672,6 @@ const EditTaskModal = ({
         <Form.Item
           label={<span className="text-[#0B0E3F] text-sm font-semibold">Description</span>}
           name="description"
-          initialValue="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
         >
           <Input.TextArea
             rows={4}
@@ -307,22 +679,48 @@ const EditTaskModal = ({
           />
         </Form.Item>
 
-        {/* Checklist */}
         <div className="mb-5">
           <label className="block text-[#0B0E3F] text-sm font-semibold mb-2">Checklist</label>
-          <div className="grid grid-cols-2 gap-2">
-            {checklist.map((item, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={item.checked}
-                  onChange={() => toggleChecklistItem(index)}
-                  className="w-4 h-4 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6]"
-                />
-                <span className="text-[#5F6F94] text-sm">{item.label}</span>
-              </div>
-            ))}
+          <div className="flex items-center space-x-2 mb-3">
+            <Input
+              placeholder="Add checklist item"
+              value={newChecklistItem}
+              onChange={(e) => setNewChecklistItem(e.target.value)}
+              onPressEnter={addChecklistItem}
+              className="flex-1 rounded-lg border-[#E6E8F0] text-sm text-[#5F6F94] focus:ring-[#4F63F6] bg-[#F9FAFF] p-3"
+            />
+            <Button
+              onClick={addChecklistItem}
+              className="bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA] text-[#4F63F6] rounded-lg px-3 py-2 h-auto font-semibold"
+            >
+              Add
+            </Button>
           </div>
+          {checklist.length > 0 && (
+            <div className="grid grid-cols-1 gap-2 mt-2 max-h-32 overflow-y-auto">
+              {checklist.map((item, index) => (
+                <div key={index} className="flex items-center justify-between bg-[#F9FAFF] p-2 rounded-lg">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={item.checked}
+                      onChange={() => toggleChecklistItem(index)}
+                      className="w-4 h-4 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6]"
+                    />
+                    <span className={`text-sm ${item.checked ? "line-through text-gray-400" : "text-[#5F6F94]"}`}>
+                      {item.label}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => removeChecklistItem(index)}
+                    className="text-[#5F6F94] hover:text-red-500"
+                  >
+                    <XMarkIcon className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <Form.Item
@@ -361,18 +759,36 @@ const EditTaskModal = ({
 };
 
 // TaskItem Component
-const TaskItem = ({ task, index, onEdit }: { task: Task; index: number; onEdit: (task: Task) => void }) => (
+const TaskItem = ({
+  task,
+  projectName,
+  onView,
+  onEdit,
+  onDelete,
+}: {
+  task: Task;
+  projectName: string;
+  onView: (task: Task) => void;
+  onEdit: (task: Task) => void;
+  onDelete: (taskId: string) => void;
+}) => (
   <article className="flex items-center justify-between border border-[#E6E8F0] rounded-xl p-5 bg-[#F9FAFF] hover:shadow-md transition-all duration-300">
     <div className="flex items-start space-x-4">
       <input
         type="checkbox"
-        name={`task-${index}`}
+        checked={task.completed || false}
+        disabled
         className="mt-1 text-[#4F63F6] border-[#E6E8F0] rounded focus:ring-[#4F63F6] w-5 h-5"
       />
       <div>
-        <h2 className="text-[#0B0E3F] text-base font-semibold leading-6 tracking-tight">
+        <h2
+          className={`text-[#0B0E3F] text-base font-semibold leading-6 tracking-tight ${
+            task.completed ? "line-through text-gray-400" : ""
+          }`}
+        >
           {task.title}
         </h2>
+        <p className="text-[#5F6F94] text-xs mt-1">Project: {projectName}</p>
         <div className="flex space-x-3 mt-3">
           <div className="flex items-center space-x-2 bg-white text-[#5F6F94] text-xs font-medium rounded-lg px-3 py-1.5 shadow-sm">
             <ClipboardIcon className="w-4 h-4" />
@@ -392,36 +808,52 @@ const TaskItem = ({ task, index, onEdit }: { task: Task; index: number; onEdit: 
         {task.tag}
       </span>
       <button
+        onClick={() => onView(task)}
+        className="bg-[#B7C7FF] text-[#4F63F6] rounded-lg p-2.5 hover:opacity-80 transition-opacity duration-200"
+        aria-label={`View task ${task.title}`}
+      >
+        <EyeIcon className="w-5 h-5" />
+      </button>
+      <button
         onClick={() => onEdit(task)}
         className={`${task.buttonBgColor} ${task.buttonTextColor} rounded-lg p-2.5 hover:opacity-80 transition-opacity duration-200`}
         aria-label={`Edit task ${task.title}`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-5 h-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-          />
-        </svg>
+        <PencilIcon className="w-5 h-5" />
       </button>
+      <Popconfirm
+        title="Are you sure you want to delete this task?"
+        onConfirm={() => onDelete(task.id)}
+        okText="Yes"
+        cancelText="No"
+      >
+        <button
+          className="bg-red-100 text-red-600 rounded-lg p-2.5 hover:opacity-80 transition-opacity duration-200"
+          aria-label={`Delete task ${task.title}`}
+        >
+          <TrashIcon className="w-5 h-5" />
+        </button>
+      </Popconfirm>
     </div>
   </article>
 );
 
 // TaskList Component
 const TaskList = () => {
-  const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+  const [isNewProjectModalOpen, setIsNewProjectModalOpen] = useState(false);
+  const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
+  const [isViewTaskModalOpen, setIsViewTaskModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("1");
+  const [projects, setProjects] = useState<Project[]>([
+    { id: "1", name: "webkit Project" },
+    { id: "2", name: "Mobile App" },
+  ]);
   const [tasks, setTasks] = useState<Task[]>([
     {
+      id: "1",
+      projectId: "1",
       title: "Design landing page of webkit",
       progress: "5/10",
       comments: "3",
@@ -430,8 +862,19 @@ const TaskList = () => {
       tagTextColor: "text-[#D95D39]",
       buttonBgColor: "bg-[#F9B5A7]",
       buttonTextColor: "text-[#D95D39]",
+      assignedTo: "Team A",
+      dueDate: "21/04/2025",
+      description: "Create a modern landing page design for the webkit project.",
+      checklist: [
+        { label: "Design mobile version", checked: false },
+        { label: "Use images of unsplash.com", checked: false },
+      ],
+      attachments: [],
+      completed: false,
     },
     {
+      id: "2",
+      projectId: "1",
       title: "Create unique style of inner pages",
       progress: "5/10",
       comments: "3",
@@ -440,21 +883,47 @@ const TaskList = () => {
       tagTextColor: "text-[#3B8B84]",
       buttonBgColor: "bg-[#B9D9D5]",
       buttonTextColor: "text-[#3B8B84]",
+      assignedTo: "Team B",
+      dueDate: "22/04/2025",
+      description: "Design unique styles for inner pages of the webkit project.",
+      checklist: [{ label: "Vector images of small size", checked: false }],
+      attachments: [],
+      completed: false,
     },
     {
+      id: "3",
+      projectId: "2",
       title: "Activate from WordPress Dashboard",
       progress: "5/10",
       comments: "3",
-      tag: "Design",
+      tag: "Development",
       tagBgColor: "bg-[#B7C7FF]",
       tagTextColor: "text-[#4F63F6]",
       buttonBgColor: "bg-[#B7C7FF]",
       buttonTextColor: "text-[#4F63F6]",
+      assignedTo: "Team A",
+      dueDate: "23/04/2025",
+      description: "Implement activation feature in the WordPress dashboard.",
+      checklist: [],
+      attachments: [],
+      completed: false,
     },
   ]);
 
+  const handleSaveNewProject = (newProject: Project) => {
+    setProjects((prevProjects) => [...prevProjects, newProject]);
+    setSelectedProjectId(newProject.id);
+    message.success("Project created successfully!");
+  };
+
   const handleSaveNewTask = (newTask: Task) => {
     setTasks((prevTasks) => [...prevTasks, newTask]);
+    message.success("Task created successfully!");
+  };
+
+  const handleViewTask = (task: Task) => {
+    setCurrentTask(task);
+    setIsViewTaskModalOpen(true);
   };
 
   const handleEditTask = (task: Task) => {
@@ -464,25 +933,46 @@ const TaskList = () => {
 
   const handleSaveEditedTask = (updatedTask: Task) => {
     setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.title === currentTask?.title ? updatedTask : task))
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
+    message.success("Task updated successfully!");
   };
+
+  const handleDeleteTask = (taskId: string) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    message.success("Task deleted successfully!");
+  };
+
+  const filteredTasks = tasks.filter((task) => task.projectId === selectedProjectId);
+  const selectedProject = projects.find((project) => project.id === selectedProjectId);
 
   return (
     <div className="min-h-screen bg-[#F9FAFF]">
       <main className="flex-1 p-6">
-      <section className="bg-white rounded-2xl shadow-lg p-8 space-y-6 border border-[#E6E8F0] -ml-5 -mt-5">
+        <section className="bg-white rounded-2xl shadow-lg p-8 space-y-6 border border-[#E6E8F0] -ml-5 -mt-5">
           {/* Header */}
-          <header className="flex items-center justify-between ">
-            <h1 className="text-[#0B0E3F] text-xl font-bold tracking-tight ">Your Task</h1>
+          <header className="flex items-center justify-between">
+            <h1 className="text-[#0B0E3F] text-xl font-bold tracking-tight">Your Tasks</h1>
             <div className="flex items-center space-x-4">
-              <button className="text-[#5F6F94] text-sm font-semibold bg-[#F3F4F9] rounded-lg px-4 py-2.5 flex items-center space-x-2 hover:bg-[#E6E8F0] transition-all duration-200">
-                <span>Project</span>
-                <span className="font-medium">: webkit Project</span>
-                <ChevronDownIcon className="w-4 h-4" />
+              <Select
+                value={selectedProjectId}
+                onChange={(value) => setSelectedProjectId(value)}
+                className="w-48 rounded-lg text-sm text-[#5F6F94] bg-[#F3F4F9]"
+                suffixIcon={<ChevronDownIcon className="w-4 h-4 text-[#5F6F94]" />}
+              >
+                {projects.map((project) => (
+                  <Select.Option key={project.id} value={project.id}>
+                    {project.name}
+                  </Select.Option>
+                ))}
+              </Select>
+              <button
+                onClick={() => setIsNewProjectModalOpen(true)}
+                className="bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA] text-[#4F63F6] text-sm font-semibold rounded-lg px-5 py-2.5 m-2 hover:from-[#A3BFFA] hover:to-[#B7C7FF] transition-all duration-200 shadow-md"              >
+                New Project
               </button>
               <button
-                onClick={() => setIsNewModalOpen(true)}
+                onClick={() => setIsNewTaskModalOpen(true)}
                 className="bg-gradient-to-r from-[#4F63F6] to-[#647AFA] text-white text-sm font-semibold rounded-lg px-5 py-2.5 hover:from-[#647AFA] hover:to-[#4F63F6] transition-all duration-200 shadow-md"
               >
                 New Task
@@ -493,22 +983,41 @@ const TaskList = () => {
           <hr className="border-[#E6E8F0]" />
 
           {/* Task List */}
-          {tasks.length === 0 ? (
+          {filteredTasks.length === 0 ? (
             <p className="text-[#5F6F94] text-center text-sm">
-              No tasks available. Add a new task to get started!
+              No tasks available for this project. Add a new task to get started!
             </p>
           ) : (
-            tasks.map((task, index) => (
-              <TaskItem key={index} task={task} index={index} onEdit={handleEditTask} />
+            filteredTasks.map((task) => (
+              <TaskItem
+                key={task.id}
+                task={task}
+                projectName={selectedProject?.name || "Unknown Project"}
+                onView={handleViewTask}
+                onEdit={handleEditTask}
+                onDelete={handleDeleteTask}
+              />
             ))
           )}
         </section>
 
         {/* Modals */}
+        <NewProjectModal
+          isOpen={isNewProjectModalOpen}
+          onClose={() => setIsNewProjectModalOpen(false)}
+          onSave={handleSaveNewProject}
+        />
         <NewTaskModal
-          isOpen={isNewModalOpen}
-          onClose={() => setIsNewModalOpen(false)}
+          isOpen={isNewTaskModalOpen}
+          onClose={() => setIsNewTaskModalOpen(false)}
           onSave={handleSaveNewTask}
+          projects={projects}
+        />
+        <ViewTaskModal
+          isOpen={isViewTaskModalOpen}
+          onClose={() => setIsViewTaskModalOpen(false)}
+          task={currentTask}
+          projectName={selectedProject?.name || "Unknown Project"}
         />
         {currentTask && (
           <EditTaskModal
@@ -516,6 +1025,7 @@ const TaskList = () => {
             onClose={() => setIsEditModalOpen(false)}
             task={currentTask}
             onSave={handleSaveEditedTask}
+            projects={projects}
           />
         )}
       </main>
