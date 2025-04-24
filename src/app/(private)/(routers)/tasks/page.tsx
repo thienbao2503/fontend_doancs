@@ -15,6 +15,7 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import { HeaderSearch } from "./_components";
 
 // Define Project type
 interface Project {
@@ -107,7 +108,7 @@ const NewProjectModal = ({
       });
   };
 
- 
+
 
   return (
     <Modal
@@ -782,9 +783,8 @@ const TaskItem = ({
       />
       <div>
         <h2
-          className={`text-[#0B0E3F] text-base font-semibold leading-6 tracking-tight ${
-            task.completed ? "line-through text-gray-400" : ""
-          }`}
+          className={`text-[#0B0E3F] text-base font-semibold leading-6 tracking-tight ${task.completed ? "line-through text-gray-400" : ""
+            }`}
         >
           {task.title}
         </h2>
@@ -947,42 +947,20 @@ const TaskList = () => {
   const selectedProject = projects.find((project) => project.id === selectedProjectId);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFF]">
-      <main className="flex-1 p-6">
-        <section className="bg-white rounded-2xl shadow-lg p-8 space-y-6 border border-[#E6E8F0] -ml-5 -mt-5">
-          {/* Header */}
-          <header className="flex items-center justify-between">
-            <h1 className="text-[#0B0E3F] text-xl font-bold tracking-tight">Your Tasks</h1>
-            <div className="flex items-center space-x-4">
-              <Select
-                value={selectedProjectId}
-                onChange={(value) => setSelectedProjectId(value)}
-                className="w-48 rounded-lg text-sm text-[#5F6F94] bg-[#F3F4F9]"
-                suffixIcon={<ChevronDownIcon className="w-4 h-4 text-[#5F6F94]" />}
-              >
-                {projects.map((project) => (
-                  <Select.Option key={project.id} value={project.id}>
-                    {project.name}
-                  </Select.Option>
-                ))}
-              </Select>
-              <button
-                onClick={() => setIsNewProjectModalOpen(true)}
-                className="bg-gradient-to-r from-[#B7C7FF] to-[#A3BFFA] text-[#4F63F6] text-sm font-semibold rounded-lg px-5 py-2.5 m-2 hover:from-[#A3BFFA] hover:to-[#B7C7FF] transition-all duration-200 shadow-md"              >
-                New Project
-              </button>
-              <button
-                onClick={() => setIsNewTaskModalOpen(true)}
-                className="bg-gradient-to-r from-[#4F63F6] to-[#647AFA] text-white text-sm font-semibold rounded-lg px-5 py-2.5 hover:from-[#647AFA] hover:to-[#4F63F6] transition-all duration-200 shadow-md"
-              >
-                New Task
-              </button>
-            </div>
-          </header>
+    <div className="flex flex-col space-y-4 h-full">
+      <section className="bg-white rounded-2xl shadow-lg p-8">
+        {/* Header */}
+        <HeaderSearch
+          projects={projects}
+          selectedProjectId={selectedProjectId}
+          setSelectedProjectId={(id) => setSelectedProjectId(id.toLocaleString())}
+          setIsNewProjectModalOpen={setIsNewProjectModalOpen}
+          setIsNewTaskModalOpen={setIsNewTaskModalOpen}
+        />
+        <hr className="border-[#E6E8F0]" />
 
-          <hr className="border-[#E6E8F0]" />
-
-          {/* Task List */}
+        {/* Task List */}
+        <div className="flex flex-col gap-2">
           {filteredTasks.length === 0 ? (
             <p className="text-[#5F6F94] text-center text-sm">
               No tasks available for this project. Add a new task to get started!
@@ -999,37 +977,38 @@ const TaskList = () => {
               />
             ))
           )}
-        </section>
+        </div>
+      </section>
 
-        {/* Modals */}
-        <NewProjectModal
-          isOpen={isNewProjectModalOpen}
-          onClose={() => setIsNewProjectModalOpen(false)}
-          onSave={handleSaveNewProject}
-        />
-        <NewTaskModal
-          isOpen={isNewTaskModalOpen}
-          onClose={() => setIsNewTaskModalOpen(false)}
-          onSave={handleSaveNewTask}
+      {/* Modals */}
+      <NewProjectModal
+        isOpen={isNewProjectModalOpen}
+        onClose={() => setIsNewProjectModalOpen(false)}
+        onSave={handleSaveNewProject}
+      />
+      <NewTaskModal
+        isOpen={isNewTaskModalOpen}
+        onClose={() => setIsNewTaskModalOpen(false)}
+        onSave={handleSaveNewTask}
+        projects={projects}
+      />
+      <ViewTaskModal
+        isOpen={isViewTaskModalOpen}
+        onClose={() => setIsViewTaskModalOpen(false)}
+        task={currentTask}
+        projectName={selectedProject?.name || "Unknown Project"}
+      />
+      {currentTask && (
+        <EditTaskModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          task={currentTask}
+          onSave={handleSaveEditedTask}
           projects={projects}
         />
-        <ViewTaskModal
-          isOpen={isViewTaskModalOpen}
-          onClose={() => setIsViewTaskModalOpen(false)}
-          task={currentTask}
-          projectName={selectedProject?.name || "Unknown Project"}
-        />
-        {currentTask && (
-          <EditTaskModal
-            isOpen={isEditModalOpen}
-            onClose={() => setIsEditModalOpen(false)}
-            task={currentTask}
-            onSave={handleSaveEditedTask}
-            projects={projects}
-          />
-        )}
-      </main>
+      )}
     </div>
+
   );
 };
 

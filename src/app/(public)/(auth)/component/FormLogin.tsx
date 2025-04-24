@@ -1,19 +1,19 @@
 // 6
-'use client'
-import { loginAction, selectAuth } from "@/app/services/auth/slice";
-import { IAuth } from "@/app/services/auth/type";
+import { AppDispatch } from "@/app/redux/store";
+import { loginAction } from "@/app/services/auth/slice";
+import { ILogin } from "@/app/services/auth/type";
 import { setToken } from "@/app/utils/tokenServiceClientSide";
 import { EyeIcon, EyeSlashIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
-import { Action } from "@reduxjs/toolkit";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 function FormLogin() {
-    const dispatch = useDispatch();
+    const router = useRouter()
+    const dispatch = useDispatch<AppDispatch>();
     const [showLoginPassword, setShowLoginPassword] = useState(false);
-    const [data, setData] = useState<IAuth>({
+    const [data, setData] = useState<ILogin>({
         email: "",
         password: ""
     })
@@ -23,22 +23,22 @@ function FormLogin() {
             [field]: value
         })
     }
-
     const handleLogin = async () => {
         try {
-            const payload: IAuth = {
+            const payload: ILogin = {
                 email: data.email,
                 password: data.password
             }
             // Ép kiểu trả về cho action
-            const action = await dispatch(loginAction(payload) as any);
+            const action = await dispatch(loginAction(payload));
             if (loginAction.fulfilled.match(action)) {
-                const { message, data } = action.payload;
-                const { } = data.use
-                // setToken()
+                const { message, data, } = action.payload;
+                const { access_token, refresh_token } = data?.tokens
+                setToken(access_token, refresh_token)
+                router.push("/tong-quan")
                 toast.success(message);
             } else {
-                const { message, errors } = action.payload;
+                const { errors, message } = action.payload as any;
                 toast.error(errors[0]?.message || message);
             }
         }
@@ -58,7 +58,7 @@ function FormLogin() {
                         type="email"
                         value={data.email}
                         onChange={(e) => handleChange("email", e.target.value)}
-                        placeholder="Enter your email"
+                        placeholder="Nhập Email"
                         className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
                         required
                     />
@@ -67,7 +67,7 @@ function FormLogin() {
 
             <div className="relative">
                 <label htmlFor="login-password" className="block text-sm font-medium text-gray-800 mb-2">
-                    Password
+                    Mật Khẩu
                 </label>
                 <div className="relative">
                     <LockClosedIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />
@@ -77,7 +77,7 @@ function FormLogin() {
                         name="password"
                         value={data.password}
                         onChange={(e) => handleChange("password", e.target.value)}
-                        placeholder="Enter your password"
+                        placeholder="Nhập mật khẩu"
                         className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
                         required
                     />

@@ -17,13 +17,13 @@ function SideBar() {
             icon: <MailOutlined />,
         },
         {
-            key: 'project',
-            label: 'Project',
+            key: '/du-an',
+            label: 'Dự Án | Công Trình',
             icon: <AppstoreOutlined />,
         },
         {
-            key: 'task',
-            label: 'Task',
+            key: '/cong-viec',
+            label: 'Công việc',
             icon: <AppstoreOutlined />,
         },
         {
