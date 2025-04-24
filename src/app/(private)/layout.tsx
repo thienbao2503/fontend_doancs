@@ -2,6 +2,8 @@
 import { HeaderCustom, SideBar } from '@/layouts';
 import PrivateRoutes from '@/routing/PrivateRoute';
 import { ConfigProvider, Layout } from 'antd';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 const { Content } = Layout;
 
@@ -40,5 +42,7 @@ export default function RootLayout(props: IPops) {
                 </Layout>
             </ConfigProvider>
         </PrivateRoutes>
+
+
     );
 }

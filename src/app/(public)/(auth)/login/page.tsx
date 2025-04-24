@@ -9,6 +9,7 @@ import {
   EyeSlashIcon,
   PhoneIcon,
 } from "@heroicons/react/24/outline";
+import { FormLogin } from "../component";
 
 export default function Auth() {
   const router = useRouter();
@@ -119,17 +120,15 @@ export default function Auth() {
         <div className="flex justify-center mb-8 bg-white/30 rounded-full p-1">
           <button
             onClick={() => setIsLogin(true)}
-            className={`px-6 py-2 text-lg font-semibold rounded-full transition-all duration-300 ${
-              isLogin ? "bg-white text-sky-700 shadow-md" : "text-gray-700"
-            }`}
+            className={`px-6 py-2 text-lg font-semibold rounded-full transition-all duration-300 ${isLogin ? "bg-white text-sky-700 shadow-md" : "text-gray-700"
+              }`}
           >
             Login
           </button>
           <button
             onClick={() => setIsLogin(false)}
-            className={`px-6 py-2 text-lg font-semibold rounded-full transition-all duration-300 ${
-              !isLogin ? "bg-white text-sky-700 shadow-md" : "text-gray-700"
-            }`}
+            className={`px-6 py-2 text-lg font-semibold rounded-full transition-all duration-300 ${!isLogin ? "bg-white text-sky-700 shadow-md" : "text-gray-700"
+              }`}
           >
             Register
           </button>
@@ -141,11 +140,10 @@ export default function Auth() {
 
         {message.text && (
           <div
-            className={`mb-6 p-3 rounded-lg text-sm text-center ${
-              message.type === "error"
+            className={`mb-6 p-3 rounded-lg text-sm text-center ${message.type === "error"
                 ? "bg-red-500/20 text-red-700"
                 : "bg-sky-500/20 text-sky-700"
-            } animate-fade-in`}
+              } animate-fade-in`}
           >
             {message.text}
           </div>
@@ -153,71 +151,7 @@ export default function Auth() {
 
         {/* Login Form */}
         {isLogin ? (
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="relative">
-              <label className="block text-sm font-medium text-gray-800 mb-2">
-                Email
-              </label>
-              <div className="relative">
-              <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />                <input
-                  id="login-email"
-                  type="email"
-                  name="email"
-                  value={loginData.email}
-                  onChange={handleLoginInputChange}
-                  placeholder="Enter your email"
-                  className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="relative">
-              <label htmlFor="login-password" className="block text-sm font-medium text-gray-800 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <LockClosedIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />
-                <input
-                  id="login-password"
-                  type={showLoginPassword ? "text" : "password"}
-                  name="password"
-                  value={loginData.password}
-                  onChange={handleLoginInputChange}
-                  placeholder="Enter your password"
-                  className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowLoginPassword(!showLoginPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800 transition-colors duration-300"
-                  aria-label={showLoginPassword ? "Hide password" : "Show password"}
-                >
-                  {showLoginPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            <div className="text-right">
-              <button
-                type="button"
-                onClick={handleForgotPassword}
-                className="text-sm text-gray-700 hover:text-gray-900 hover:underline focus:outline-none transition-colors duration-300"
-                aria-label="Forgot your password"
-              >
-                Forgot Password?
-              </button>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-sky-500 to-sky-700 text-white py-3 rounded-xl font-semibold hover:from-sky-600 hover:to-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl"
-              aria-label="Login to your account"
-            >
-              Login
-            </button>
-          </form>
+          <FormLogin />
         ) : (
           /* Register Form */
           <form onSubmit={handleRegister} className="space-y-6">
