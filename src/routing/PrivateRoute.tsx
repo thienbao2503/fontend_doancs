@@ -40,10 +40,10 @@ const PrivateRoutes = (props: IProps) => {
       ) as IAuthKeys;
 
       // Check for access token
-      if (!accessToken) {
-        handleAuthError("No access token");
-        return false;
-      }
+      // if (!accessToken) {
+      //   handleAuthError("No access token");
+      //   return false;
+      // }
 
       return true;
 

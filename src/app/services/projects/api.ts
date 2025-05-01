@@ -1,19 +1,21 @@
 // 5
 import { ApiResponsive, axiosClient } from "@/app/utils/axiosClient"
-import { ILogin } from "./type"
+import { IParmas } from "./type"
+
+const moduleName = 'projects'
 
 export const service = {
-    login: async (data: ILogin) => {
+    getAll: async (params: IParmas) => {
         try {
             const response = await axiosClient({
-                method: 'POST',
-                url: '/auth/login',
-                data: data
+                method: 'GET',
+                url: `${moduleName}`,
+                params
             }) as ApiResponsive
 
             return response
         } catch (error) {
-
+            console.error(error);
         }
-    }
+    },
 }

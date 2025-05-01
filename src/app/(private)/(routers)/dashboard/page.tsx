@@ -151,6 +151,32 @@ export default function About() {
       ],
     },
     {
+      title: "Automotive WordPress",
+      description: "Dealership-based business WordPress theme.",
+      progress: 25,
+      color: "#F15A24",
+      bgColor: "#FAD9CC",
+      priority: "Medium",
+      team: [
+        {
+          src: "https://storage.googleapis.com/a1aa/image/95e15d84-bc2b-4a4f-2489-dbc3e0c738ab.jpg",
+          alt: "Face of a man with light skin and beard smiling",
+        },
+        {
+          src: "https://storage.googleapis.com/a1aa/image/221ceadf-0e65-4748-1f74-25490c40de02.jpg",
+          alt: "Face of a woman with light skin and brown hair smiling",
+        },
+        {
+          src: "https://storage.googleapis.com/a1aa/image/1618a9ce-a147-45c8-6d65-37f29a5946fb.jpg",
+          alt: "Face of a man with light skin and hat smiling",
+        },
+        {
+          src: "https://storage.googleapis.com/a1aa/image/95e15d84-bc2b-4a4f-2489-dbc3e0c738ab.jpg",
+          alt: "Face of a man with light skin and beard smiling",
+        },
+      ],
+    },
+    {
       title: "Online Education",
       description: "Remote students and teachers dashboard.",
       progress: 15,
@@ -218,6 +244,7 @@ export default function About() {
       iconPath:
         "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z",
     },
+    
   ];
 
   // Structured data for current projects
@@ -470,33 +497,49 @@ export default function About() {
         <div className="space-y-8">
           <Calendar />
           {/* Tasks List */}
-          <div className="space-y-4 max-w-full mx-auto lg:mx-0">
-            {tasks.map((task, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-4 shadow-sm flex items-center space-x-4"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke={task.iconColor}
-                  className="size-6"
-                  aria-hidden="true"
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h2 className="text-lg font-semibold mb-4 text-[#1E1E50]">Nhiệm vụ của bạn</h2>
+            <div className="space-y-4">
+              {tasks.map((task, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-xl p-4 flex items-center space-x-4 hover:bg-gray-100 transition-colors duration-200"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d={task.iconPath}
-                  />
-                </svg>
-                <div>
-                  <p className="font-semibold text-sm text-[#1E1E50]">{task.title}</p>
-                  <p className="text-xs text-[#1E1E50] opacity-60 mt-1">{task.description}</p>
+                  <div className="p-2 rounded-lg" style={{ backgroundColor: `${task.iconColor}15` }}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke={task.iconColor}
+                      className="size-6"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d={task.iconPath}
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-sm text-[#1E1E50]">{task.title}</p>
+                    <p className="text-xs text-[#1E1E50] opacity-60 mt-1">{task.description}</p>
+                  </div>
+                  <button className="text-gray-400 hover:text-[#1E1E50] transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button className="mt-4 w-full py-2 text-sm font-medium text-[#4F6FFF] bg-[#E6E9FF] rounded-lg hover:bg-[#D6D9FF] transition-colors duration-200 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              Thêm nhiệm vụ mới
+            </button>
           </div>
         </div>
       </div>

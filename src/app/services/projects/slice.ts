@@ -2,15 +2,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { service } from "./api";
 import { ApiResponsive } from "@/app/utils/axiosClient";
-import { ILogin, IState } from "./type";
-const namespace = 'auth';
+import { IParmas, IState } from "./type";
+const namespace = 'projects';
 
 
-export const loginAction = createAsyncThunk<ApiResponsive, ILogin>(
-    `${namespace}/login`,
+const getAllAction = createAsyncThunk<ApiResponsive, IParmas>(
+    `${namespace}/getall`,
     async (data, { rejectWithValue }) => {
         try {
-            const response = await service.login(data) as ApiResponsive;
+            const response = await service.getAll(data) as ApiResponsive;
 
             if (response.statusCode === 200) {
                 const { data, message } = response;
@@ -24,11 +24,12 @@ export const loginAction = createAsyncThunk<ApiResponsive, ILogin>(
         }
     }
 );
+export { getAllAction };
 
 const initialState: IState = {
     isLoading: false,
     errors: [],
-    data: null,
+    data: [],
     message: null
 };
 
@@ -47,17 +48,19 @@ const slice = createSlice({
             state.message = action.payload?.message
         };
         builder
-            .addCase(loginAction.pending, setPending)
-            .addCase(loginAction.fulfilled, (state, action: PayloadAction<ApiResponsive>) => {
+            .addCase(getAllAction.pending, setPending)
+            .addCase(getAllAction.fulfilled, (state, action: PayloadAction<ApiResponsive>) => {
                 state.isLoading = false;
                 state.errors = [];
                 state.data = action.payload.data;
                 state.message = action.payload.message;
             })
-            .addCase(loginAction.rejected, setRejected);
+            .addCase(getAllAction.rejected, setRejected);
     }
 });
 
-export const selectAuth = (state: { auth: IState }) => state.auth;
-const authReducer = slice.reducer
-export default authReducer;
+export const selectProjects = (state: { projects: IState }) => state.projects;
+
+const projectsReducer = slice.reducer;
+
+export default projectsReducer

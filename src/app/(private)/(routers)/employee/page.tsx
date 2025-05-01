@@ -1,17 +1,12 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
-import { 
-  Squares2X2Icon, 
-  Bars3Icon, 
-  EnvelopeIcon, 
-  ChatBubbleLeftIcon, 
-  PhoneIcon 
-} from "@heroicons/react/24/outline";
+import EmployeeHeader from "./_components/EmployeeHeader";
+import EmployeeList from "./_components/EmployeeList";
+import ModalNewUser from "./_components/ModalNewUser";
 
 export default function Employees() {
   const [view, setView] = useState("grid");
-
+  const [openModal, setOpenModal] = useState(false);
   const contacts = [
     {
       id: 1,
@@ -34,101 +29,35 @@ export default function Employees() {
       imageSrc: "https://storage.googleapis.com/a1aa/image/691d3830-9a7f-4311-f0f5-e45f0fdf8699.jpg",
       imageAlt: "Woman with brown hair and bangs, circular profile photo",
     },
+    {
+      id: 4,
+      name: "Corey Press",
+      email: "coreypress@gmail.com",
+      imageSrc: "https://storage.googleapis.com/a1aa/image/691d3830-9a7f-4311-f0f5-e45f0fdf8699.jpg",
+      imageAlt: "Woman with brown hair and bangs, circular profile photo",
+    },
+    {
+      id: 5,
+      name: "Corey Press",
+      email: "coreypress@gmail.com",
+      imageSrc: "https://storage.googleapis.com/a1aa/image/691d3830-9a7f-4311-f0f5-e45f0fdf8699.jpg",
+      imageAlt: "Woman with brown hair and bangs, circular profile photo",
+    },
+    {
+      id: 6,
+      name: "Corey Press",
+      email: "coreypress@gmail.com",
+      imageSrc: "https://storage.googleapis.com/a1aa/image/691d3830-9a7f-4311-f0f5-e45f0fdf8699.jpg",
+      imageAlt: "Woman with brown hair and bangs, circular profile photo",
+    },
+    // Thêm các nhân viên khác nếu muốn
   ];
 
   return (
-<div className="bg-gray-50 min-h-screen flex flex-col items-start justify-start max-w-full mx-auto">        
-  <header className="w-full max-w-full bg-white rounded-lg shadow-lg flex justify-between items-center px-6 py-4 mb-8">
-        <h1 className="text-gray-800 font-semibold text-xl">Your Contacts</h1>
-        <div className="flex items-center space-x-4">
-          <button
-            aria-label="Grid view"
-            onClick={() => setView("grid")}
-            className={`p-2 rounded-lg flex items-center justify-center ${
-              view === "grid" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-            }`}
-          >
-            <Squares2X2Icon className="w-6 h-6" />
-          </button>
-          <button
-            aria-label="List view"
-            onClick={() => setView("list")}
-            className={`p-2 rounded-lg flex items-center justify-center ${
-              view === "list" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-            }`}
-          >
-            <Bars3Icon className="w-6 h-6" />
-          </button>
-          <button
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
-            type="button"
-          >
-            New Contact
-          </button>
-        </div>
-      </header>
-
-      <main
-  className={`w-full gap-6 ${view === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col space-y-4"}`}>
-        {contacts.map((contact) => (
-          <section
-            key={contact.id}
-            className={`bg-white rounded-lg p-6 relative flex ${
-              view === "grid" ? "flex-col items-center text-center" : "flex-row items-center justify-between"
-            } shadow-md transition-all duration-300 ease-in-out`}
-          >
-            <div className={`relative ${view === "grid" ? "mb-4" : "mr-4"}`}>
-              <Image
-                src={contact.imageSrc}
-                alt={contact.imageAlt}
-                width={80}
-                height={80}
-                className="w-20 h-20 rounded-full border-2 border-blue-600 object-cover"
-              />
-            </div>
-            <div className={view === "list" ? "flex-1" : ""}>
-              <h2 className="text-gray-800 font-semibold text-lg mb-1">{contact.name}</h2>
-              <p className="text-gray-500 text-sm mb-4">{contact.email}</p>
-            </div>
-            <div className={`flex items-center justify-center space-x-4 ${view === "grid" ? "mt-4" : ""}`}>
-              <button
-                aria-label={`Email ${contact.name}`}
-                className="bg-red-100 text-red-600 p-2 rounded-full transition-colors hover:bg-red-200"
-              >
-                <EnvelopeIcon className="w-5 h-5" />
-              </button>
-              <button
-                aria-label={`Chat with ${contact.name}`}
-                className="bg-blue-100 text-blue-600 p-2 rounded-full transition-colors hover:bg-blue-200"
-              >
-                <ChatBubbleLeftIcon className="w-5 h-5" />
-              </button>
-              <button
-                aria-label={`Call ${contact.name}`}
-                className="bg-green-100 text-green-600 p-2 rounded-full transition-colors hover:bg-green-200"
-              >
-                <PhoneIcon className="w-5 h-5" />
-              </button>
-            </div>
-            {view === "list" && (
-              <button
-                className="ml-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
-                type="button"
-              >
-                Message
-              </button>
-            )}
-            {view === "grid" && (
-              <button
-                className="mt-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
-                type="button"
-              >
-                Message
-              </button>
-            )}
-          </section>
-        ))}
-      </main>
+    <div className="bg-gray-50 min-h-screen flex flex-col items-start justify-start max-w-full mx-auto">
+      <EmployeeHeader view={view} setView={setView} onNewContact={() => setOpenModal(true)} />
+      <EmployeeList contacts={contacts} view={view} />
+      <ModalNewUser open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 }
