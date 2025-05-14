@@ -463,7 +463,7 @@ export default function Projects() {
           : "flex flex-col overflow-y-auto"
           }`}
       >
-        {projects.map((project) => (
+        {/* {projects.map((project) => (
           <Card
             key={project.id}
             project={project}
@@ -472,7 +472,7 @@ export default function Projects() {
             handleEditProject={handleEditProject}
             handleDeleteProject={handleDeleteProject}
           />
-        ))}
+        ))} */}
       </section>
     </div>
   );
