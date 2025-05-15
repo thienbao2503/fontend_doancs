@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --shadow-primary: 0 10px 20px rgba(0, 0, 0, 0.05);
   --color-primary: #4f6df5;
 }
@@ -10,11 +10,11 @@
   --foreground: #171717;
 }
 
-/* :root {
+:root {
   --color-primary-bg: #f7f9fc;
   --color-primary: #2196f3;
   --color-text-primary: red;
-} */
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
