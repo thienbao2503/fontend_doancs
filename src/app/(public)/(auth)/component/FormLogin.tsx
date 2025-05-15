@@ -1,17 +1,26 @@
 // 6
-import { AppDispatch } from "@/app/redux/store";
-import { loginAction } from "@/app/services/auth/slice";
 import { ILogin } from "@/app/services/auth/type";
+import { useAuthQuery } from "@/app/services/auth/useQuery";
 import { setToken } from "@/app/utils/tokenServiceClientSide";
 import { EyeIcon, EyeSlashIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 
 function FormLogin() {
     const router = useRouter()
-    const dispatch = useDispatch<AppDispatch>();
+    const { mutate: handleLogin, isPending } = useAuthQuery.useLogin(
+        (res) => {
+            const { message, data, } = res
+            const { access_token, refresh_token } = data?.tokens
+            setToken(access_token, refresh_token)
+            router.push("/tong-quan")
+            toast.success(message)
+        },
+        (error) => {
+            toast.error(error.errors[0]?.message)
+        }
+    )
     const [showLoginPassword, setShowLoginPassword] = useState(false);
     const [data, setData] = useState<ILogin>({
         email: "",
@@ -23,29 +32,7 @@ function FormLogin() {
             [field]: value
         })
     }
-    const handleLogin = async () => {
-        try {
-            const payload: ILogin = {
-                email: data.email,
-                password: data.password
-            }
-            // Ép kiểu trả về cho action
-            const action = await dispatch(loginAction(payload));
-            if (loginAction.fulfilled.match(action)) {
-                const { message, data, } = action.payload;
-                const { access_token, refresh_token } = data?.tokens
-                setToken(access_token, refresh_token)
-                router.push("/tong-quan")
-                toast.success(message);
-            } else {
-                const { errors, message } = action.payload as any;
-                toast.error(errors[0]?.message || message);
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+
     return (
         <form className="space-y-6">
             <div className="relative">
@@ -92,15 +79,15 @@ function FormLogin() {
                 </div>
             </div>
 
-
             <button
                 type="button"
-
-                className="w-full bg-gradient-to-r from-sky-500 to-sky-700 text-white py-3 rounded-xl font-semibold hover:from-sky-600 hover:to-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-700 text-white py-3 rounded-xl font-semibold hover:from-sky-600 hover:to-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl"
                 aria-label="Login to your account"
-                onClick={handleLogin}
+                onClick={() => handleLogin(data)}
+                disabled={isPending}
             >
-                Login
+                {isPending && <i className="fi fi-rr-loading animate-spin "></i>}
+                Đăng Nhập
             </button>
         </form>
     );

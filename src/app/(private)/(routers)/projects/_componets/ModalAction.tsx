@@ -36,7 +36,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
             end_date: values.end_date ? values.end_date.format("YYYY-MM-DD") : undefined,
         };
         if (initialValues && initialValues.id) {
-            handleUpdate(data)
+            handleUpdate({ ...data, id: initialValues.id })
         } else {
             handleAdd(data)
         }
@@ -113,21 +113,26 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     <Form.Item
                         label="Ngân sách"
                         name="budget"
-                        rules={[{ required: true, message: "Vui lòng nhập ngân sách" }]}
+                        rules={[
+                            { required: true, message: "Vui lòng nhập ngân sách" },
+                        ]}
                     >
                         <InputNumber
                             className="w-full"
                             min={0}
                             placeholder="Nhập ngân sách"
-                        // formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                        // parser={value => value ? value.replace(/,*/g, "") : ""}
+                            formatter={(value: any) => value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : ""}
+                            parser={value => value ? value.replace(/\./g, "") : ""}
                         />
                     </Form.Item>
 
                     <Form.Item
                         label="Đơn vị tiền tệ"
                         name="currency"
-                        rules={[{ required: true, message: "Vui lòng chọn đơn vị tiền tệ" }]}
+                        rules={[
+                            { required: true, message: "Vui lòng chọn đơn vị tiền tệ" },
+                            { type: "string", min: 2, max: 3, message: "Mã tiền tệ phải từ 2 đến 3 ký tự" }
+                        ]}
                     >
                         <Select>
                             <Option value="VND">VND</Option>
@@ -137,6 +142,21 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     </Form.Item>
                 </div>
 
+                <Form.Item
+                    label="Thời gian dự kiến (ngày)"
+                    name="duration"
+
+                    rules={[
+                        { required: true, message: "Vui lòng nhập thời gian dự kiến" },
+                    ]}
+                >
+                    <Input
+                        type="number"
+                        className="w-full"
+                        min={1}
+                        placeholder="Nhập số ngày dự kiến"
+                    />
+                </Form.Item>
                 <Form.Item className="flex justify-end mb-0">
                     <button
                         type="button"

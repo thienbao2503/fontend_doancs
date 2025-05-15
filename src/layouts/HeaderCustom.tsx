@@ -17,7 +17,7 @@ function HeaderCustom() {
         <h1 className="text-blue-900 font-semibold text-lg m-0">
           Dashboard
         </h1>
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2">
           <input
             type="text"
             placeholder="Search here..."
@@ -46,7 +46,7 @@ function HeaderCustom() {
           >
             <BellIcon className="w-5 h-5" />
           </button>
-        </div>
+        </div> */}
       </Header>
     </>
   );

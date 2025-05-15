@@ -1,11 +1,8 @@
-// 1
+
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import ProviderRedux from "@/layouts/ProviderRedux";
+import { Provider } from "@/layouts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'></link>
       <body>
-        <ProviderRedux>
+        <Provider>
           {children}
-          <Toaster position="top-center" />
-        </ProviderRedux>
+        </Provider>
       </body>
     </html>
   );

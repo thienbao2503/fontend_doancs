@@ -1,4 +1,6 @@
 import { IData } from "@/app/services/projects/type";
+import { PlusIcon } from "@heroicons/react/24/outline";
+import { Popconfirm } from "antd";
 import Image from "next/image";
 
 interface TeamMember {
@@ -114,34 +116,34 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                     {project.description}
                 </p>
             </div>
-            {view === "grid" && <hr className="my-4 border-[#e6e6e6]" />}
+            {/* {view === "grid" && <hr className="my-4 border-[#e6e6e6]" />} */}
             <div
                 className={`flex items-center justify-between ${view === "list" ? "md:w-1/4" : ""
                     }`}
             >
-                <div className="flex -space-x-3">
-                    {/* {project.team.map((member, index) => (
-                        <div key={index} className="relative w-10 h-10">
-                            <Image
-                                src={member.src}
-                                alt={member.alt}
+                <div className="flex -space-x-3 mt-1">
+                    {Array.isArray(project?.teams) && project?.teams?.length > 0 ? project.teams.map((member, index) => (
+                        <div className="relative w-10 h-10" key={index}>
+                            {/* <Image
+                                src="/Image/download.jpg"
+                                alt="Team Member"
                                 fill
                                 sizes="40px"
                                 className="rounded-full border-2 border-white object-cover"
-                                priority={index < 2}
-                            />
+                            /> */}
+                            <div className="w-10 h-10 rounded-full bg-amber-300 flex justify-center items-center">
+                                {member?.full_name.split(" ").slice(-1)[0].slice(0, 1)}
+                            </div>
                         </div>
-                    ))} */}
+                    )) :
+
+                        <button onClick={() => handleViewDetails(project)} className="cursor-pointer w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center">
+                            <PlusIcon className="w-6 h-6 text-white " />
+                        </button>
+                    }
+
+
                 </div>
-                <span
-                    className="text-sm font-medium px-3 py-1 rounded-md cursor-default"
-                    style={{
-                        color: "red",
-                        backgroundColor: "pink",
-                    }}
-                >
-                    uư tiên
-                </span>
             </div>
 
             {/* Action Buttons */}
@@ -158,12 +160,13 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                 >
                     Edit
                 </button>
-                <button
-                    onClick={() => handleDeleteProject(project.id)}
-                    className="bg-[#f04a1a] text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#d43f17] transition-all duration-200"
-                >
-                    Delete
-                </button>
+                <Popconfirm title="Bạn có muốn xoá Dự Án?" onConfirm={() => handleDeleteProject(project.id)} okText="Xoá" cancelText="Huỷ">
+                    <button
+                        className="bg-[#f04a1a] text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#d43f17] transition-all duration-200"
+                    >
+                        Delete
+                    </button>
+                </Popconfirm>
             </div>
         </article>
     );

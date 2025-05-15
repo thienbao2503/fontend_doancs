@@ -1,36 +1,88 @@
 "use client"
 import { useEffect, useState } from "react";
-import { Card, HeaderSearch, ModalAction } from "./_componets";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { TypedUseSelectorHook, useDispatch } from "react-redux";
-import { getAllAction, selectProjects } from "@/app/services/projects/slice";
-import { IParmas, IState } from "@/app/services/projects/type";
-import { useSelector } from "react-redux";
+import { Card, HeaderSearch, ModalAction, ModalView } from "./_componets";
+import { IParmas } from "@/app/services/projects/type";
+import { useProjectQuery } from "@/app/services/projects/useQuery";
+import toast from "react-hot-toast";
 
 function Projects() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector(selectProjects);
   const [view, setView] = useState("grid");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalViewOpen, setIsModalViewOpen] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState<any>(null);
   const [params, setParams] = useState<IParmas>({
     page: 1,
-    limit: 10,
-  })
+  });
+  const { data, isLoading, refetch } = useProjectQuery.useGetAll(params)
+  const { mutate: addProjectMutate, isPending } = useProjectQuery.useCreate(
+    (data) => {
+      toast.success(data.message)
+      setIsModalOpen(false)
+      refetch()
+    },
+    (error) => {
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
+  const { mutate: getByIDMutate } = useProjectQuery.useGetByID(
+    (data) => {
+      setDataUpdate(data)
+    },
+    (error) => {
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
+  const { mutate: updateProjectMutate } = useProjectQuery.useUpdate(
+    (data) => {
+      toast.success(data.message)
+      setIsModalOpen(false)
+      refetch()
+    },
+    (error) => {
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
+  const { mutate: deleteProjectMutate } = useProjectQuery.useDelete(
+    (data) => {
+      toast.success(data.message)
+      refetch()
+    },
+    (error) => {
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
+  const { mutate: addTeamProjectMutate } = useProjectQuery.useAddTeam(
+    (data) => {
+      toast.success(data.message)
+      refetch()
+      if (dataUpdate && dataUpdate?.id) getByIDMutate(dataUpdate?.id)
+    },
+    (error) => {
+
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
+  const { mutate: deleteTeamProjectMutate } = useProjectQuery.useDeleteTeam(
+    (data) => {
+      toast.success(data.message)
+      refetch()
+      if (dataUpdate && dataUpdate?.id) getByIDMutate(dataUpdate?.id)
+    },
+    (error) => {
+      toast.error(error?.errors?.[0]?.message || error?.message)
+    }
+  )
 
   useEffect(() => {
-    getData(params)
-  }, [params])
-
-
-  const getData = async (params: IParmas) => {
-    await dispatch(getAllAction(params))
-  }
+    if (isLoading || isPending) toast.loading("Đang tải dữ liệu...", { id: "loading" })
+    else toast.dismiss("loading")
+  }, [isLoading])
 
   const handleAdd = async (data: any) => {
-    const res = await dispatch(getAllAction(data))
+    addProjectMutate(data)
   }
   const handleUpdate = async (data: any) => {
-
+    updateProjectMutate(data)
   }
 
   return (
@@ -43,18 +95,40 @@ function Projects() {
           : "flex flex-col overflow-y-auto"
           }`}
       >
-        {data.map((project, index) => (
+        {Array.isArray(data) && data?.map((project, index) => (
           <Card
             key={index}
             project={project}
             view={view}
-            handleViewDetails={() => { }}
-            handleEditProject={() => { }}
-            handleDeleteProject={() => { }}
+            handleViewDetails={(data) => {
+              getByIDMutate(data.id)
+              setIsModalViewOpen(true)
+            }}
+            handleEditProject={(data) => {
+              getByIDMutate(data.id)
+              setIsModalOpen(true)
+            }}
+            handleDeleteProject={(id) => deleteProjectMutate(id)}
           />
         ))}
       </section>
-      <ModalAction handleAdd={handleAdd} handleUpdate={handleUpdate} initialValues={null} isModalOpen={isModalOpen} handleCancel={() => setIsModalOpen(false)} handleOk={() => { }} />
+      {(!isLoading && data?.length <= 0) && <span className="text-center w-full">Không có dữ liệu</span>}
+      <ModalAction
+        handleAdd={handleAdd}
+        handleUpdate={handleUpdate}
+        initialValues={dataUpdate}
+        isModalOpen={isModalOpen}
+        handleCancel={() => {
+          setIsModalOpen(false)
+          setDataUpdate(null)
+        }} />
+      <ModalView
+        isModalOpen={isModalViewOpen}
+        handleDeleteTeam={(data) => deleteTeamProjectMutate(data)}
+        handleCancel={() => setIsModalViewOpen(false)}
+        initialValues={dataUpdate}
+        handleAddTeam={(data) => addTeamProjectMutate(data)}
+      />
     </div>
   );
 }

@@ -1,12 +1,12 @@
+"use client"
 import Sider from "antd/es/layout/Sider";
-import React, { useState } from 'react';
+import React from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps, MenuTheme } from 'antd';
-import { Menu, Switch } from 'antd';
+import { Menu } from 'antd';
 import { useRouter } from "next/navigation";
 
 type MenuItem = Required<MenuProps>['items'][number];
-
 
 function SideBar() {
     const router = useRouter();

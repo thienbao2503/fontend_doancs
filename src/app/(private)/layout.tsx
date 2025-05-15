@@ -1,9 +1,7 @@
 "use client"
 import { HeaderCustom, SideBar } from '@/layouts';
-import PrivateRoutes from '@/routing/PrivateRoute';
+import ProtectedRoute from '@/routing/ProtectedRoute';
 import { ConfigProvider, Layout } from 'antd';
-import { Provider } from 'react-redux';
-import store from '../redux/store';
 
 const { Content } = Layout;
 
@@ -29,7 +27,7 @@ export default function RootLayout(props: IPops) {
         },
     }
     return (
-        <PrivateRoutes>
+        <ProtectedRoute>
             <ConfigProvider theme={theme}>
                 <Layout className='h-screen'>
                     <SideBar />
@@ -41,7 +39,7 @@ export default function RootLayout(props: IPops) {
                     </Layout>
                 </Layout>
             </ConfigProvider>
-        </PrivateRoutes>
+        </ProtectedRoute>
 
 
     );

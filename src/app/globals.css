@@ -28,3 +28,16 @@
   display: flex;
   flex-direction: column;
 }
+
+i {
+  display: flex;
+  margin-top: 1px;
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

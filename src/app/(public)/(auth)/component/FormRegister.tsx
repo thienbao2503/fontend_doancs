@@ -1,18 +1,24 @@
 // 6
-import { AppDispatch } from "@/app/redux/store";
-import { loginAction } from "@/app/services/auth/slice";
 import { ILogin, IRegister } from "@/app/services/auth/type";
 import { EyeIcon, EyeSlashIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 // Nếu dùng PhoneIcon thì cần import thêm:
 import { PhoneIcon } from "@heroicons/react/24/outline";
+import { useAuthQuery } from "@/app/services/auth/useQuery";
 
-function FormRegister() {
-    const dispatch = useDispatch<AppDispatch>();
+function FormRegister({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
+    const { mutate: handleRegister, isPending } = useAuthQuery.useRegister(
+        (res) => {
+            const { message } = res
+            toast.success(message)
+            onRegisterSuccess()
+        },
+        (error) => {
+            toast.error(error.errors[0]?.message)
+        }
+    )
     const [showRegisterPassword, setShowRegisterPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [registerData, setRegisterData] = useState<IRegister>({
         full_name: "",
         email: "",
@@ -27,59 +33,23 @@ function FormRegister() {
         });
     };
 
-    const handleRegister = async (e: React.FormEvent) => {
+    const handleRegisterSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Xử lý đăng ký ở đây
-        // Ví dụ: gọi API đăng ký, validate dữ liệu, hiển thị toast,...
-        toast.success("Đăng ký thành công (demo)");
+        handleRegister(registerData);
     };
 
-    const [showLoginPassword, setShowLoginPassword] = useState(false);
-    const [data, setData] = useState<ILogin>({
-        email: "",
-        password: ""
-    })
-    const handleChange = (field: string, value: string) => {
-        setData({
-            ...data,
-            [field]: value
-        })
-    }
-
-    const handleLogin = async () => {
-        try {
-            const payload: ILogin = {
-                email: data.email,
-                password: data.password
-            }
-            // Ép kiểu trả về cho action
-            const action = await dispatch(loginAction(payload));
-            if (loginAction.fulfilled.match(action)) {
-                const { message, data, } = action.payload;
-                // const { } = data.use
-                // setToken()
-                toast.success(message);
-            } else {
-                const { errors, message } = action.payload as any;
-                toast.error(errors[0]?.message || message);
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
     return (
-        <form onSubmit={handleRegister} className="space-y-6">
+        <form className="space-y-6" onSubmit={handleRegisterSubmit}>
             <div className="relative">
-                <label htmlFor="register-fullName" className="block text-sm font-medium text-gray-800 mb-2">
+                <label htmlFor="register-full_name" className="block text-sm font-medium text-gray-800 mb-2">
                     Họ Và Tên
                 </label>
                 <div className="relative">
                     <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />
                     <input
-                        id="register-fullName"
+                        id="register-full_name"
                         type="text"
-                        name="fullName"
+                        name="full_name"
                         value={registerData.full_name}
                         onChange={handleRegisterInputChange}
                         placeholder="Nhập họ và tên"
@@ -88,7 +58,6 @@ function FormRegister() {
                     />
                 </div>
             </div>
-
 
             <div className="relative">
                 <label htmlFor="register-email" className="block text-sm font-medium text-gray-800 mb-2">
@@ -110,15 +79,15 @@ function FormRegister() {
             </div>
 
             <div className="relative">
-                <label htmlFor="register-phoneNo" className="block text-sm font-medium text-gray-800 mb-2">
+                <label htmlFor="register-phone" className="block text-sm font-medium text-gray-800 mb-2">
                     Số Điện Thoại
                 </label>
                 <div className="relative">
                     <PhoneIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />
                     <input
-                        id="register-phoneNo"
+                        id="register-phone"
                         type="tel"
-                        name="phoneNo"
+                        name="phone"
                         value={registerData.phone}
                         onChange={handleRegisterInputChange}
                         placeholder="Nhập số điện thoại"
@@ -157,10 +126,12 @@ function FormRegister() {
 
             <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-sky-500 to-sky-700 text-white py-3 rounded-xl font-semibold hover:from-sky-600 hover:to-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="w-full  gap-2 bg-gradient-to-r from-sky-500 to-sky-700 text-white py-3 rounded-xl font-semibold hover:from-sky-600 hover:to-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center"
                 aria-label="Register a new account"
+                disabled={isPending}
             >
-                Register
+                {isPending && <i className="fi fi-rr-loading animate-spin "></i>}
+                Đăng Ký
             </button>
         </form>
     );

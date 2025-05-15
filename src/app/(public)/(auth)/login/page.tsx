@@ -25,7 +25,7 @@ export default function Auth() {
         <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-6 drop-shadow-md">
           {isLogin ? "Chào Mừng Bạn Trở Lại" : "Đăng Ký Tham Gia"}
         </h2>
-        {isLogin ? <FormLogin /> : <FormRegister />}
+        {isLogin ? <FormLogin /> : <FormRegister onRegisterSuccess={() => setIsLogin(true)} />}
       </div>
 
     </div>
