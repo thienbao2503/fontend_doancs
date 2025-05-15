@@ -1,7 +1,10 @@
+"use client"
 import { CalendarIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
+    const pathname = usePathname();
     return (
         <>
             <div className="bg-[#f9b707] text-black border border-black">
@@ -46,28 +49,49 @@ function Navbar() {
 
                     <ul className="flex flex-wrap justify-center md:justify-start gap-6 text-base font-semibold mt-3 md:mt-0">
                         <li>
-                            <Link className="text-[#f9b707] hover:text-[#f9b707] transition" href="/">HOME</Link>
+                            <Link
+                                className={`${pathname === "/" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
+                                href="/"
+                            >
+                                HOME
+                            </Link>
                         </li>
                         <li>
-                            <Link className="hover:text-[#f9b707] transition" href="/about">
+                            <Link
+                                className={`${pathname === "/about" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
+                                href="/about"
+                            >
                                 ABOUT
                             </Link>
                         </li>
                         <li>
-                            <Link className="hover:text-[#f9b707] transition" href="/service">SERVICE</Link>
+                            <Link
+                                className={`${pathname === "/service" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
+                                href="/service"
+                            >
+                                SERVICE
+                            </Link>
                         </li>
                         <li>
-                            <Link className="hover:text-[#f9b707] transition" href="/team">TEAM</Link>
+                            <Link
+                                className={`${pathname === "/team" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
+                                href="/team"
+                            >
+                                TEAM
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/contact" className="hover:text-[#f9b707] transition">
+                            <Link
+                                className={`${pathname === "/contact" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
+                                href="/contact"
+                            >
                                 CONTACT
                             </Link>
                         </li>
                     </ul>
 
-                    <Link className="mt-3 md:mt-0 border border-white text-white text-base font-semibold px-5 py-2 rounded hover:bg-[#f9b707] hover:border-[#f9b707] hover:text-black transition" href="/dang-nhap">
-                        Login
+                    <Link className="mt-3 md:mt-0 border border-white text-white text-base font-semibold px-5 py-2 rounded hover:bg-[#f9b707] hover:border-[#f9b707] hover:text-black transition" href="/tong-quan">
+                        Tổng quan
                     </Link>
                 </div>
             </nav>

@@ -170,7 +170,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     </button>
                     <button
                         type="submit"
-                        className="bg-primary text-white text-xs font-semibold rounded-lg px-4 py-2  transition-all duration-200"
+                        className="bg-blue-500 text-white text-xs font-semibold rounded-lg px-4 py-2  transition-all duration-200"
                     >
                         {initialValues ? "Cập nhật" : "Tạo mới"}
                     </button>
