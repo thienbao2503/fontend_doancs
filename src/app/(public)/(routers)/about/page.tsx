@@ -54,89 +54,10 @@ export default function Page() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col font-sans">
-      {/* Top info bar */}
-      <div className="bg-[#f9b707] text-black border border-black">
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center py-0">
-          <div className="flex items-center gap-4 text-sm px-6">
-            <CalendarIcon className="w-10 h-10 text-black" aria-hidden="true" />
-            <div>
-              <span className="font-semibold text-lg block" aria-label="Opening Hours">
-                Opening Hour
-              </span>
-              <span className="block text-base font-normal mt-1">
-                Mon – Fri, 8:00 – 9:00
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-sm px-6">
-            <PhoneIcon className="w-10 h-10 text-black" aria-hidden="true" />
-            <div>
-              <span className="font-semibold text-lg block" aria-label="Contact Number">
-                Call Us
-              </span>
-              <span className="block text-base font-normal mt-1">+012 345 6789</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-sm px-6">
-            <EnvelopeIcon className="w-10 h-10 text-black" aria-hidden="true" />
-            <div>
-              <span className="font-semibold text-lg block" aria-label="Email Address">
-                Email Us
-              </span>
-              <span className="block text-base font-normal mt-1">info@example.com</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation bar */}
-
-
-      <nav className="sticky top-0 z-50 bg-[#001025] text-white shadow-md">
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center px-6 py-3">
-          <div className="text-4xl font-extrabold select-none tracking-tight">
-            Builderz
-          </div>
-          <ul className="flex flex-wrap justify-center md:justify-start gap-6 text-base font-semibold mt-3 md:mt-0">
-            <li><a className="text-[#f9b707] hover:text-[#f9b707] transition" href="#">HOME</a></li>
-            <li>
-              <Link className="hover:text-[#f9b707] transition" href="/templet/about">
-                ABOUT
-              </Link>
-            </li>
-            <li><a className="hover:text-[#f9b707] transition" href="#">SERVICE</a></li>
-            <li><a className="hover:text-[#f9b707] transition" href="#">TEAM</a></li>
-            <li><a className="hover:text-[#f9b707] transition" href="#">PROJECT</a></li>
-            <li className="relative group cursor-pointer">
-              <span className="inline-flex items-center hover:text-[#f9b707] transition">
-                PAGES
-                <ChevronDownIcon className="ml-1 w-4 h-4" />
-              </span>
-            </li>
-            <li><a className="hover:text-[#f9b707] transition" href="#">CONTACT</a></li>
-          </ul>
-          <a className="mt-3 md:mt-0 border border-white text-white text-base font-semibold px-5 py-2 rounded hover:bg-[#f9b707] hover:border-[#f9b707] hover:text-black transition" href="#">
-            Get A Quote
-          </a>
-        </div>
-      </nav>
-
       {/* Nội dung about */}
 
       <section className="bg-white text-[#0A142F]">
       </section>
-      <header className="bg-[#F9B233] py-10 text-center">
-        <h1 className="text-3xl font-extrabold underline decoration-[#0A142F] decoration-2 underline-offset-4">
-          About Us
-        </h1>
-        <p className="mt-3 text-base font-normal">
-          Home
-          <span className="mx-2">
-            /
-          </span>
-          About Us
-        </p>
-      </header>
       <main className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row md:items-start md:gap-16">
         <img
           alt="Construction site with cranes and a building under construction against a blue sky with some clouds"
