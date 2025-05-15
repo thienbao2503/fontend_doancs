@@ -66,9 +66,9 @@ function Navbar() {
                         </li>
                     </ul>
 
-                    <a className="mt-3 md:mt-0 border border-white text-white text-base font-semibold px-5 py-2 rounded hover:bg-[#f9b707] hover:border-[#f9b707] hover:text-black transition" href="#">
-                        Get A Quote
-                    </a>
+                    <Link className="mt-3 md:mt-0 border border-white text-white text-base font-semibold px-5 py-2 rounded hover:bg-[#f9b707] hover:border-[#f9b707] hover:text-black transition" href="/dang-nhap">
+                        Login
+                    </Link>
                 </div>
             </nav>
         </>

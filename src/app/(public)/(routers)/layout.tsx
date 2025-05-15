@@ -1,3 +1,4 @@
+import { Footer, Navbar } from "@/layouts";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Công Việc",
@@ -9,5 +10,9 @@ interface IPops {
 
 export default function RootLayout(props: IPops) {
   const { children } = props;
-  return children
+  return <div className="bg-white min-h-screen flex flex-col font-sans">
+    <Navbar />
+    {children}
+    <Footer />
+  </div>
 }
