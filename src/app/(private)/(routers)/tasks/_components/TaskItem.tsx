@@ -62,7 +62,7 @@ export const TaskItem = ({
             >
                 <PencilIcon className="w-5 h-5" />
             </button>
-            <Popconfirm
+            {/* <Popconfirm
                 title="Bạn có chắc chắn muốn xoá công việc này?"
                 onConfirm={() => onDelete(task.id)}
                 okText="Đồng ý"
@@ -74,7 +74,7 @@ export const TaskItem = ({
                 >
                     <TrashIcon className="w-5 h-5" />
                 </button>
-            </Popconfirm>
+            </Popconfirm> */}
         </div>
     </article>
 );

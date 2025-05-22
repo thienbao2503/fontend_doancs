@@ -1,20 +1,55 @@
-import { Button, DatePicker, Form, Input, InputNumber, Modal, Popconfirm, Select } from "antd";
+import { Button, DatePicker, Divider, Form, Input, InputNumber, InputRef, Modal, Popconfirm, Select, Space } from "antd";
 import { Option } from "antd/es/mentions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import TextArea from "antd/es/input/TextArea";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useRolesQuery } from "@/app/services/roles/useQuery";
+import toast from "react-hot-toast";
+import { useProjectQuery } from "@/app/services/projects/useQuery";
 interface IProps {
     isModalOpen: boolean;
-    handleAddTeam: (values: any) => void;
+    onAddTeamSuccess: () => void;
+    // handleAddTeam: (values: any) => void;
     handleDeleteTeam: (values: any) => void;
     handleCancel: () => void;
     initialValues?: any; // Nếu cập nhật thì truyền vào, thêm mới thì không cần
 }
 
-function ModalView({ isModalOpen, handleAddTeam, handleCancel, initialValues, handleDeleteTeam }: IProps) {
+function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam, onAddTeamSuccess }: IProps) {
+    const { data: dataRole, refetch: refetchRole } = useRolesQuery.useGetAll({ page: 1, limit: 1000 })
+    const { mutate: addTeamProjectMutate } = useProjectQuery.useAddTeam(
+        (data) => {
+            toast.success(data.message)
+            setEmail('');
+            setRole_id(0);
+            onAddTeamSuccess()
+        },
+        (error) => {
+            toast.error(error?.errors?.[0]?.message || error?.message)
+        }
+    )
+    const { mutate: addRoleMutate } = useRolesQuery.useCreate(
+        () => {
+            toast.success("Thêm thành công");
+            setName('');
+            refetchRole();
+        },
+        (error) => {
+            toast.error(error.errors[0]?.message || "Thêm thất bại");
+        }
+    )
     const [form] = Form.useForm();
     const [email, setEmail] = useState<string>("");
+    // const [items, setItems] = useState(['jack', 'lucy']);
+    const [name, setName] = useState('');
+    const [role_id, setRole_id] = useState(0);
+    const inputRef = useRef<InputRef>(null);
+
+    const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
+    };
+
 
     useEffect(() => {
         if (initialValues) {
@@ -150,17 +185,47 @@ function ModalView({ isModalOpen, handleAddTeam, handleCancel, initialValues, ha
                 <div className="flex flex-col gap-4">
                     <div className="gap-2 flex flex-col">
                         <label htmlFor="">Thêm thành viên</label>
-                        <div className="flex gap-2">
+                        <div className="flex flex-col gap-2">
                             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Nhập email" />
-                            <Button onClick={() => handleAddTeam({ id: initialValues?.id, email: email })}>
+                            <Select
+                                placeholder="Chọn Quyền"
+                                dropdownRender={(menu: any) => (
+                                    <>
+                                        {menu}
+                                        <Divider style={{ margin: '8px 0' }} />
+                                        <Space style={{ padding: '0 8px 4px' }}>
+                                            <Input
+                                                placeholder="Nhập tên quyền"
+                                                ref={inputRef}
+                                                value={name}
+                                                onChange={onNameChange}
+                                                onKeyDown={(e) => e.stopPropagation()}
+                                            />
+                                            <Button type="text" icon={<PlusCircleIcon />} onClick={() => addRoleMutate({ name: name })}>
+                                                Thêm
+                                            </Button>
+                                        </Space>
+                                    </>
+                                )}
+                                value={role_id || null}
+                                onChange={(value) => setRole_id(value)}
+                                options={Array.isArray(dataRole) ? dataRole.map((item) => ({ label: item.name, value: item.id })) : []}
+                            />
+                            <Button onClick={() => {
+                                if (!email || !role_id) return toast.error("Vui lòng nhập email và quyền");
+                                addTeamProjectMutate({ id: initialValues?.id, email: email, role_id: role_id })
+                            }}>
                                 Thêm
                             </Button>
                         </div>
                     </div>
                     <div className="flex flex-col gap-3 max-h-[220px] overflow-y-auto scrollbar-hidden">
                         {Array.isArray(initialValues?.teams) && initialValues?.teams?.map((item: any, index: number) => (
-                            <div className="flex gap-2 items-center" key={index}>
-                                <Input value={item?.email} disabled />
+                            <div className="flex gap-2 items-end" key={index}>
+                                <div className="flex flex-col flex-1">
+                                    <p>{item.role_name}</p>
+                                    <Input value={item?.email} disabled />
+                                </div>
                                 <Popconfirm
                                     title="Bạn có chắc chắn muốn xóa thành viên này?"
                                     onConfirm={() => handleDeleteTeam({ id: initialValues?.id, user_id: item?.user_id })}

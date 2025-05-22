@@ -12,9 +12,6 @@ interface IData {
     description: string;
     user_id: number;
     teams: any[];
-    isMe: number;
-    total_done: number;
-    total_doing: number;
     start_date: string;
     end_date: string;
     status: string;

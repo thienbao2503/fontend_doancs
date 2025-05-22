@@ -58,7 +58,7 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                             cx="32"
                             cy="32"
                             r="30"
-                            stroke={"blue"}
+                            stroke={"#abc4ed"}
                             strokeWidth="4"
                         />
                     </svg>
@@ -73,40 +73,42 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                             cx="32"
                             cy="32"
                             r="30"
-                            stroke={"red"}
+                            stroke={"#4f6df5"}
                             strokeDasharray="188.4"
-                            strokeDashoffset={188.4 - (20 / 100) * 188.4}
+                            strokeDashoffset={188.4 - ((project?.total_doing + project?.total_done) == 0 ? 0 : (project?.total_done / (project?.total_doing + project?.total_done) * 100) / 100) * 188.4}
                             strokeLinecap="round"
                             strokeWidth="4"
-                            transform="rotate(-90 32 32)"
+                            transform="rotate(90 32 32)"
                         />
                     </svg>
                     <span
                         className="absolute inset-0 flex items-center justify-center font-semibold text-lg"
-                        style={{ color: "red" }}
+                        style={{ color: "#4f6df5" }}
                     >
-                        {20}%
+                        {(project?.total_doing + project?.total_done) == 0 ? 0 : (project?.total_done / (project?.total_doing + project?.total_done) * 100)}%
                     </span>
                 </div>
-                <button
-                    aria-label="Toggle favorite project"
-                    className="text-yellow-400 text-xl cursor-pointer focus:outline-none"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
+                {Number(project?.isMe) == 1 &&
+                    <button
+                        aria-label="Toggle favorite project"
+                        className="text-yellow-400 text-xl cursor-pointer focus:outline-none"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                        />
-                    </svg>
-                </button>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                            />
+                        </svg>
+                    </button>
+                }
             </div>
             <div className={view === "list" ? "md:w-1/2" : ""}>
                 <h2 className="text-[#1a1a4b] font-semibold text-lg mb-2">
@@ -150,23 +152,23 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
             <div className="flex justify-end space-x-2 mt-4">
                 <button
                     onClick={() => handleViewDetails(project)}
-                    className="bg-[#4f6df5] text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#647AFA] transition-all duration-200"
+                    className="bg-[#4f6df5] cursor-pointer text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#647AFA] transition-all duration-200"
                 >
-                    View
+                    Xem Chi Tiết
                 </button>
                 <button
                     onClick={() => handleEditProject(project)}
-                    className="bg-[#f9c23c] text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#e6b029] transition-all duration-200"
+                    className="bg-[#f9c23c] cursor-pointer text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#e6b029] transition-all duration-200"
                 >
-                    Edit
+                    Cập Nhật
                 </button>
-                <Popconfirm title="Bạn có muốn xoá Dự Án?" onConfirm={() => handleDeleteProject(project.id)} okText="Xoá" cancelText="Huỷ">
+                {/* <Popconfirm title="Bạn có muốn xoá Dự Án?" onConfirm={() => handleDeleteProject(project.id)} okText="Xoá" cancelText="Huỷ">
                     <button
                         className="bg-[#f04a1a] text-white text-xs font-semibold rounded-lg px-3 py-1 hover:bg-[#d43f17] transition-all duration-200"
                     >
                         Delete
                     </button>
-                </Popconfirm>
+                </Popconfirm> */}
             </div>
         </article>
     );

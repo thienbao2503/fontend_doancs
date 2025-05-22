@@ -51,17 +51,6 @@ function Projects() {
       toast.error(error?.errors?.[0]?.message || error?.message)
     }
   )
-  const { mutate: addTeamProjectMutate } = useProjectQuery.useAddTeam(
-    (data) => {
-      toast.success(data.message)
-      refetch()
-      if (dataUpdate && dataUpdate?.id) getByIDMutate(dataUpdate?.id)
-    },
-    (error) => {
-
-      toast.error(error?.errors?.[0]?.message || error?.message)
-    }
-  )
   const { mutate: deleteTeamProjectMutate } = useProjectQuery.useDeleteTeam(
     (data) => {
       toast.success(data.message)
@@ -123,11 +112,15 @@ function Projects() {
           setDataUpdate(null)
         }} />
       <ModalView
+        onAddTeamSuccess={() => {
+          refetch()
+          if (dataUpdate && dataUpdate?.id) getByIDMutate(dataUpdate?.id)
+        }}
         isModalOpen={isModalViewOpen}
         handleDeleteTeam={(data) => deleteTeamProjectMutate(data)}
         handleCancel={() => setIsModalViewOpen(false)}
         initialValues={dataUpdate}
-        handleAddTeam={(data) => addTeamProjectMutate(data)}
+      // handleAddTeam={(data) => addTeamProjectMutate(data)}
       />
     </div>
   );

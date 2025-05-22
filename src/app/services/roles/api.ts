@@ -2,7 +2,7 @@
 import { ApiResponsive, axiosClient } from "@/app/utils/axiosClient"
 import { IParmas } from "./type"
 
-const moduleName = 'projects'
+const moduleName = 'roles'
 
 export const service = {
     getAll: async (params: IParmas) => {
@@ -64,12 +64,12 @@ export const service = {
             console.error(error);
         }
     },
-    addTeam: async (id: number, data: any) => {
+    addTeam: async (id: number, email: any) => {
         try {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}/team/add-user/${id}`,
-                data: data
+                data: { email }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -89,13 +89,12 @@ export const service = {
             console.error(error);
         }
     },
-    //get team
-    getTeam: async (params: { project_id?: number }) => {
+    updateConfig: async (id: number, data: any) => {
         try {
             const response = await axiosClient({
-                method: 'GET',
-                url: `${moduleName}/team`,
-                params
+                method: 'PUT',
+                url: `${moduleName}/config/${id}`,
+                data
             }) as ApiResponsive
             return response
         } catch (error) {

@@ -2,10 +2,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { service } from "./api";
 import { IParmas } from "./type";
 
-export const useProjectQuery = {
+export const useRolesQuery = {
     useGetAll(params: IParmas) {
         return useQuery({
-            queryKey: ['project', params],
+            queryKey: ['task', params],
             queryFn: async () => {
                 const res = await service.getAll(params);
                 if (res?.statusCode === 200) return res.data
@@ -59,38 +59,15 @@ export const useProjectQuery = {
             onError,
         })
     },
-    //add team
-    useAddTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+    useUpdateConfig(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
         return useMutation({
             mutationFn: async (data: any) => {
-                const res = await service.addTeam(data.id, data);
+                const res = await service.updateConfig(data.id, data);
                 if (res?.statusCode === 200) return res
                 throw res;
             },
             onSuccess,
             onError,
-        })
-    },
-    useDeleteTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
-        return useMutation({
-            mutationFn: async (data: any) => {
-                const res = await service.deleteTeam(data.id, data.user_id);
-                if (res?.statusCode === 200) return res
-                throw res;
-            },
-            onSuccess,
-            onError,
-        })
-    },
-    //get team
-    useGetTeam(params: { project_id?: number }) {
-        return useQuery({
-            queryKey: ['team', params],
-            queryFn: async () => {
-                const res = await service.getTeam(params);
-                if (res?.statusCode === 200) return res.data
-                throw res;
-            },
         });
     }
 
