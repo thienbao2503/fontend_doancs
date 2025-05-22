@@ -26,6 +26,7 @@ const TaskList = () => {
     },
   );
 
+
   useEffect(() => {
     if (loadingProject || loadingTask) {
       toast.loading("Đang tải dữ liệu...", { id: "global-loading" });

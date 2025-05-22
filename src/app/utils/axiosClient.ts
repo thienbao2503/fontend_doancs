@@ -15,7 +15,10 @@ const URL_API = process.env.NEXT_PUBLIC_API_URL
 
 const axiosClient = axios.create({
   baseURL: URL_API,
-  headers: { "Content-Type": "application/json" },
+  headers: { "Content-Type": "application/json",
+    Accept: "application/json",
+    
+   },
   timeout: 10000
 });
 
@@ -26,7 +29,6 @@ axiosClient.interceptors.request.use(async config => {
   console.log('config.url', config.url);
   return config;
 });
-
 axiosClient.interceptors.response.use(
   async response => {
     if (response && response.data) {

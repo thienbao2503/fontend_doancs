@@ -1,8 +1,9 @@
 // 5
+
 import { ApiResponsive, axiosClient } from "@/app/utils/axiosClient"
 import { IParmas } from "./type"
 
-const moduleName = 'projects'
+const moduleName = 'roles'
 
 export const service = {
     getAll: async (params: IParmas) => {
@@ -10,7 +11,7 @@ export const service = {
             const response = await axiosClient({
                 method: 'GET',
                 url: `${moduleName}`,
-                params
+                params //get params,post data
             }) as ApiResponsive
 
             return response
@@ -23,7 +24,7 @@ export const service = {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}`,
-                data : data
+                data
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -33,7 +34,7 @@ export const service = {
     getByID: async (id: number) => {
         try {
             const response = await axiosClient({
-                method: 'GET',//use GET use query
+                method: 'GET',
                 url: `${moduleName}/${id}`
             }) as ApiResponsive
             return response
@@ -64,12 +65,12 @@ export const service = {
             console.error(error);
         }
     },
-    addTeam: async (id: number, data: any) => {
+    addTeam: async (id: number, email: any) => {
         try {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}/team/add-user/${id}`,
-                data: data
+                data: { email }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -83,19 +84,6 @@ export const service = {
                 method: 'DELETE',
                 url: `${moduleName}/team/${id}`,
                 data: { user_id: user_id }
-            }) as ApiResponsive
-            return response
-        } catch (error) {
-            console.error(error);
-        }
-    },
-    //get team
-    getTeam: async (params: { project_id?: number }) => {
-        try {
-            const response = await axiosClient({
-                method: 'GET',
-                url: `${moduleName}/team`,
-                params
             }) as ApiResponsive
             return response
         } catch (error) {

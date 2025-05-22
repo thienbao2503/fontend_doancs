@@ -51,114 +51,117 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 export default function Page() {
-  
   return (
-    <div className="bg-white min-h-screen flex flex-col font-sans">
-        <main className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 mt-16">
-          <p className="text-[#f9b72b] text-xs font-semibold text-center">Get In Touch</p>
-          <h2 className="text-center text-3xl font-extrabold text-[#0a142f] mt-1 mb-10">For Any Query</h2>
-
-          <div className="flex flex-col md:flex-row md:space-x-0 lg:space-x-0">
-            <section className="bg-[#0a142f] md:w-1/2 space-y-6 p-8 border border-[#1f2a44]">
-              <div className="flex space-x-4 items-start">
-                <div className="text-[#f9b72b] mt-1">
-                  <i className="fas fa-building fa-lg"></i>
-                </div>
-                <div>
-                  <h3 className="text-[#f9b72b] font-semibold text-sm mb-1">Location</h3>
-                  <p className="text-xs text-white">123 Street, New York, USA</p>
-                </div>
-              </div>
-              <div className="flex space-x-4 items-start">
-                <div className="text-[#f9b72b] mt-1">
-                  <i className="fas fa-phone-alt fa-lg"></i>
-                </div>
-                <div>
-                  <h3 className="text-[#f9b72b] font-semibold text-sm mb-1">Phone</h3>
-                  <p className="text-xs text-white">+012 345 67890</p>
-                </div>
-              </div>
-              <div className="flex space-x-4 items-start">
-                <div className="text-[#f9b72b] mt-1">
-                  <i className="fas fa-envelope fa-lg"></i>
-                </div>
-                <div>
-                  <h3 className="text-[#f9b72b] font-semibold text-sm mb-1">Email</h3>
-                  <p className="text-xs text-white">info@example.com</p>
-                </div>
-              </div>
-            </section>
-
-            <form className="bg-[#f9b72b] md:w-1/2 p-8 space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full border border-[#f9b72b] bg-[#f9b72b] text-xs text-white placeholder-white px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#f9b72b]"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full border border-[#f9b72b] bg-[#f9b72b] text-xs text-white placeholder-white px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#f9b72b]"
-              />
-              <input
-                type="text"
-                placeholder="Subject"
-                className="w-full border border-[#f9b72b] bg-[#f9b72b] text-xs text-white placeholder-white px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#f9b72b]"
-              />
-              <textarea
-                placeholder="Message"
-                rows={4}
-                className="w-full border border-[#f9b72b] bg-[#f9b72b] text-xs text-white placeholder-white px-3 py-2 resize-none focus:outline-none focus:ring-1 focus:ring-[#f9b72b]"
-              ></textarea>
-              <button
-                type="submit"
-                className="bg-[#0a142f] text-white text-xs font-semibold px-5 py-2 mt-2"
-              >
-                Send Message
-              </button>
-            </form>
+    <section className="bg-gradient-to-br from-orange-50 to-white min-h-screen py-10">
+      <div className="max-w-7xl mx-auto px-2 py-2">
+        <h1 className="text-center text-orange-600 font-semibold text-2xl md:text-3xl">
+          Thông Tin Liên Hệ
+        </h1>
+        <div className="border-t-2 border-orange-300 w-16 mx-auto mt-2 mb-8"></div>
+        <div className="flex flex-col md:flex-row md:space-x-10">
+          <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
+            <img
+              alt="Modern building with a signboard of Công Ty TNHH Kiến Trúc Xây Dựng Quốc Bảo"
+              className="w-full max-w-md rounded-xl shadow-lg object-cover"
+              height="600"
+              src="https://storage.googleapis.com/a1aa/image/145ee1a5-045a-4762-b36d-a23fcbe3b623.jpg"
+              width="600"
+            />
           </div>
-        </main>
-     
-        
-        {/* You May Ask      */}
-        <section className="w-full mx-auto px-6 py-12">
-          <div className="text-center mb-8">
-            <p className="text-yellow-400 font-semibold text-sm">Frequently Asked Question</p>
-            <h2 className="text-4xl font-extrabold text-slate-900 mt-1">You May Ask</h2>
-          </div>
-          <div className="flex flex-col md:flex-row md:space-x-12 max-w-5xl mx-auto">
-            <div className="flex-1 space-y-4">
-              {[...Array(5)].map((_, i) => (
-                <button
-                  key={i}
-                  className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
-                  type="button"
-                >
-                  Lorem ipsum dolor sit amet?
-                  <span className="text-2xl text-yellow-400">+</span>
-                </button>
-              ))}
-            </div>
-            <div className="hidden md:block border-l border-yellow-400"></div>
-            <div className="flex-1 space-y-4 mt-6 md:mt-0">
-              {[...Array(5)].map((_, i) => (
-                <button
-                  key={i}
-                  className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
-                  type="button"
-                >
-                  Lorem ipsum dolor sit amet?
-                  <span className="text-2xl text-yellow-400">+</span>
-                </button>
-              ))}
+          <div className="md:w-1/2 text-gray-900 text-base md:text-lg leading-relaxed">
+            <h2 className="text-orange-600 font-extrabold text-xl md:text-2xl mb-4">
+              CÔNG TY LÊN LỊCH XÂY DỰNG BUILDERZ
+            </h2>
+            <p className="mb-3">
+              Văn phòng đại diện:
+              <span className="text-orange-600 ml-1">
+                1270 Nguyễn Ái Quốc, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
+              </span>
+            </p>
+            <p className="mb-3">
+              Văn phòng Long Thành:
+              <span className="text-orange-600 ml-1">
+                69-71 Lý Tự Trọng, TT. Long Thành, Long Thành, Đồng Nai
+              </span>
+            </p>
+            <p className="mb-3">
+              Văn phòng Trảng Bom:
+              <span className="text-orange-600 ml-1">
+                120 Đường 30/4, TT. Trảng Bom, Trảng Bom, Đồng Nai
+              </span>
+            </p>
+            <p className="mb-3">
+              Trụ sở chính:
+              <span className="text-orange-600 ml-1">
+                Số 45A, Tổ 41, KP. 9, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
+              </span>
+            </p>
+            <p className="mb-3">
+              Hotline/Zalo:
+              <span className="text-orange-600 ml-1">
+                0942.788.889 – 0982.788.889
+              </span>
+            </p>
+            <p className="mb-3">
+              Email:
+              <span className="text-orange-600 ml-1">
+                info@xaydungquocbao.com
+              </span>
+            </p>
+            <h3 className="text-orange-600 font-extrabold text-lg md:text-xl mt-8 mb-3">
+              Xưởng Sản Xuất Nội Thất
+            </h3>
+            <p className="mb-6">
+              Địa chỉ:
+              <span className="text-orange-600 ml-1">
+                KP. 9, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
+              </span>
+            </p>
+            <h3 className="text-orange-600 font-extrabold text-lg md:text-xl mb-3">
+              Mạng xã hội
+            </h3>
+            <div className="flex space-x-4 text-white text-xl">
+              <a aria-label="Facebook" className="bg-blue-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-700 transition" href="#">
+                <FacebookIcon className="w-5 h-5" />
+              </a>
+              <a aria-label="YouTube" className="bg-red-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-red-700 transition" href="#">
+                <YoutubeIcon className="w-5 h-5" />
+              </a>
+              <a aria-label="Instagram" className="bg-pink-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-pink-700 transition" href="#">
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+              <a aria-label="LinkedIn" className="bg-blue-700 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-800 transition" href="#">
+                <LinkedinIcon className="w-5 h-5" />
+              </a>
+              <a aria-label="Twitter" className="bg-blue-400 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-500 transition" href="#">
+                <TwitterIcon className="w-5 h-5" />
+              </a>
             </div>
           </div>
-        </section>
-     
+        </div>
+      </div>
 
-      {/* footer */}
-       
-    </div>
+
+      <div className="px-4 md:px-12 lg:px-32">
+        <h2 className="text-[#f4511e] font-bold text-lg mb-2">Gửi yêu cầu tư vấn miễn phí</h2>
+        <p className="mb-4 text-base font-normal">
+          Quý khách hàng hãy nhập thông tin bên dưới và gửi cho chúng tôi, Kiến Trúc Sư của Quốc Bảo sẽ phản hồi quý khách sớm nhất. Rất vui lòng khi nhận được ý kiến của quý khách!
+        </p>
+        <form className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex flex-col gap-3 flex-1">
+            <input type="text" placeholder="Họ và tên*..." className="border border-gray-300 p-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f4511e] w-full" />
+            <input type="text" placeholder="Số điện thoại*..." className="border border-gray-300 p-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f4511e] w-full" />
+            <input type="text" placeholder="Địa chỉ của bạn..." className="border border-gray-300 p-3 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f4511e] w-full" />
+          </div>
+          <textarea placeholder="Nội dung yêu cầu tư vấn..." className="border border-gray-300 p-3 text-base placeholder:text-gray-400 flex-1 resize-y min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#f4511e] w-full"></textarea>
+        </form>
+        <p className="text-[#f00] font-semibold mb-1">Lưu ý:</p>
+        <p className="mb-6">
+          Thông tin quý khách cung cấp càng đầy đủ thì chúng tôi càng có cơ sở để đưa ra phương án tối ưu hơn. Ví dụ: Xây nhà ở đâu? Diện tích đất bao nhiêu? Xây bao nhiêu tầng, công năng sử dụng các phòng thế nào?
+        </p>
+        <button className="bg-[#f4511e] text-white font-bold uppercase px-6 py-2 w-full md:w-auto">GỬI YÊU CẦU</button>
+      </div>
+    </section>
+    
   );
 }
