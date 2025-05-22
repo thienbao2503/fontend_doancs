@@ -84,7 +84,17 @@ export default function Page() {
           </button>
         </section>
       </main>
-
+      {/* Contact */}
+      <section className="bg-[#F9F9F9] py-16">
+      <div className="border-t border-gray-300">
+   <h2 className="text-center text-orange-600 font-semibold text-lg py-2 select-none">
+    Đội Ngũ Nhân Sự
+   </h2>
+  </div>
+  <img alt="Group photo of team members standing in front of a building, most wearing black polo shirts with crossed arms, two people in the center wearing white shirt and white blouse with black skirt" className="w-full object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/b8ed38f7-f85f-45a1-a0b8-1e002d582488.jpg" width="1920"/>
+ 
+  
+      </section>
 
       {/* You May Ask      */}
       <section className="w-full mx-auto px-6 py-12">

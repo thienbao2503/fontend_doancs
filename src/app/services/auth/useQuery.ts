@@ -1,6 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { ILogin, IRegister } from "./type";
 import { service } from "./api";
+import { use } from "react";
 
 export const useAuthQuery = {
 
@@ -26,6 +27,16 @@ export const useAuthQuery = {
             onSuccess,
             onError,
         })
-    }
+    },
+    useProfile() {
+       return useQuery({
+            queryKey: ['profile'],
+            queryFn: async () => {
+                const res = await service.profile();
+                if (res?.statusCode === 200) return res.data;
+                throw res;
+            },
+        })
+       }
 
 }
