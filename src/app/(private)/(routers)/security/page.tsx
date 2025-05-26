@@ -1,29 +1,22 @@
 "use client"
 import { useRouter } from "next/navigation";
-export default function Profile() {
+import { useState } from "react";
+import Tabs from "../Tabs";
 
-const router = useRouter();
+export default function Profile() {
+  const router = useRouter();
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+  const [activeTab, setActiveTab] = useState(pathname.includes("security") ? "security" : "profile");
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    router.push(`/${tab}`);
+  };
+
   return (
-    <section className="bg-white min-h-screen flex items-center justify-center p-4">  
-      <div className="w-full max-w-3xl mt-[-48px]">
-        <div className="flex space-x-2 mb-6 justify-center">
-          <button
-            className="flex items-center space-x-1 bg-[#f5f5f5] rounded-md px-4 py-2 text-[#222] text-sm font-medium border border-[#e0e0e0]"
-            type="button"
-            onClick={() => router.push("/profile")}
-          >
-            <i className="fas fa-user"></i>
-            <span>Account</span>
-          </button>
-          <button
-            className="flex items-center space-x-1 bg-[#f5f5f5] rounded-md px-4 py-2 text-[#222] text-sm font-medium border border-[#e0e0e0]"
-            type="button"
-            onClick={() => router.push("/security")}
-          >
-            <i className="fas fa-lock"></i>
-            <span>Security</span>
-          </button>
-        </div>
+    <section className="bg-white flex justify-center p-4 overflow-hidden">
+      <div className="w-full max-w-md mx-auto">
+        <Tabs />
         <div className="bg-white rounded-lg p-6 w-full max-w-md border border-[#e0e0e0] shadow mx-auto">
           <h2 className="text-[#222] text-lg font-bold mb-6">Đổi mật khẩu</h2>
           <form>

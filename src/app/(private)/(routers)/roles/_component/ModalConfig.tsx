@@ -43,17 +43,18 @@ export default function ModalConfig({
 
     const handleSave = () => {
         onSave(localPerms);
+        
         onClose();
     };
 
     return (
         <Modal open={open} onCancel={onClose} footer={null} title={`Cấu hình quyền: ${currentRoleId?.name}`}>
             <div className="flex flex-col gap-4">
-                {localPerms.map((item) => (
+                {localPerms?.map((item) => (
                     <div key={item.module} className="mb-4">
                         <div className="font-semibold mb-2">{item.module}</div>
                         <div className="grid grid-cols-2 gap-2">
-                            {item.permission.map((perm: any) => (
+                            {item.permission?.map((perm: any) => (
                                 <Checkbox
                                     key={perm.type}
                                     checked={!!perm.isAllowed}

@@ -31,9 +31,9 @@ export default function ModalRole({ open, onClose, initialValues, onSuccess }: {
     const handleSubmit = async () => {
         const values = await form.validateFields();
         if (initialValues?.id) {
-            updateRole({ ...values, id: initialValues.id, publish: values.publish === true ? 1 : 0 });
+            updateRole({ ...values, id: initialValues.id, publish: values.publish });
         } else {
-            createRole({ ...values, publish: values.publish === true ? 1 : 0 });
+            createRole({ ...values, publish: values.publish  });
         }
     };
 

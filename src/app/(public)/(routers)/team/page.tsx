@@ -67,7 +67,7 @@ export default function Page() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {/* Engineer 1 */}
             <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-              <img alt="Engineer 1 with yellow helmet and orange safety vest holding clipboard" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/8844bd77-1f1f-4340-78a9-b1a29991b77f.jpg" width={300}/>
+              <img alt="Engineer 1 with yellow helmet and orange safety vest holding clipboard" className="w-full" height={350} src="https://th.bing.com/th/id/OIG1.J5VqRaySgK4Vmims6kma?cb=iwc2&pid=ImgGn" width={300}/>
               {/* Social icons overlay */}
               <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
@@ -188,7 +188,7 @@ export default function Page() {
             </div>
             {/* Engineer 4 */}
             <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg" width={300}/>
+              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://th.bing.com/th/id/OIG4..U28QhyXOzV2KuAtIA7L?cb=iwc2&pid=ImgGn" width={300}/>
               <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -218,7 +218,7 @@ export default function Page() {
             </div>
             {/* Engineer 4 */}
             <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg" width={300}/>
+              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://th.bing.com/th/id/OIG4.szhsdprda0.ijjzJpynT?cb=iwc2&pid=ImgGn" width={300}/>
               <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -248,7 +248,7 @@ export default function Page() {
             </div>
             {/* Engineer 4 */}
             <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg" width={300}/>
+              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://th.bing.com/th/id/OIG4.zqzvLlvEpZroa7OmqztI?cb=iwc2&pid=ImgGn" width={300}/>
               <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -278,7 +278,7 @@ export default function Page() {
             </div>
             {/* Engineer 4 */}
             <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg" width={300}/>
+              <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://th.bing.com/th/id/OIG4.BLnV5.hWuFg81DH57IrG?cb=iwc2&pid=ImgGn" width={300}/>
               <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">

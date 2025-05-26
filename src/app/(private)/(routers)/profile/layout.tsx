@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Project",
-  description: "project",
+  title: "Profile",
+  description: "profile",
 };
 interface IPops {
   children: React.ReactNode;

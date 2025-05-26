@@ -85,16 +85,35 @@ export default function Page() {
         </section>
       </main>
       {/* Contact */}
-      <section className="bg-[#F9F9F9] py-16">
-      <div className="border-t border-gray-300">
-   <h2 className="text-center text-orange-600 font-semibold text-lg py-2 select-none">
-    Đội Ngũ Nhân Sự
-   </h2>
+      
+<section className="bg-[#F9F9F9] ">
+  <div className="border-t border-gray-300">
+    <h2 className="text-center text-orange-600 font-semibold text-lg py-2 select-none">
+      Đội Ngũ Nhân Sự
+    </h2>
   </div>
-  <img alt="Group photo of team members standing in front of a building, most wearing black polo shirts with crossed arms, two people in the center wearing white shirt and white blouse with black skirt" className="w-full object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/b8ed38f7-f85f-45a1-a0b8-1e002d582488.jpg" width="1920"/>
- 
-  
-      </section>
+  <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-8">
+    <img
+      alt="Group photo 1"
+      className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+      height="400"
+      src="https://th.bing.com/th/id/OIG3.OAh0aK9SIZYf5CMFU5M_?cb=iwc2&w=1024&h=1024&rs=1&pid=ImgDetMain"
+    />
+    <img
+      alt="Group photo 2"
+      className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+      height="400"
+      src="https://th.bing.com/th/id/OIG3._3h2gpTgSkR8w9QzN3sQ?cb=iwc2&w=1024&h=1024&rs=1&pid=ImgDetMain"
+    />
+    <img
+      alt="Group photo 3"
+      className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+      height="400"
+      src="https://th.bing.com/th/id/OIG3.GwN_fU1nL_4tSqxkUheH?cb=iwc2&pid=ImgGn"
+    />
+  </div>
+</section>
+
 
       {/* You May Ask      */}
       <section className="w-full mx-auto px-6 py-12">

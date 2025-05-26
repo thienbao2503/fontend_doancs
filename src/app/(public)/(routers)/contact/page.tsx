@@ -59,85 +59,17 @@ export default function Page() {
         </h1>
         <div className="border-t-2 border-orange-300 w-16 mx-auto mt-2 mb-8"></div>
         <div className="flex flex-col md:flex-row md:space-x-10">
-          <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
-            <img
-              alt="Modern building with a signboard of Công Ty TNHH Kiến Trúc Xây Dựng Quốc Bảo"
-              className="w-full max-w-md rounded-xl shadow-lg object-cover"
-              height="600"
-              src="https://storage.googleapis.com/a1aa/image/145ee1a5-045a-4762-b36d-a23fcbe3b623.jpg"
-              width="600"
-            />
-          </div>
-          <div className="md:w-1/2 text-gray-900 text-base md:text-lg leading-relaxed">
-            <h2 className="text-orange-600 font-extrabold text-xl md:text-2xl mb-4">
-              CÔNG TY LÊN LỊCH XÂY DỰNG BUILDERZ
-            </h2>
-            <p className="mb-3">
-              Văn phòng đại diện:
-              <span className="text-orange-600 ml-1">
-                1270 Nguyễn Ái Quốc, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
-              </span>
-            </p>
-            <p className="mb-3">
-              Văn phòng Long Thành:
-              <span className="text-orange-600 ml-1">
-                69-71 Lý Tự Trọng, TT. Long Thành, Long Thành, Đồng Nai
-              </span>
-            </p>
-            <p className="mb-3">
-              Văn phòng Trảng Bom:
-              <span className="text-orange-600 ml-1">
-                120 Đường 30/4, TT. Trảng Bom, Trảng Bom, Đồng Nai
-              </span>
-            </p>
-            <p className="mb-3">
-              Trụ sở chính:
-              <span className="text-orange-600 ml-1">
-                Số 45A, Tổ 41, KP. 9, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
-              </span>
-            </p>
-            <p className="mb-3">
-              Hotline/Zalo:
-              <span className="text-orange-600 ml-1">
-                0942.788.889 – 0982.788.889
-              </span>
-            </p>
-            <p className="mb-3">
-              Email:
-              <span className="text-orange-600 ml-1">
-                info@xaydungquocbao.com
-              </span>
-            </p>
-            <h3 className="text-orange-600 font-extrabold text-lg md:text-xl mt-8 mb-3">
-              Xưởng Sản Xuất Nội Thất
-            </h3>
-            <p className="mb-6">
-              Địa chỉ:
-              <span className="text-orange-600 ml-1">
-                KP. 9, P. Tân Phong, TP. Biên Hòa, T. Đồng Nai
-              </span>
-            </p>
-            <h3 className="text-orange-600 font-extrabold text-lg md:text-xl mb-3">
-              Mạng xã hội
-            </h3>
-            <div className="flex space-x-4 text-white text-xl">
-              <a aria-label="Facebook" className="bg-blue-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-700 transition" href="#">
-                <FacebookIcon className="w-5 h-5" />
-              </a>
-              <a aria-label="YouTube" className="bg-red-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-red-700 transition" href="#">
-                <YoutubeIcon className="w-5 h-5" />
-              </a>
-              <a aria-label="Instagram" className="bg-pink-600 rounded-full w-9 h-9 flex items-center justify-center hover:bg-pink-700 transition" href="#">
-                <InstagramIcon className="w-5 h-5" />
-              </a>
-              <a aria-label="LinkedIn" className="bg-blue-700 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-800 transition" href="#">
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a aria-label="Twitter" className="bg-blue-400 rounded-full w-9 h-9 flex items-center justify-center hover:bg-blue-500 transition" href="#">
-                <TwitterIcon className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
+        <div className="mb-6 w-full">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.427745807821!2d106.78212887465665!3d10.855034789298571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527006db97ff1%3A0x8ed7036831a229d3!2sHUTECH%20E%202!5e0!3m2!1svi!2s!4v1748097072321!5m2!1svi!2s"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
         </div>
       </div>
 

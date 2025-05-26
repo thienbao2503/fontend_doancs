@@ -1,7 +1,8 @@
 "use client"
 import Sider from "antd/es/layout/Sider";
 import React from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, MailOutlined, SettingOutlined, UserOutlined, CalendarOutlined, TeamOutlined, DesktopOutlined, ProjectOutlined } from '@ant-design/icons';
+
 import type { MenuProps, MenuTheme } from 'antd';
 import { Menu } from 'antd';
 import { useRouter } from "next/navigation";
@@ -17,32 +18,32 @@ function SideBar() {
         {
             key: 'dashboard',
             label: 'Dashboard',
-            icon: <MailOutlined />,
+            icon: <AppstoreOutlined />,
         },
         {
             key: '/du-an',
             label: 'Dự Án | Công Trình',
-            icon: <AppstoreOutlined />,
+            icon: <ProjectOutlined />,
         },
         {
             key: '/cong-viec',
             label: 'Công việc',
-            icon: <AppstoreOutlined />,
+            icon: <MailOutlined />,
         },
         {
             key: 'employee',
             label: 'Employee',
-            icon: <AppstoreOutlined />,
+            icon: <TeamOutlined />,
         },
         {
             key: 'desk',
             label: 'Desk',
-            icon: <AppstoreOutlined />,
+            icon: <DesktopOutlined />,
         },
         {
             key: 'calendar',
             label: 'Calendar',
-            icon: <AppstoreOutlined />,
+            icon: <CalendarOutlined />,
         },
         {
             key: 'sub4',
@@ -85,7 +86,7 @@ function SideBar() {
                 overflow: "hidden"
             }}
         >
-            {!collapsed && "Tên Nhóm"}
+            {!collapsed && "ELEVATE"}
         </h1>
         <button
             onClick={() => setCollapsed(!collapsed)}
@@ -110,9 +111,11 @@ function SideBar() {
             router.push(key);
         }}
     />
-    <div className="flex justify-center py-3 transition-all duration-300 ease-in-out">
-        <h1 className={`transition-all duration-300 text-[#4B2DBD] ${collapsed ? "text-xs" : "text-base"}`}>Nút Cuối Sidebar</h1>
-    </div>
+    
+<div className="flex w-full justify-center py-3 px-3 transition-all duration-300 ease-in-out">
+  <h1 className={`w-full text-center transition-all duration-300 text-[#4B2DBD] ${collapsed ? "text-xs" : "text-base"}`}>Nút Cuối Sidebar</h1>
+</div>
+
 </Sider>
 
     );

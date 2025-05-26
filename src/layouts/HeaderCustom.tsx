@@ -5,67 +5,40 @@ import { useRouter } from "next/navigation";
 function HeaderCustom() {
   const router = useRouter();
   return (
-    <nav className="flex items-center justify-between px-4 md:px-8 h-16 max-w-full bg-[#1B2A4A]">
+    <nav className="flex items-center justify-between px-4 md:px-8 h-16 max-w-full">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center">
         <img
-          alt="Turitor logo with a graduation cap icon in turquoise and text 'turitor' in white"
-          className="w-8 h-8"
-          height="32"
-          src="https://storage.googleapis.com/a1aa/image/5e1b5067-0e27-497e-70d1-e21740922e99.jpg"
-          width="32"
+          src="/Image/dacs.png"
+          alt="Logo"
+          className="h-25 w-auto max-w-[180px] md:max-w-[200px]"
+          style={{ minWidth: '140px' }}
         />
-        <span className="text-white font-extrabold text-xl select-none">
-          turitor
-        </span>
       </div>
       {/* Categories + Search */}
-      <div className="hidden md:flex items-center space-x-3 bg-[#27385F] rounded-md px-2 py-1">
-        <button
-          aria-label="Categories"
-          className="flex items-center space-x-1 text-xs font-semibold text-white uppercase tracking-wide px-3 py-2 bg-[#27385F] rounded-md hover:bg-[#2f437f] transition"
-        >
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 20 20">
-            <rect x="3" y="3" width="5" height="5" />
-            <rect x="12" y="3" width="5" height="5" />
-            <rect x="3" y="12" width="5" height="5" />
-            <rect x="12" y="12" width="5" height="5" />
-          </svg>
-          <span>CATEGORIES</span>
-        </button>
-        <div className="relative">
-          <input
-            aria-label="Search"
-            className="bg-[#27385F] text-white placeholder-white/70 rounded-md pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C2A0]"
-            placeholder="Search"
-            type="search"
-          />
-          <svg
-            aria-hidden="true"
-            className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-white pointer-events-none"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
+      <div className="flex-1 flex justify-end">
+        <div className="flex items-center space-x-3 bg-white/80 rounded-full px-4 py-2 shadow-md">
+          <button
+            aria-label="User account"
+            className="group p-2 rounded-full transition-all duration-200 hover:bg-gray-200 hover:shadow-lg hover:scale-110 focus:outline-none"
+            onClick={() => router.push("/profile")}
           >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
+            <UserCircleIcon className="w-6 h-6" color="black" />
+          </button>
+          <button
+            aria-label="Logout"
+            className="group p-2 rounded-full transition-all duration-200 hover:bg-red-100 hover:shadow-lg hover:scale-110 focus:outline-none"
+            onClick={() => {/* handle logout logic here */}}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="w-6 h-6 group-hover:stroke-red-500 transition-colors duration-200">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M18 15l3-3m0 0l-3-3m3 3H9" />
+            </svg>
+          </button>
+          <button aria-label="Menu" className="group md:hidden p-2 rounded-full transition-all duration-200 hover:bg-gray-200 hover:shadow-lg hover:scale-110 focus:outline-none">
+            <Bars3Icon className="w-6 h-6" color="black" />
+          </button>
         </div>
-      </div>
-      {/* Nav links + icons */}
-      <div className="flex items-center space-x-4 text-white text-xs font-semibold tracking-wide uppercase select-none">
-        <button
-          aria-label="User account"
-          className="hover:text-[#00C2A0]"
-          onClick={() => router.push("/profile")}
-        >
-          <UserCircleIcon className="w-6 h-6" />
-        </button>
-       
-        <button aria-label="Menu" className="md:hidden hover:text-[#00C2A0]">
-          <Bars3Icon className="w-6 h-6" />
-        </button>
       </div>
     </nav>
   );

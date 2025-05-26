@@ -43,9 +43,15 @@ function Navbar() {
 
             <nav className="sticky top-0 z-50 bg-[#001025] text-white shadow-md">
                 <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center px-6 py-3">
-                    <div className="text-4xl font-extrabold select-none tracking-tight">
-                        Builderz
-                    </div>
+                
+                
+                
+            <div className="text-4xl font-extrabold select-none tracking-tight">
+            <img src="/Image/dacs_01_tn.png" alt="Logo" className="h-16 w-30" />
+            </div>
+
+
+
 
                     <ul className="flex flex-wrap justify-center md:justify-start gap-6 text-base font-semibold mt-3 md:mt-0">
                         <li>

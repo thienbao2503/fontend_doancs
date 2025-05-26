@@ -232,7 +232,7 @@ export default function Page() {
           </div>
           {/* Box 4 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Interior design house under construction with green fence" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/a4aa3dd9-7ac5-4c1e-a2ae-27b7a7fab4bd.jpg" />
+            <img alt="Interior design house under construction with green fence" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="http://127.0.0.1:5500/img/service-4.jpg" />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
@@ -266,7 +266,7 @@ export default function Page() {
           </div>
           {/* Box 6 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Painting and finishing team working on building exterior" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
+            <img alt="Painting and finishing team working on building exterior" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="http://127.0.0.1:5500/img/service-6.jpg" />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
@@ -297,7 +297,7 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {/* Engineer 1 */}
           <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-            <img alt="Engineer 1 with yellow helmet and orange safety vest holding clipboard" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/8844bd77-1f1f-4340-78a9-b1a29991b77f.jpg" width={300} />
+            <img alt="Engineer 1 with yellow helmet and orange safety vest holding clipboard" className="w-full" height={350} src="https://th.bing.com/th/id/OIG1.J5VqRaySgK4Vmims6kma?cb=iwc2&pid=ImgGn" width={300} />
             {/* Social icons overlay */}
             <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">

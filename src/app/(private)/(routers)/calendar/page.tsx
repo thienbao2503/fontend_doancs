@@ -40,7 +40,7 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className=" bg-gray-50 min-h-screen">
       {/* Header */}
       <CalendarHeader onNew={() => setShowModal(true)} />
 
