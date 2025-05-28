@@ -23,7 +23,7 @@ export const service = {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}`,
-                data : data
+                data: data
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -46,7 +46,10 @@ export const service = {
             const response = await axiosClient({
                 method: 'PATCH',
                 url: `${moduleName}/${id}`,
-                data
+                data,
+                headers: {
+                    "project_id": id
+                }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -69,7 +72,10 @@ export const service = {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}/team/add-user/${id}`,
-                data: data
+                data: data,
+                headers: {
+                    "project_id": id
+                }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -82,7 +88,10 @@ export const service = {
             const response = await axiosClient({
                 method: 'DELETE',
                 url: `${moduleName}/team/${id}`,
-                data: { user_id: user_id }
+                data: { user_id: user_id },
+                headers: {
+                    "project_id": id
+                }
             }) as ApiResponsive
             return response
         } catch (error) {

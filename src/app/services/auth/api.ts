@@ -29,7 +29,7 @@ export const service = {
             throw error
         }
     },
-    profile : async () => {
+    profile: async () => {
         try {
             const response = await axiosClient({
                 method: 'GET',
@@ -40,11 +40,23 @@ export const service = {
             throw error
         }
     },
-    updateprofile : async (data: any) => {
+    updateprofile: async (data: any) => {
         try {
             const response = await axiosClient({
                 method: 'PATCH',
                 url: `${moduleName}/profile`,
+                data
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            throw error
+        }
+    },
+    updattePassword: async (data: any) => {
+        try {
+            const response = await axiosClient({
+                method: 'PATCH',
+                url: `${moduleName}/change-password`,
                 data
             }) as ApiResponsive
             return response

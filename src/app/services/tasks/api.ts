@@ -23,7 +23,10 @@ export const service = {
             const response = await axiosClient({
                 method: 'POST',
                 url: `${moduleName}`,
-                data
+                data,
+                headers: {
+                    "project_id": data.project_id
+                }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -46,7 +49,10 @@ export const service = {
             const response = await axiosClient({
                 method: 'PATCH',
                 url: `${moduleName}/${id}`,
-                data
+                data,
+                headers: {
+                    "project_id": data.project_id
+                }
             }) as ApiResponsive
             return response
         } catch (error) {
@@ -64,29 +70,29 @@ export const service = {
             console.error(error);
         }
     },
-    addTeam: async (id: number, email: any) => {
-        try {
-            const response = await axiosClient({
-                method: 'POST',
-                url: `${moduleName}/team/add-user/${id}`,
-                data: { email }
-            }) as ApiResponsive
-            return response
-        } catch (error) {
-            console.error(error);
-        }
+    // addTeam: async (id: number, email: any) => {
+    //     try {
+    //         const response = await axiosClient({
+    //             method: 'POST',
+    //             url: `${moduleName}/team/add-user/${id}`,
+    //             data: { email }
+    //         }) as ApiResponsive
+    //         return response
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
 
-    },
-    deleteTeam: async (id: number, user_id: number) => {
-        try {
-            const response = await axiosClient({
-                method: 'DELETE',
-                url: `${moduleName}/team/${id}`,
-                data: { user_id: user_id }
-            }) as ApiResponsive
-            return response
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    // },
+    // deleteTeam: async (id: number, user_id: number) => {
+    //     try {
+    //         const response = await axiosClient({
+    //             method: 'DELETE',
+    //             url: `${moduleName}/team/${id}`,
+    //             data: { user_id: user_id }
+    //         }) as ApiResponsive
+    //         return response
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 }

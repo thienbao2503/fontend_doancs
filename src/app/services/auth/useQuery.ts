@@ -29,7 +29,7 @@ export const useAuthQuery = {
         })
     },
     useProfile() {
-       return useQuery({
+        return useQuery({
             queryKey: ['profile'],
             queryFn: async () => {
                 const res = await service.profile();
@@ -37,6 +37,29 @@ export const useAuthQuery = {
                 throw res;
             },
         })
-       }
+    },
+    useUpdateProfile(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (payload: any) => {
+                const res = await service.updateprofile(payload);
+                if (res?.statusCode === 200) return res;
+                throw res;
+            },
+            onSuccess,
+            onError,
+        })
+    },
+    useUpdatePassword(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (payload: any) => {
+                const res = await service.updattePassword(payload);
+                if (res?.statusCode === 200) return res;
+                throw res;
+            },
+            onSuccess,
+            onError,
+        })
+    }
+
 
 }
