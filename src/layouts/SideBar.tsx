@@ -17,7 +17,7 @@ function SideBar() {
     const items: MenuItem[] = [
         {
             key: 'dashboard',
-            label: 'Dashboard',
+            label: 'Tổng quan',
             icon: <AppstoreOutlined />,
         },
         {
@@ -37,7 +37,7 @@ function SideBar() {
         },
         {
             key: 'employee',
-            label: 'Employee',
+            label: 'Nhân sự',
             icon: <TeamOutlined />,
         },
         // {

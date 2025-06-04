@@ -48,15 +48,15 @@ function Footer() {
         <footer className="w-full mx-auto px-6 py-12 bg-[#03112B] text-white pr-0 md:pr-12">
             <div className="max-w-[1280px] mx-auto px-6">
                 <div className="grid grid-cols-1 mx-auto sm:grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-10">
-                    {/* Office Contact */}
+                    {/* Liên hệ văn phòng */}
                     <div>
                         <h3 className="text-[#F9A826] font-semibold text-lg mb-2 border-b-2 border-[#F9A826] inline-block pb-1">
-                            Office Contact
+                            Liên hệ văn phòng
                         </h3>
                         <ul className="mt-4 space-y-3 text-sm font-normal">
                             <li className="flex items-center gap-2">
                                 <MapPinIcon className="w-5 h-5 text-white" />
-                                <span>123 Street, New York, USA</span>
+                                <span>123 Đường, HCM, VN</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <PhoneIcon className="w-5 h-5 text-white" />
@@ -106,77 +106,76 @@ function Footer() {
                         </div>
                     </div>
 
-                    {/* Services Areas */}
+                    {/* Lĩnh vực dịch vụ */}
                     <div>
                         <h3 className="text-[#F9A826] font-semibold text-lg mb-2 border-b-2 border-[#F9A826] inline-block pb-1">
-                            Services Areas
+                            Lĩnh vực dịch vụ
                         </h3>
                         <ul className="mt-4 space-y-3 text-sm font-normal">
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Building Construction</span>
+                                <span>Xây dựng công trình</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>House Renovation</span>
+                                <span>Cải tạo nhà cửa</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Architecture Design</span>
+                                <span>Thiết kế kiến trúc</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Interior Design</span>
+                                <span>Thiết kế nội thất</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Painting</span>
+                                <span>Sơn nhà</span>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Useful Pages */}
+                    {/* Trang hữu ích */}
                     <div>
                         <h3 className="text-[#F9A826] font-semibold text-lg mb-2 border-b-2 border-[#F9A826] inline-block pb-1">
-                            Useful Pages
+                            Trang hữu ích
                         </h3>
                         <ul className="mt-4 space-y-3 text-sm font-normal">
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>About Us</span>
+                                <span>Về chúng tôi</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Contact Us</span>
+                                <span>Liên hệ</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Our Team</span>
+                                <span>Đội ngũ của chúng tôi</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Projects</span>
+                                <span>Dự án</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <ChevronRightIcon className="w-5 h-5 text-white" />
-                                <span>Testimonial</span>
+                                <span>Nhận xét khách hàng</span>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Newsletter */}
+                    {/* Bản tin */}
                     <div>
                         <h3 className="text-[#F9A826] font-semibold text-lg mb-2 border-b-2 border-[#F9A826] inline-block pb-1">
-                            Newsletter
+                            Bản tin
                         </h3>
                         <p className="text-sm font-normal leading-relaxed max-w-[280px]">
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi.
-                            Curabitur facilisis ornare velit non vulpu
+                        Chúng tôi cam kết mang đến các dịch vụ xây dựng chất lượng cao. Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng đáp ứng mọi nhu cầu của bạn. Mỗi dự án được thực hiện với sự tận tâm và sáng tạo.
                         </p>
                         <form className="mt-5 flex max-w-[280px]">
                             <input
                                 type="email"
-                                placeholder="Email here"
+                                placeholder="Nhập email tại đây"
                                 className="flex-grow px-3 py-2 text-white text-sm font-normal outline-none rounded-l-sm rounded-r-none border border-white bg-transparent placeholder-white"
                                 required
                             />
@@ -184,7 +183,7 @@ function Footer() {
                                 type="submit"
                                 className="bg-[#F9A826] text-white font-semibold text-sm px-6 py-2 rounded-r-sm rounded-l-none border-0 hover:bg-[#e09b1d] transition"
                             >
-                                SUBMIT
+                                GỬI
                             </button>
                         </form>
                     </div>
@@ -193,11 +192,11 @@ function Footer() {
             <hr className="border-t border-white/20 mt-10" />
             <nav className="mt-6 flex flex-wrap justify-center gap-6 text-sm font-normal text-white/80">
                 <a href="#" className="hover:text-white transition">
-                    Terms of use
+                    Điều khoản sử dụng
                 </a>
                 <span className="border-l border-white/20 h-4"></span>
                 <a href="#" className="hover:text-white transition">
-                    Privacy policy
+                    Chính sách bảo mật
                 </a>
                 <span className="border-l border-white/20 h-4"></span>
                 <a href="#" className="hover:text-white transition">
@@ -205,11 +204,11 @@ function Footer() {
                 </a>
                 <span className="border-l border-white/20 h-4"></span>
                 <a href="#" className="hover:text-white transition">
-                    Help
+                    Trợ giúp
                 </a>
                 <span className="border-l border-white/20 h-4"></span>
                 <a href="#" className="hover:text-white transition">
-                    FAQs
+                    Câu hỏi thường gặp
                 </a>
             </nav>
         </footer>

@@ -57,12 +57,12 @@ export default function Page() {
          {/* Meet Our Engineer */}
          <section className="max-w-7xl mx-auto px-6 py-12">
           <div className="text-center mb-8">
-            <p className="text-yellow-400 font-semibold text-sm mb-2">
-              Our Team
-            </p>
-            <h2 className="text-4xl font-extrabold text-slate-900">
-              Meet Our Engineer
-            </h2>
+          <p className="text-yellow-400 font-semibold text-sm mb-2">
+        Đội ngũ của chúng tôi
+        </p>
+        <h2 className="text-4xl font-extrabold text-slate-900">
+  Gặp gỡ các kỹ sư của chúng tôi
+</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {/* Engineer 1 */}

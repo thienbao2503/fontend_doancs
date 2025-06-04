@@ -14,13 +14,11 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 
-
 export default function Page() {
-
   const images = [
     "https://hogathongminh.vn/wp-content/uploads/2022/08/khao-sat-cong-trinh.jpeg",
     "https://png.pngtree.com/background/20230519/original/pngtree-worker-working-on-wood-at-construction-site-picture-image_2653850.jpg",
-    "https://img.lovepik.com/photo/40196/0675.jpg_wh860.jpg"
+    "https://img.lovepik.com/photo/40196/0675.jpg_wh860.jpg",
   ];
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [nextIdx, setNextIdx] = useState(0);
@@ -57,21 +55,20 @@ export default function Page() {
 
   return (
     <>
-
       <section className="relative flex-1 flex min-h-screen overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <div
             className="flex h-full transition-transform duration-700 ease-in-out"
             style={{
               width: `${images.length * 100}%`,
-              transform: `translateX(-${carouselIdx * (100 / images.length)}%)`
+              transform: `translateX(-${carouselIdx * (100 / images.length)}%)`,
             }}
           >
             {images.map((img, idx) => (
               <img
                 key={idx}
                 src={img}
-                alt={`slide-${idx}`}
+                alt={`Ảnh slide ${idx + 1}`}
                 className="w-full h-full object-cover object-center flex-shrink-0"
                 style={{ width: `${100 / images.length}%` }}
               />
@@ -82,32 +79,29 @@ export default function Page() {
         </div>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
-
           {carouselIdx === 0 && (
             <>
-              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">We Are Trusted</p>
-              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">For Your Dream Home</h1>
-              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">GET A QUOTE</button>
+              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">Chúng Tôi Được Tin Cậy</p>
+              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">Cho Ngôi Nhà Mơ Ước Của Bạn</h1>
+              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">Nhận Báo Giá</button>
             </>
           )}
           {carouselIdx === 1 && (
             <>
-              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">We Are Professional</p>
-              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">For Your Dream Project</h1>
-              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">GET A QUOTE</button>
+              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">Chúng Tôi Chuyên Nghiệp</p>
+              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">Cho Dự Án Mơ Ước Của Bạn</h1>
+              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">Nhận Báo Giá</button>
             </>
           )}
           {carouselIdx === 2 && (
             <>
-              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">Professional Builder</p>
-              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">We Build Your Home</h1>
-              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">GET A QUOTE</button>
+              <p className="text-white text-xl md:text-2xl font-semibold mb-2 drop-shadow-lg">Nhà Xây Dựng Chuyên Nghiệp</p>
+              <h1 className="text-white text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">Chúng Tôi Xây Dựng Ngôi Nhà Của Bạn</h1>
+              <button className="border border-white text-white px-8 py-3 rounded transition hover:bg-white hover:text-black font-semibold text-lg">Nhận Báo Giá</button>
             </>
           )}
         </div>
-
       </section>
-
 
       {/* Three Features Section */}
       <div className="w-full flex justify-center px-4 mt-12">
@@ -117,31 +111,31 @@ export default function Page() {
             <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-dotted border-[#f9b707] mb-4 bg-[#0a1a36] shadow-lg">
               <ClipboardIcon className="w-10 h-10" />
             </div>
-            <h3 className="font-bold text-xl mb-2 tracking-wide">Expert Worker</h3>
-            <p className="text-[#f9b707] text-base leading-6 max-w-xs mx-auto opacity-90">Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+            <h3 className="font-bold text-xl mb-2 tracking-wide">Đội Ngũ Chuyên Gia</h3>
+            <p className="text-[#f9b707] text-base leading-6 max-w-xs mx-auto opacity-90">Chúng tôi sở hữu đội ngũ nhân viên giàu kinh nghiệm, luôn sẵn sàng mang đến những giải pháp xây dựng tối ưu nhất.</p>
           </div>
           {/* Box 2 */}
           <div className="flex-1 flex flex-col items-center text-center bg-[#f9b707] text-[#001025] px-8 py-12">
             <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-dotted border-[#001025] mb-4 bg-[#ffe7a8] shadow-lg">
               <EyeIcon className="w-10 h-10" />
             </div>
-            <h3 className="font-bold text-xl mb-2 tracking-wide">Quality Work</h3>
-            <p className="text-[#001025] text-base leading-6 max-w-xs mx-auto opacity-90">Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+            <h3 className="font-bold text-xl mb-2 tracking-wide">Công Trình Chất Lượng</h3>
+            <p className="text-[#001025] text-base leading-6 max-w-xs mx-auto opacity-90">Mọi dự án đều được thực hiện với tiêu chuẩn cao nhất, đảm bảo độ bền và thẩm mỹ vượt trội.</p>
           </div>
           {/* Box 3 */}
           <div className="flex-1 flex flex-col items-center text-center bg-[#001025] text-[#f9b707] px-8 py-12">
             <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-dotted border-[#f9b707] mb-4 bg-[#0a1a36] shadow-lg">
               <ChatBubbleLeftRightIcon className="w-10 h-10" />
             </div>
-            <h3 className="font-bold text-xl mb-2 tracking-wide">24/7 Support</h3>
-            <p className="text-[#f9b707] text-base leading-6 max-w-xs mx-auto opacity-90">Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+            <h3 className="font-bold text-xl mb-2 tracking-wide">Hỗ Trợ 24/7</h3>
+            <p className="text-[#f9b707] text-base leading-6 max-w-xs mx-auto opacity-90">Chúng tôi luôn sẵn sàng hỗ trợ khách hàng mọi lúc, đảm bảo giải đáp mọi thắc mắc nhanh chóng.</p>
           </div>
         </div>
       </div>
-      {/* welcom */}
+      {/* Chào mừng */}
       <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12 md:gap-24 bg-white rounded-2xl shadow-xl mt-16">
         <img
-          alt="Construction site with cranes and a building under construction against a blue sky with clouds"
+          alt="Công trường xây dựng với cần cẩu và tòa nhà đang xây dựng dưới bầu trời xanh có mây"
           className="w-full max-w-md object-cover rounded-xl shadow-lg border border-gray-200"
           height={400}
           src="https://storage.googleapis.com/a1aa/image/30821fb7-6410-436f-6583-c60db2334247.jpg"
@@ -149,134 +143,156 @@ export default function Page() {
         />
         <div className="max-w-xl">
           <p className="text-[#f9b707] font-semibold text-base mb-3 uppercase tracking-widest">
-            Welcome to Builderz
+            Chào Mừng Đến Với Builderz
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#001025] mb-6 leading-tight drop-shadow">
-            25 Years Experience
+            25 Năm Kinh Nghiệm
           </h1>
           <p className="mb-4 leading-relaxed text-gray-700 text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+            Chúng tôi cung cấp các dịch vụ xây dựng chất lượng cao, đáp ứng mọi nhu cầu của khách hàng. Đội ngũ của chúng tôi luôn tận tâm mang đến những giải pháp tối ưu và bền vững.
           </p>
           <p className="mb-8 leading-relaxed text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+            Với hơn hai thập kỷ kinh nghiệm, chúng tôi tự hào đã hoàn thành nhiều dự án lớn nhỏ, từ xây dựng nhà ở đến các công trình thương mại. Chúng tôi cam kết mang lại chất lượng vượt trội và sự hài lòng tối đa cho khách hàng.
           </p>
           <button className="bg-[#f9b707] text-[#001025] font-bold px-8 py-3 rounded-full tracking-wide shadow-md hover:bg-[#ffd666] transition">
-            Learn More
+            Tìm Hiểu Thêm
           </button>
         </div>
       </div>
 
-      {/* We Provide Services    */}
+      {/* Chúng Tôi Cung Cấp Dịch Vụ */}
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <p className="text-[#f5a623] font-semibold text-sm mb-1">
-            Our Services
+            Dịch Vụ Của Chúng Tôi
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a1f44]">
-            We Provide Services
+            Chúng Tôi Cung Cấp Dịch Vụ
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Box 1 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Building construction site with steel rods and foundation work" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/514b3784-b64f-4cfd-6813-2c81f8bfe7fd.jpg" />
-            {/* Overlay on hover */}
+            <img
+              alt="Công trường xây dựng với cọc thép và công việc nền móng"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://storage.googleapis.com/a1aa/image/514b3784-b64f-4cfd-6813-2c81f8bfe7fd.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Dịch vụ xây dựng công trình của chúng tôi đảm bảo chất lượng và tiến độ, mang đến những tòa nhà bền vững và thẩm mỹ.
               </p>
             </div>
-            {/* Bottom bar */}
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                Building Construction
+                Xây Dựng Công Trình
               </p>
-              <button aria-label="Expand Building Construction" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Xây Dựng Công Trình" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
           {/* Box 2 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="House renovation with crane lifting roof panel and scaffolding" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/0aa18806-6b22-4c11-feaa-51edf214254c.jpg" />
+            <img
+              alt="Cải tạo nhà với cần cẩu nâng tấm mái và giàn giáo"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://storage.googleapis.com/a1aa/image/0aa18806-6b22-4c11-feaa-51edf214254c.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Chúng tôi cung cấp dịch vụ cải tạo nhà ở, nâng cấp không gian sống với thiết kế hiện đại và tiện nghi.
               </p>
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                House Renovation
+                Cải Tạo Nhà Ở
               </p>
-              <button aria-label="Expand House Renovation" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Cải Tạo Nhà Ở" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
           {/* Box 3 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Architecture design team reviewing blueprints in construction site" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/df59cc55-809b-4c95-96bd-0dc0eb0993c9.jpg" />
+            <img
+              alt="Đội ngũ thiết kế kiến trúc xem xét bản vẽ tại công trường"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://storage.googleapis.com/a1aa/image/df59cc55-809b-4c95-96bd-0dc0eb0993c9.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Dịch vụ thiết kế kiến trúc của chúng tôi mang đến những bản vẽ sáng tạo, tối ưu hóa không gian và thẩm mỹ.
               </p>
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                Architecture Design
+                Thiết Kế Kiến Trúc
               </p>
-              <button aria-label="Expand Architecture Design" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Thiết Kế Kiến Trúc" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
           {/* Box 4 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Interior design house under construction with green fence" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="http://127.0.0.1:5500/img/service-4.jpg" />
+            <img
+              alt="Thiết kế nội thất nhà đang xây dựng với hàng rào xanh"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://noithatav.com/wp-content/uploads/2022/11/ban-ve-thiet-ke-noi-that-3d.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Chúng tôi tạo ra không gian nội thất sang trọng, tiện nghi và phù hợp với phong cách của bạn.
               </p>
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                Interior Design
+                Thiết Kế Nội Thất
               </p>
-              <button aria-label="Expand Interior Design" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Thiết Kế Nội Thất" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
           {/* Box 5 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Fixing and support workers on construction site" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
+            <img
+              alt="Công nhân sửa chữa và hỗ trợ tại công trường"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Dịch vụ sửa chữa và hỗ trợ của chúng tôi đảm bảo công trình luôn trong tình trạng tốt nhất.
               </p>
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                Fixing & Support
+                Sửa Chữa & Hỗ Trợ
               </p>
-              <button aria-label="Expand Fixing & Support" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Sửa Chữa & Hỗ Trợ" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
           {/* Box 6 */}
           <div className="relative group rounded overflow-hidden">
-            <img alt="Painting and finishing team working on building exterior" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="http://127.0.0.1:5500/img/service-6.jpg" />
+            <img
+              alt="Đội ngũ sơn và hoàn thiện làm việc trên ngoại thất tòa nhà"
+              className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              src="https://amazyta.com/wp-content/uploads/2022/06/cach-chon-son-hoan-thien-cho-nha-cua-ban-5.jpg"
+            />
             <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-center text-base leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                Dịch vụ sơn và hoàn thiện của chúng tôi mang lại vẻ đẹp hoàn hảo cho mọi công trình.
               </p>
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
               <p className="text-[#f5a623] font-semibold text-sm">
-                Painting & Finishing
+                Sơn & Hoàn Thiện
               </p>
-              <button aria-label="Expand Painting & Finishing" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+              <button aria-label="Mở rộng Sơn & Hoàn Thiện" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                 <span className="text-2xl">+</span>
               </button>
             </div>
@@ -284,21 +300,26 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Meet Our Engineer */}
+      {/* Gặp Gỡ Kỹ Sư Của Chúng Tôi */}
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="text-center mb-8">
           <p className="text-yellow-400 font-semibold text-sm mb-2">
-            Our Team
+            Đội Ngũ Của Chúng Tôi
           </p>
           <h2 className="text-4xl font-extrabold text-slate-900">
-            Meet Our Engineer
+            Gặp Gỡ Kỹ Sư Của Chúng Tôi
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {/* Engineer 1 */}
+          {/* Kỹ sư 1 */}
           <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-            <img alt="Engineer 1 with yellow helmet and orange safety vest holding clipboard" className="w-full" height={350} src="https://th.bing.com/th/id/OIG1.J5VqRaySgK4Vmims6kma?cb=iwc2&pid=ImgGn" width={300} />
-            {/* Social icons overlay */}
+            <img
+              alt="Kỹ sư 1 đội mũ vàng và mặc áo an toàn màu cam cầm bảng kẹp"
+              className="w-full"
+              height={350}
+              src="https://th.bing.com/th/id/OIG1.J5VqRaySgK4Vmims6kma?cb=iwc2&pid=ImgGn"
+              width={300}
+            />
             <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -323,12 +344,18 @@ export default function Page() {
             </div>
             <div className="bg-[#f9b707] text-center py-4 hover:bg-[#f5a623] transition-colors duration-300">
               <h3 className="text-slate-900 font-bold text-lg">Adam Phillips</h3>
-              <p className="text-slate-800 text-sm mt-1">CEO &amp; Founder</p>
+              <p className="text-slate-800 text-sm mt-1">Giám Đốc & Nhà Sáng Lập</p>
             </div>
           </div>
-          {/* Engineer 2 */}
+          {/* Kỹ sư 2 */}
           <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-            <img alt="Engineer 2 with yellow helmet and yellow safety vest talking on phone" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/8844bd77-1f1f-4340-78a9-b1a29991b77f.jpg" width={300} />
+            <img
+              alt="Kỹ sư 2 đội mũ vàng và mặc áo an toàn màu vàng đang nói chuyện qua điện thoại"
+              className="w-full"
+              height={350}
+              src="https://storage.googleapis.com/a1aa/image/8844bd77-1f1f-4340-78a9-b1a29991b77f.jpg"
+              width={300}
+            />
             <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -353,12 +380,18 @@ export default function Page() {
             </div>
             <div className="bg-[#f9b707] text-center py-4 hover:bg-[#f5a623] transition-colors duration-300">
               <h3 className="text-slate-900 font-bold text-lg">Dylan Adams</h3>
-              <p className="text-slate-800 text-sm mt-1">Civil Engineer</p>
+              <p className="text-slate-800 text-sm mt-1">Kỹ Sư Xây Dựng</p>
             </div>
           </div>
-          {/* Engineer 3 */}
+          {/* Kỹ sư 3 */}
           <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-            <img alt="Engineer 3 with yellow helmet and orange safety vest crossed arms" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/baff7ee0-116d-428a-ac4c-6842f7315388.jpg" width={300} />
+            <img
+              alt="Kỹ sư 3 đội mũ vàng và mặc áo an toàn màu cam khoanh tay"
+              className="w-full"
+              height={350}
+              src="https://storage.googleapis.com/a1aa/image/baff7ee0-116d-428a-ac4c-6842f7315388.jpg"
+              width={300}
+            />
             <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -372,23 +405,29 @@ export default function Page() {
               </a>
               <a href="#" className="bg-[#0077b5] hover:bg-[#005983] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-300">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
               </a>
               <a href="#" className="bg-[#e4405f] hover:bg-[#c32aa3] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-400">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
               </a>
             </div>
             <div className="bg-[#f9b707] text-center py-4 hover:bg-[#f5a623] transition-colors duration-300">
               <h3 className="text-slate-900 font-bold text-lg">Jhon Doe</h3>
-              <p className="text-slate-800 text-sm mt-1">Interior Designer</p>
+              <p className="text-slate-800 text-sm mt-1">Nhà Thiết Kế Nội Thất</p>
             </div>
           </div>
-          {/* Engineer 4 */}
+          {/* Kỹ sư 4 */}
           <div className="relative group bg-white rounded-lg overflow-hidden shadow">
-            <img alt="Engineer 4 with yellow helmet and white t-shirt arms crossed" className="w-full" height={350} src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg" width={300} />
+            <img
+              alt="Kỹ sư 4 đội mũ vàng và mặc áo thun trắng khoanh tay"
+              className="w-full"
+              height={350}
+              src="https://storage.googleapis.com/a1aa/image/f94691ef-8537-4e2f-8c13-4b7640ce335e.jpg"
+              width={300}
+            />
             <div className="absolute top-4 left-0 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <a href="#" className="bg-[#1da1f2] hover:bg-[#0d8ddb] text-white w-10 h-10 flex items-center justify-center rounded-r opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -413,40 +452,52 @@ export default function Page() {
             </div>
             <div className="bg-[#f9b707] text-center py-4 hover:bg-[#f5a623] transition-colors duration-300">
               <h3 className="text-slate-900 font-bold text-lg">Jane Smith</h3>
-              <p className="text-slate-800 text-sm mt-1">Project Manager</p>
+              <p className="text-slate-800 text-sm mt-1">Quản Lý Dự Án</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* You May Ask      */}
+      {/* Câu Hỏi Thường Gặp */}
       <section className="w-full mx-auto px-6 py-12">
         <div className="text-center mb-8">
-          <p className="text-yellow-400 font-semibold text-sm">Frequently Asked Question</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 mt-1">You May Ask</h2>
+          <p className="text-yellow-400 font-semibold text-sm">Câu Hỏi Thường Gặp</p>
+          <h2 className="text-4xl font-extrabold text-slate-900 mt-1">Bạn Có Thể Hỏi</h2>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-12 max-w-5xl mx-auto">
           <div className="flex-1 space-y-4">
-            {[...Array(5)].map((_, i) => (
+            {[
+              "Làm thế nào để liên hệ với đội ngũ Builderz?",
+              "Các dịch vụ xây dựng của bạn bao gồm những gì?",
+              "Thời gian hoàn thành một dự án là bao lâu?",
+              "Bạn có cung cấp dịch vụ tư vấn thiết kế không?",
+              "Chi phí xây dựng được tính như thế nào?",
+            ].map((question, i) => (
               <button
                 key={i}
                 className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                 type="button"
               >
-                Lorem ipsum dolor sit amet?
+                {question}
                 <span className="text-2xl text-yellow-400">+</span>
               </button>
             ))}
           </div>
           <div className="hidden md:block border-l border-yellow-400"></div>
           <div className="flex-1 space-y-4 mt-6 md:mt-0">
-            {[...Array(5)].map((_, i) => (
+            {[
+              "Bạn có bảo hành cho các công trình không?",
+              "Làm thế nào để nhận báo giá chi tiết?",
+              "Bạn có làm việc với các dự án quốc tế không?",
+              "Đội ngũ của bạn có bao nhiêu kinh nghiệm?",
+              "Bạn có sử dụng vật liệu thân thiện với môi trường không?",
+            ].map((question, i) => (
               <button
                 key={i}
                 className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                 type="button"
               >
-                Lorem ipsum dolor sit amet?
+                {question}
                 <span className="text-2xl text-yellow-400">+</span>
               </button>
             ))}
@@ -454,20 +505,19 @@ export default function Page() {
         </div>
       </section>
 
-
-      {/* Latest From Our Blog  */}
+      {/* Tin Tức Mới Nhất Từ Blog Của Chúng Tôi */}
       <section className="bg-white text-center px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 py-16">
         <p className="text-yellow-400 font-semibold text-sm mb-2">
-          Latest Blog
+          Blog Mới Nhất
         </p>
         <h1 className="text-4xl font-extrabold text-slate-900 mb-12">
-          Latest From Our Blog
+          Tin Tức Mới Nhất Từ Blog Của Chúng Tôi
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Card 1 */}
           <article className="max-w-sm mx-auto">
             <img
-              alt="House under construction with wooden frame and crane lifting materials"
+              alt="Ngôi nhà đang xây dựng với khung gỗ và cần cẩu nâng vật liệu"
               className="w-full object-cover"
               height={250}
               src="https://storage.googleapis.com/a1aa/image/88ad67be-a2e3-4c47-5814-964e3e315d95.jpg"
@@ -475,30 +525,30 @@ export default function Page() {
             />
             <div className="flex items-center bg-slate-900 text-yellow-400 font-semibold text-base px-4 py-3">
               <span className="flex-1 text-left">
-                Lorem ipsum dolor sit
+                Xây dựng nhà ở hiện đại
               </span>
-              <button aria-label="Expand blog post" className="text-yellow-400 text-2xl font-bold leading-none">
+              <button aria-label="Mở rộng bài viết blog" className="text-yellow-400 text-2xl font-bold leading-none">
                 +
               </button>
             </div>
             <div className="bg-slate-100 px-6 py-6 text-slate-700 text-center">
               <p className="italic text-sm mb-3">
                 <span className="not-italic font-semibold underline decoration-slate-400">
-                  By Adminm In Construction
+                  Bởi Quản Trị Viên, Trong Xây Dựng
                 </span>
               </p>
               <p className="text-base leading-relaxed">
                 <span className="font-semibold">
-                  Lorem ipsum dolor sit
-                </span>
-                amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                  Xây dựng nhà ở hiện đại
+                </span>{" "}
+                mang đến không gian sống tiện nghi và bền vững. Chúng tôi sử dụng công nghệ tiên tiến để đảm bảo chất lượng tối ưu.
               </p>
             </div>
           </article>
           {/* Card 2 */}
           <article className="max-w-sm mx-auto">
             <img
-              alt="Completed house with green lawn and clear blue sky"
+              alt="Ngôi nhà hoàn thiện với bãi cỏ xanh và bầu trời trong xanh"
               className="w-full object-cover"
               height={250}
               src="https://storage.googleapis.com/a1aa/image/c20e3938-2543-4a96-6566-29c16dd97a13.jpg"
@@ -506,30 +556,30 @@ export default function Page() {
             />
             <div className="flex items-center bg-slate-900 text-yellow-400 font-semibold text-base px-4 py-3">
               <span className="flex-1 text-left">
-                Lorem ipsum dolor sit
+                Thiết kế nhà ở tối ưu
               </span>
-              <button aria-label="Expand blog post" className="text-yellow-400 text-2xl font-bold leading-none">
+              <button aria-label="Mở rộng bài viết blog" className="text-yellow-400 text-2xl font-bold leading-none">
                 +
               </button>
             </div>
             <div className="bg-slate-100 px-6 py-6 text-slate-700 text-center">
               <p className="italic text-sm mb-3">
                 <span className="not-italic font-semibold underline decoration-slate-400">
-                  By In Construction
+                  Bởi Quản Trị Viên, Trong Xây Dựng
                 </span>
               </p>
               <p className="text-base leading-relaxed">
                 <span className="font-semibold">
-                  Lorem ipsum dolor sit
-                </span>
-                amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                  Thiết kế nhà ở tối ưu
+                </span>{" "}
+                giúp bạn có không gian sống thoải mái, hiện đại và tiết kiệm năng lượng.
               </p>
             </div>
           </article>
           {/* Card 3 */}
           <article className="max-w-sm mx-auto">
             <img
-              alt="Construction workers on site working with tools and materials"
+              alt="Công nhân xây dựng tại công trường làm việc với công cụ và vật liệu"
               className="w-full object-cover"
               height={250}
               src="https://storage.googleapis.com/a1aa/image/7baaed3d-d966-4999-dcd7-f33bb66e5659.jpg"
@@ -537,30 +587,28 @@ export default function Page() {
             />
             <div className="flex items-center bg-slate-900 text-yellow-400 font-semibold text-base px-4 py-3">
               <span className="flex-1 text-left">
-                Lorem ipsum dolor sit
+                Quy trình xây dựng an toàn
               </span>
-              <button aria-label="Expand blog post" className="text-yellow-400 text-2xl font-bold leading-none">
+              <button aria-label="Mở rộng bài viết blog" className="text-yellow-400 text-2xl font-bold leading-none">
                 +
               </button>
             </div>
             <div className="bg-slate-100 px-6 py-6 text-slate-700 text-center">
               <p className="italic text-sm mb-3">
                 <span className="not-italic font-semibold underline decoration-slate-400">
-                  By In Construction
+                  Bởi Quản Trị Viên, Trong Xây Dựng
                 </span>
               </p>
               <p className="text-base leading-relaxed">
                 <span className="font-semibold">
-                  Lorem ipsum dolor sit
-                </span>
-                amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                  Quy trình xây dựng an toàn
+                </span>{" "}
+                đảm bảo chất lượng công trình và sự an toàn cho đội ngũ công nhân.
               </p>
             </div>
           </article>
         </div>
       </section>
-
-
     </>
   );
 }

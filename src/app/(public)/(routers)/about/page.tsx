@@ -54,13 +54,13 @@ export default function Page() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col font-sans">
-      {/* Nội dung about */}
+      {/* Nội dung về chúng tôi */}
 
       <section className="bg-white text-[#0A142F]">
       </section>
       <main className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row md:items-start md:gap-16">
         <img
-          alt="Construction site with cranes and a building under construction against a blue sky with some clouds"
+          alt="Công trường xây dựng với cần cẩu và tòa nhà đang xây dựng dưới bầu trời xanh có vài đám mây"
           className="w-full max-w-[400px] object-cover mb-10 md:mb-0"
           height="400"
           src="https://storage.googleapis.com/a1aa/image/c210cc9a-6b00-4f11-e2a0-68ffda6c0e7e.jpg"
@@ -68,23 +68,23 @@ export default function Page() {
         />
         <section className="max-w-xl">
           <p className="text-[#F9B233] font-semibold text-sm mb-2">
-            Welcome to Builderz
+            Chào mừng đến với Builderz
           </p>
           <h2 className="text-3xl font-extrabold mb-6">
-            25 Years Experience
+            25 Năm Kinh Nghiệm
           </h2>
           <p className="text-sm text-[#4B5563] mb-6 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+            Chúng tôi cung cấp các dịch vụ xây dựng chất lượng cao, đảm bảo đáp ứng mọi nhu cầu của khách hàng. Đội ngũ của chúng tôi luôn tận tâm mang đến những giải pháp tối ưu và bền vững.
           </p>
           <p className="text-sm text-[#4B5563] mb-8 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+            Với hơn hai thập kỷ kinh nghiệm, chúng tôi tự hào đã hoàn thành nhiều dự án lớn nhỏ, từ xây dựng nhà ở đến các công trình thương mại. Chúng tôi cam kết mang lại chất lượng vượt trội và sự hài lòng tối đa cho khách hàng.
           </p>
           <button className="bg-[#F9B233] text-[#0A142F] font-semibold text-sm px-6 py-3 rounded-sm hover:bg-yellow-400 transition">
-            Learn More
+            Tìm Hiểu Thêm
           </button>
         </section>
       </main>
-      {/* Contact */}
+      {/* Liên hệ */}
       
 <section className="bg-[#F9F9F9] ">
   <div className="border-t border-gray-300">
@@ -94,19 +94,19 @@ export default function Page() {
   </div>
   <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-8">
     <img
-      alt="Group photo 1"
+      alt="Ảnh nhóm 1"
       className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
       height="400"
       src="https://th.bing.com/th/id/OIG3.OAh0aK9SIZYf5CMFU5M_?cb=iwc2&w=1024&h=1024&rs=1&pid=ImgDetMain"
     />
     <img
-      alt="Group photo 2"
+      alt="Ảnh nhóm 2"
       className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
       height="400"
       src="https://th.bing.com/th/id/OIG3._3h2gpTgSkR8w9QzN3sQ?cb=iwc2&w=1024&h=1024&rs=1&pid=ImgDetMain"
     />
     <img
-      alt="Group photo 3"
+      alt="Ảnh nhóm 3"
       className="w-full max-w-xs rounded-xl shadow-lg object-cover transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
       height="400"
       src="https://th.bing.com/th/id/OIG3.GwN_fU1nL_4tSqxkUheH?cb=iwc2&pid=ImgGn"
@@ -115,34 +115,46 @@ export default function Page() {
 </section>
 
 
-      {/* You May Ask      */}
+      {/* Câu Hỏi Thường Gặp */}
       <section className="w-full mx-auto px-6 py-12">
         <div className="text-center mb-8">
-          <p className="text-yellow-400 font-semibold text-sm">Frequently Asked Question</p>
-          <h2 className="text-4xl font-extrabold text-slate-900 mt-1">You May Ask</h2>
+          <p className="text-yellow-400 font-semibold text-sm">Câu Hỏi Thường Gặp</p>
+          <h2 className="text-4xl font-extrabold text-slate-900 mt-1">Bạn Có Thể Hỏi</h2>
         </div>
         <div className="flex flex-col md:flex-row md:space-x-12 max-w-5xl mx-auto">
           <div className="flex-1 space-y-4">
-            {[...Array(5)].map((_, i) => (
+            {[
+              "Làm thế nào để liên hệ với đội ngũ Builderz?",
+              "Các dịch vụ xây dựng của bạn bao gồm những gì?",
+              "Thời gian hoàn thành một dự án là bao lâu?",
+              "Bạn có cung cấp dịch vụ tư vấn thiết kế không?",
+              "Chi phí xây dựng được tính như thế nào?"
+            ].map((question, i) => (
               <button
                 key={i}
                 className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                 type="button"
               >
-                Lorem ipsum dolor sit amet?
+                {question}
                 <span className="text-2xl text-yellow-400">+</span>
               </button>
             ))}
           </div>
           <div className="hidden md:block border-l border-yellow-400"></div>
           <div className="flex-1 space-y-4 mt-6 md:mt-0">
-            {[...Array(5)].map((_, i) => (
+            {[
+              "Bạn có bảo hành cho các công trình không?",
+              "Làm thế nào để nhận báo giá chi tiết?",
+              "Bạn có làm việc với các dự án quốc tế không?",
+              "Đội ngũ của bạn có bao nhiêu kinh nghiệm?",
+              "Bạn có sử dụng vật liệu thân thiện với môi trường không?"
+            ].map((question, i) => (
               <button
                 key={i}
                 className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                 type="button"
               >
-                Lorem ipsum dolor sit amet?
+                {question}
                 <span className="text-2xl text-yellow-400">+</span>
               </button>
             ))}

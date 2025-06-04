@@ -57,113 +57,113 @@ export default function Page() {
           <section className="max-w-7xl mx-auto px-4 py-12">
             <div className="text-center mb-8">
               <p className="text-[#f5a623] font-semibold text-sm mb-1">
-                Our Services
+                Dịch vụ của chúng tôi
               </p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a1f44]">
-                We Provide Services
+                Chúng tôi cung cấp các dịch vụ
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Box 1 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="Building construction site with steel rods and foundation work" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/514b3784-b64f-4cfd-6813-2c81f8bfe7fd.jpg" />
+                <img alt="Công trường xây dựng với các thanh thép và công việc nền móng" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/514b3784-b64f-4cfd-6813-2c81f8bfe7fd.jpg" />
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Chúng tôi cung cấp dịch vụ xây dựng công trình chất lượng cao, đảm bảo tiến độ và an toàn. Đội ngũ chuyên nghiệp của chúng tôi sẽ hỗ trợ bạn từ giai đoạn lập kế hoạch đến hoàn thiện.
                   </p>
                 </div>
                 {/* Bottom bar */}
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    Building Construction
+                    Xây dựng công trình
                   </p>
-                  <button aria-label="Expand Building Construction" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Xây dựng công trình" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
               </div>
               {/* Box 2 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="House renovation with crane lifting roof panel and scaffolding" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/0aa18806-6b22-4c11-feaa-51edf214254c.jpg" />
+                <img alt="Cải tạo nhà ở với cần cẩu nâng tấm mái và giàn giáo" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/0aa18806-6b22-4c11-feaa-51edf214254c.jpg" />
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Dịch vụ cải tạo nhà ở của chúng tôi mang đến sự đổi mới cho không gian sống của bạn, với thiết kế hiện đại và thi công chuyên nghiệp, đáp ứng mọi nhu cầu của khách hàng.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    House Renovation
+                    Cải tạo nhà ở
                   </p>
-                  <button aria-label="Expand House Renovation" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Cải tạo nhà ở" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
               </div>
               {/* Box 3 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="Architecture design team reviewing blueprints in construction site" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/df59cc55-809b-4c95-96bd-0dc0eb0993c9.jpg" />
+                <img alt="Đội ngũ thiết kế kiến trúc xem xét bản vẽ tại công trường" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/df59cc55-809b-4c95-96bd-0dc0eb0993c9.jpg" />
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Thiết kế kiến trúc của chúng tôi kết hợp sáng tạo và thực tiễn, mang đến những công trình độc đáo, bền vững và phù hợp với nhu cầu của bạn.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    Architecture Design
+                    Thiết kế kiến trúc
                   </p>
-                  <button aria-label="Expand Architecture Design" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Thiết kế kiến trúc" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
               </div>
               {/* Box 4 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="Interior design house under construction with green fence" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/a4aa3dd9-7ac5-4c1e-a2ae-27b7a7fab4bd.jpg" />
+                <img alt="Thiết kế nội thất nhà đang xây dựng với hàng rào xanh" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/a4aa3dd9-7ac5-4c1e-a2ae-27b7a7fab4bd.jpg" />
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Dịch vụ thiết kế nội thất của chúng tôi tạo ra không gian sống tiện nghi, thẩm mỹ và cá nhân hóa theo phong cách riêng của bạn.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    Interior Design
+                    Thiết kế nội thất
                   </p>
-                  <button aria-label="Expand Interior Design" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Thiết kế nội thất" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
               </div>
               {/* Box 5 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="Fixing and support workers on construction site" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
+                <img alt="Công nhân sửa chữa và hỗ trợ tại công trường" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Chúng tôi cung cấp dịch vụ sửa chữa và hỗ trợ chuyên nghiệp, đảm bảo công trình của bạn luôn trong tình trạng tốt nhất với chi phí hợp lý.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    Fixing & Support
+                    Sửa chữa & Hỗ trợ
                   </p>
-                  <button aria-label="Expand Fixing & Support" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Sửa chữa & Hỗ trợ" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
               </div>
               {/* Box 6 */}
               <div className="relative group rounded overflow-hidden">
-                <img alt="Painting and finishing team working on building exterior" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
+                <img alt="Đội sơn và hoàn thiện làm việc trên bề mặt ngoại thất công trình" className="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105" src="https://storage.googleapis.com/a1aa/image/6783647a-9c57-47c6-3045-3918add7e578.jpg" />
                 <div className="absolute inset-0 flex items-center justify-center bg-[#0a1f44]/90 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white text-center text-base leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                    Dịch vụ sơn và hoàn thiện của chúng tôi mang đến lớp phủ bền đẹp, tăng tính thẩm mỹ và bảo vệ công trình của bạn trong thời gian dài.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-[#0a1f44] flex justify-between items-center px-4 py-3 z-10">
                   <p className="text-[#f5a623] font-semibold text-sm">
-                    Painting & Finishing
+                    Sơn & Hoàn thiện
                   </p>
-                  <button aria-label="Expand Painting & Finishing" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
+                  <button aria-label="Mở rộng Sơn & Hoàn thiện" className="text-[#f5a623] text-xl font-bold focus:outline-none group-hover:text-white transition">
                     <span className="text-2xl">+</span>
                   </button>
                 </div>
@@ -172,11 +172,11 @@ export default function Page() {
           </section>
 
         
-        {/* You May Ask      */}
+        {/* Bạn Có Thể Hỏi */}
         <section className="w-full mx-auto px-6 py-12">
           <div className="text-center mb-8">
-            <p className="text-yellow-400 font-semibold text-sm">Frequently Asked Question</p>
-            <h2 className="text-4xl font-extrabold text-slate-900 mt-1">You May Ask</h2>
+            <p className="text-yellow-400 font-semibold text-sm">Câu hỏi thường gặp</p>
+            <h2 className="text-4xl font-extrabold text-slate-900 mt-1">Bạn Có Thể Hỏi</h2>
           </div>
           <div className="flex flex-col md:flex-row md:space-x-12 max-w-5xl mx-auto">
             <div className="flex-1 space-y-4">
@@ -186,7 +186,7 @@ export default function Page() {
                   className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                   type="button"
                 >
-                  Lorem ipsum dolor sit amet?
+                  Làm thế nào để bắt đầu một dự án xây dựng?
                   <span className="text-2xl text-yellow-400">+</span>
                 </button>
               ))}
@@ -199,7 +199,7 @@ export default function Page() {
                   className="w-full border border-gray-200 px-6 py-4 flex justify-between items-center text-slate-900 text-base font-normal"
                   type="button"
                 >
-                  Lorem ipsum dolor sit amet?
+                  Chi phí thiết kế nội thất là bao nhiêu?
                   <span className="text-2xl text-yellow-400">+</span>
                 </button>
               ))}

@@ -13,10 +13,10 @@ function Navbar() {
                         <CalendarIcon className="w-10 h-10 text-black" aria-hidden="true" />
                         <div>
                             <span className="font-semibold text-lg block" aria-label="Opening Hours">
-                                Opening Hour
+                                Thời gian làm việc
                             </span>
                             <span className="block text-base font-normal mt-1">
-                                Mon – Fri, 8:00 – 9:00
+                                Mon – Fri, 8:00 – 17:00
                             </span>
                         </div>
                     </div>
@@ -24,7 +24,7 @@ function Navbar() {
                         <PhoneIcon className="w-10 h-10 text-black" aria-hidden="true" />
                         <div>
                             <span className="font-semibold text-lg block" aria-label="Contact Number">
-                                Call Us
+                                Liên hệ
                             </span>
                             <span className="block text-base font-normal mt-1">+012 345 6789</span>
                         </div>
@@ -33,7 +33,7 @@ function Navbar() {
                         <EnvelopeIcon className="w-10 h-10 text-black" aria-hidden="true" />
                         <div>
                             <span className="font-semibold text-lg block" aria-label="Email Address">
-                                Email Us
+                                Email 
                             </span>
                             <span className="block text-base font-normal mt-1">info@example.com</span>
                         </div>
@@ -59,7 +59,7 @@ function Navbar() {
                                 className={`${pathname === "/" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
                                 href="/"
                             >
-                                HOME
+                                Trang chủ
                             </Link>
                         </li>
                         <li>
@@ -67,7 +67,7 @@ function Navbar() {
                                 className={`${pathname === "/about" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
                                 href="/about"
                             >
-                                ABOUT
+                                Giới thiệu
                             </Link>
                         </li>
                         <li>
@@ -75,7 +75,7 @@ function Navbar() {
                                 className={`${pathname === "/service" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
                                 href="/service"
                             >
-                                SERVICE
+                                Dịch vụ
                             </Link>
                         </li>
                         <li>
@@ -83,7 +83,7 @@ function Navbar() {
                                 className={`${pathname === "/team" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
                                 href="/team"
                             >
-                                TEAM
+                                Nhân sự
                             </Link>
                         </li>
                         <li>
@@ -91,7 +91,7 @@ function Navbar() {
                                 className={`${pathname === "/contact" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
                                 href="/contact"
                             >
-                                CONTACT
+                                Địa chỉ
                             </Link>
                         </li>
                     </ul>
