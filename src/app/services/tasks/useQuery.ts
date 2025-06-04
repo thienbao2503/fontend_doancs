@@ -60,27 +60,27 @@ export const useTaskQuery = {
         })
     },
     //add team
-    useAddTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
-        return useMutation({
-            mutationFn: async (data: any) => {
-                const res = await service.addTeam(data.id, data.email);
-                if (res?.statusCode === 200) return res
-                throw res;
-            },
-            onSuccess,
-            onError,
-        })
-    },
-    useDeleteTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
-        return useMutation({
-            mutationFn: async (data: any) => {
-                const res = await service.deleteTeam(data.id, data.user_id);
-                if (res?.statusCode === 200) return res
-                throw res;
-            },
-            onSuccess,
-            onError,
-        })
-    }
+    // useAddTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+    //     return useMutation({
+    //         mutationFn: async (data: any) => {
+    //             const res = await service.addTeam(data.id, data.email);
+    //             if (res?.statusCode === 200) return res
+    //             throw res;
+    //         },
+    //         onSuccess,
+    //         onError,
+    //     })
+    // },
+    // useDeleteTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+    //     return useMutation({
+    //         mutationFn: async (data: any) => {
+    //             const res = await service.deleteTeam(data.id, data.user_id);
+    //             if (res?.statusCode === 200) return res
+    //             throw res;
+    //         },
+    //         onSuccess,
+    //         onError,
+    //     })
+    // }
 
 }

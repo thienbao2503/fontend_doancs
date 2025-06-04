@@ -1,6 +1,7 @@
 import { Modal, Form, Input, DatePicker, InputNumber, Select } from "antd";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import { useCategoryQuery } from "@/app/services/category/useQuery";
 
 interface IProps {
     isModalOpen: boolean;
@@ -15,6 +16,7 @@ const { Option } = Select;
 
 function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initialValues }: IProps) {
     const [form] = Form.useForm();
+    const { data: dataCategory } = useCategoryQuery.useGetAll({ page: 1 })
 
     useEffect(() => {
         if (initialValues) {
@@ -74,6 +76,25 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                 >
                     <Input placeholder="Nhập tên dự án" />
                 </Form.Item>
+
+                <Form.Item
+                    label="Loại dự án"
+                    name="category_id"
+                    rules={[{ required: true, message: "Vui lòng chọn Loại dự án" }]}
+                >
+                    <Select placeholder="Chọn danh mục">
+                        {dataCategory?.map((parent: any) => (
+                            <Select.OptGroup key={parent.id} label={parent.name}>
+                                {parent.children?.map((child: any) => (
+                                    <Option key={child.id} value={child.id}>
+                                        {child.name}
+                                    </Option>
+                                ))}
+                            </Select.OptGroup>
+                        ))}
+                    </Select>
+                </Form.Item>
+
 
                 <Form.Item
                     label="Mô tả"

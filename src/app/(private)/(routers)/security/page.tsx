@@ -16,7 +16,7 @@ export default function Profile() {
   return (
     <section className="bg-white flex justify-center p-4 overflow-hidden">
       <div className="w-full max-w-md mx-auto">
-        <Tabs />
+        {/* <Tabs /> */}
         <div className="bg-white rounded-lg p-6 w-full max-w-md border border-[#e0e0e0] shadow mx-auto">
           <h2 className="text-[#222] text-lg font-bold mb-6">Đổi mật khẩu</h2>
           <form>

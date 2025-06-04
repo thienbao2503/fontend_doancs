@@ -85,7 +85,8 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                         className="absolute inset-0 flex items-center justify-center font-semibold text-lg"
                         style={{ color: "#4f6df5" }}
                     >
-                        {(project?.total_doing + project?.total_done) == 0 ? 0 : (project?.total_done / (project?.total_doing + project?.total_done) * 100)}%
+                        {(project?.total_doing + project?.total_done) == 0 ? 0 : Math.floor(project?.total_done / (project?.total_doing + project?.total_done) * 100)
+                        }%
                     </span>
                 </div>
                 {Number(project?.isMe) == 1 &&
