@@ -54,7 +54,7 @@ export default function Employees() {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col items-start justify-start max-w-full mx-auto">
+    <div className="flex flex-col space-y-4 h-full bg-[#f6f8fb]">
       <EmployeeHeader view={view} setView={setView} onNewContact={() => setOpenModal(true)} />
       <EmployeeList contacts={contacts} view={view} />
       <ModalNewUser open={openModal} onClose={() => setOpenModal(false)} />

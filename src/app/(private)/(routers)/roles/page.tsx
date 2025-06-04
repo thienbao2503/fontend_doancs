@@ -32,7 +32,7 @@ export default function DeskPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] p-4">
+    <div className="flex flex-col space-y-4 h-full bg-[#f6f8fb]">
       <ProjectHeader onNewProject={() => { setEditRole(null); setOpenModal(true); }} />
       <Table
         dataSource={roles || []}

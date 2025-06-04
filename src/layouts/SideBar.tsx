@@ -35,11 +35,11 @@ function SideBar() {
             label: 'Phân Quyền',
             icon: <MailOutlined />,
         },
-        // {
-        //     key: 'employee',
-        //     label: 'Employee',
-        //     icon: <TeamOutlined />,
-        // },
+        {
+            key: 'employee',
+            label: 'Employee',
+            icon: <TeamOutlined />,
+        },
         // {
         //     key: 'desk',
         //     label: 'Desk',
