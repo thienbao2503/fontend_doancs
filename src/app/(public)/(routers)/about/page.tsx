@@ -68,10 +68,10 @@ export default function Page() {
         />
         <section className="max-w-xl">
           <p className="text-[#F9B233] font-semibold text-sm mb-2">
-            Chào mừng đến với Builderz
+            Chào mừng đến với ELEVATE
           </p>
           <h2 className="text-3xl font-extrabold mb-6">
-            25 Năm Kinh Nghiệm
+            Kinh Nghiệm
           </h2>
           <p className="text-sm text-[#4B5563] mb-6 leading-relaxed">
             Chúng tôi cung cấp các dịch vụ xây dựng chất lượng cao, đảm bảo đáp ứng mọi nhu cầu của khách hàng. Đội ngũ của chúng tôi luôn tận tâm mang đến những giải pháp tối ưu và bền vững.
