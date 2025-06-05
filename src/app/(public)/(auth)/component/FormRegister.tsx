@@ -61,9 +61,10 @@ function FormRegister({ onRegisterSuccess }: { onRegisterSuccess: () => void }) 
 
             <div className="relative">
                 <label htmlFor="register-email" className="block text-sm font-medium text-gray-800 mb-2">
-                    Email
+                    Email (Nhận mã xác thực OTP)
                 </label>
-                <div className="relative">
+                <div className="flex items-center">
+                    <div className="relative flex-1">
                     <UserIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-600" />
                     <input
                         id="register-email"
@@ -75,7 +76,33 @@ function FormRegister({ onRegisterSuccess }: { onRegisterSuccess: () => void }) 
                         className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
                         required
                     />
+                    </div>
+                    <button
+                        className="ml-4 text-sm text-sky-600 hover:underline cursor-pointer whitespace-nowrap"
+                        type="button">
+                        Gửi OTP
+                        </button>
                 </div>
+                </div>
+
+            <div className="relative mt-4">
+            <label htmlFor="register-otp" className="block text-sm font-medium text-gray-800 mb-2">
+                Xác thực OTP
+            </label>
+            <div className="relative">
+                <input
+                id="register-otp"
+                type="text"
+                name="otp"
+            
+                onChange={handleRegisterInputChange}
+                placeholder="Nhập mã OTP gồm 6 chữ số"
+                className="w-full pl-4 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition-all duration-300"
+                maxLength={6}
+                pattern="\d{6}"
+                required
+                />
+            </div>
             </div>
 
             <div className="relative">

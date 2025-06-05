@@ -65,7 +65,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/about" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/about"
+                                href="#gioithieu" 
                             >
                                 Giới thiệu
                             </Link>
@@ -73,7 +73,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/service" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/service"
+                                href="#dichvu"
                             >
                                 Dịch vụ
                             </Link>
@@ -81,7 +81,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/team" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/team"
+                                href="#nhansu"
                             >
                                 Nhân sự
                             </Link>
@@ -89,7 +89,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/contact" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/contact"
+                                href="#diachi"
                             >
                                 Địa chỉ
                             </Link>

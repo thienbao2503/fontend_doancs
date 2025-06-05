@@ -35,19 +35,19 @@ export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
       </div>
       <div className={`flex items-center justify-center space-x-4 ${view === "grid" ? "mt-4" : ""}`}>
         <button
-          aria-label={`Email ${contact.name}`}
+          aria-label={`Gửi email cho ${contact.name}`}
           className="bg-red-100 text-red-600 p-2 rounded-full transition-colors hover:bg-red-200"
         >
           <EnvelopeIcon className="w-5 h-5" />
         </button>
         <button
-          aria-label={`Chat with ${contact.name}`}
+          aria-label={`Trò chuyện với ${contact.name}`}
           className="bg-blue-100 text-blue-600 p-2 rounded-full transition-colors hover:bg-blue-200"
         >
           <ChatBubbleLeftIcon className="w-5 h-5" />
         </button>
         <button
-          aria-label={`Call ${contact.name}`}
+          aria-label={`Gọi cho ${contact.name}`}
           className="bg-green-100 text-green-600 p-2 rounded-full transition-colors hover:bg-green-200"
         >
           <PhoneIcon className="w-5 h-5" />
@@ -58,7 +58,7 @@ export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
           className="ml-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
           type="button"
         >
-          Message
+          Nhắn tin
         </button>
       )}
       {view === "grid" && (
@@ -66,7 +66,7 @@ export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
           className="mt-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
           type="button"
         >
-          Message
+          Nhắn tin
         </button>
       )}
     </section>

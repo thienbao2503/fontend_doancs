@@ -1,7 +1,7 @@
 "use client"
 import Sider from "antd/es/layout/Sider";
 import React from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined, UserOutlined, CalendarOutlined, TeamOutlined, DesktopOutlined, ProjectOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, ScheduleOutlined,FormOutlined, SettingOutlined, UserOutlined, CalendarOutlined, TeamOutlined, DesktopOutlined, ProjectOutlined } from '@ant-design/icons';
 
 import type { MenuProps, MenuTheme } from 'antd';
 import { Menu } from 'antd';
@@ -28,12 +28,12 @@ function SideBar() {
         {
             key: '/cong-viec',
             label: 'Công việc',
-            icon: <MailOutlined />,
+            icon: <FormOutlined />,
         },
         {
             key: '/roles',
             label: 'Phân Quyền',
-            icon: <MailOutlined />,
+            icon: <ScheduleOutlined />,
         },
         {
             key: 'employee',
