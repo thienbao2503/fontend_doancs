@@ -320,7 +320,7 @@ export default function Projects() {
           <div className="bg-white rounded-2xl p-4 sm:p-6 w-full max-w-md shadow-2xl max-h-[100vh] flex flex-col">
             {/* Modal Header */}
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-[#1a1a4b] text-xl font-bold tracking-tight">Create New Project</h2>
+              <h2 className="text-[#1a1a4b] text-xl font-bold tracking-tight">Tạo dự án mới</h2>
               <button onClick={() => setIsModalOpen(false)} className="text-[#5F6F94] hover:text-[#4f6df5] transition-colors duration-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +338,7 @@ export default function Projects() {
             <form onSubmit={handleSubmit} className="space-y-4 flex-1">
               {/* Name */}
               <div>
-                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Name</label>
+                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Tên</label>
                 <input
                   type="text"
                   name="title"
@@ -351,7 +351,7 @@ export default function Projects() {
 
               {/* Description */}
               <div>
-                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Description</label>
+                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Mô tả</label>
                 <textarea
                   name="description"
                   value={formData.description}
@@ -364,7 +364,7 @@ export default function Projects() {
               {/* Start Date and End Date */}
               <div className="flex space-x-4">
                 <div className="flex-1">
-                  <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Start Date*</label>
+                  <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Ngày bắt đầu*</label>
                   <div className="relative">
                     <input
                       type="date"
@@ -377,7 +377,7 @@ export default function Projects() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">End Date*</label>
+                  <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Ngày kết thúc*</label>
                   <div className="relative">
                     <input
                       type="date"
@@ -406,7 +406,7 @@ export default function Projects() {
 
               {/* Budget */}
               <div>
-                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Budget (Ngân sách)*</label>
+                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Ngân sách*</label>
                 <div className="relative">
                   <input
                     type="number"
@@ -421,7 +421,7 @@ export default function Projects() {
 
               {/* Duration */}
               <div>
-                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Duration (Thời gian dự kiến)*</label>
+                <label className="block text-[#1a1a4b] text-sm font-semibold mb-2">Thời gian dự kiến*</label>
                 <input
                   type="text"
                   name="duration"

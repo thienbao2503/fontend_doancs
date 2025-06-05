@@ -15,11 +15,11 @@ function HeaderSearch({ title, view, handleChangeTypeLayout, handleOpenModalCrea
                     defaultValue="in-progress"
                 >
                     <option value="" disabled>
-                        Select Status
+                    Chọn trạng thái
                     </option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                    <option value="on-hold">On Hold</option>
+                    <option value="in-progress">Đang tiến hành</option>
+                    <option value="completed">Hoàn thành</option>
+                    <option value="on-hold">Đang chờ</option>
                 </select>
                 <button
                     aria-label="Grid view"
@@ -76,7 +76,7 @@ function HeaderSearch({ title, view, handleChangeTypeLayout, handleOpenModalCrea
                     type="button"
                     onClick={handleOpenModalCreate}
                 >
-                    + New Project
+                    + Thêm dự án
                 </button>
             </div>
         </header>
