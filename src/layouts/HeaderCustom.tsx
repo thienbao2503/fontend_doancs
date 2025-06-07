@@ -1,4 +1,5 @@
 "use client"
+import { useAuthQuery } from "@/app/services/auth/useQuery";
 import { setToken } from "@/app/utils/tokenServiceServerSide";
 import { UserCircleIcon, ShoppingCartIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { Popconfirm } from "antd";
@@ -6,6 +7,8 @@ import { useRouter } from "next/navigation";
 
 function HeaderCustom() {
   const router = useRouter();
+  const { data } = useAuthQuery.useProfile()
+
   return (
     <nav className="flex items-center justify-between px-4 md:px-8 h-16 max-w-full">
       {/* Logo */}
@@ -18,7 +21,10 @@ function HeaderCustom() {
         />
       </div>
       {/* Categories + Search */}
-      <div className="flex-1 flex justify-end">
+      <div className="flex-1 flex justify-end items-center gap-5">
+        <h1>
+          Hello, {data?.full_name || "người dùng!"}
+        </h1>
         <div className="flex items-center gap-3 space-x-3 bg-white/80 rounded-full px-2 py-2 shadow-md">
           <button
             aria-label="User account"

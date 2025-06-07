@@ -24,47 +24,45 @@ export default function ModalConfig({
         }
     }, [permissions, open]);
 
-    const handleCheck = (module: string, type: string, checked: boolean) => {
-        setLocalPerms(perms =>
-            perms.map(mod =>
-                mod.module === module
-                    ? {
-                        ...mod,
-                        permission: mod.permission.map((perm: any) =>
-                            perm.type === type
-                                ? { ...perm, isAllowed: checked ? 1 : 0 }
-                                : perm
-                        )
-                    }
-                    : mod
-            )
-        );
+    function mapPermissionTypeToLabel(type: string): string {
+        if (type === "CREATE") return "Tạo mới công việc";
+        if (type === "UPDATE_INFO") return "Chỉnh sửa thông tin công việc";
+        if (type === "UPDATE_PROJECT_INFO") return "Cập nhật thông tin dự án";
+        if (type === "UPDATE_PROGRESS") return "Cập nhật tiến độ thực hiện";
+        if (type === "CONFIRM_RESULT") return "Xác nhận kết quả thực tế";
+        if (type === "ASSIGN") return "Phân công công việc";
+        return type;
+    }
+
+    const handleCheck = (type: string, checked: boolean) => {
+        setLocalPerms(perms => {
+            return perms.map(perm =>
+                perm.type === type ? { ...perm, isAllowed: checked ? 1 : 0 } : perm
+            );
+        });
     };
 
     const handleSave = () => {
         onSave(localPerms);
-        
         onClose();
     };
 
     return (
-        <Modal open={open} onCancel={onClose} footer={null} title={`Cấu hình quyền: ${currentRoleId?.name}`}>
+        <Modal
+            open={open}
+            onCancel={onClose}
+            footer={null}
+            title={`Cấu hình quyền: ${currentRoleId?.name}`}
+        >
             <div className="flex flex-col gap-4">
                 {localPerms?.map((item) => (
-                    <div key={item.module} className="mb-4">
-                        <div className="font-semibold mb-2">{item.module}</div>
-                        <div className="grid grid-cols-2 gap-2">
-                            {item.permission?.map((perm: any) => (
-                                <Checkbox
-                                    key={perm.type}
-                                    checked={!!perm.isAllowed}
-                                    onChange={e => handleCheck(item.module, perm.type, e.target.checked)}
-                                >
-                                    {perm.type}
-                                </Checkbox>
-                            ))}
-                        </div>
-                    </div>
+                    <Checkbox
+                        key={item.type}
+                        checked={item.isAllowed === 1}
+                        onChange={e => handleCheck(item.type, e.target.checked)}
+                    >
+                        {mapPermissionTypeToLabel(item.type)}
+                    </Checkbox>
                 ))}
             </div>
             <div className="flex justify-end gap-2 mt-6">

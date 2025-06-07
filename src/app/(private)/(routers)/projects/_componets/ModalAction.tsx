@@ -114,7 +114,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     </Form.Item>
 
                     <Form.Item
-                        label="Ngày kết thúc"
+                        label="Ngày dự kiến hoàn thành"
                         name="end_date"
                         rules={[{ required: true, message: "Vui lòng chọn ngày kết thúc" }]}
                     >
@@ -130,7 +130,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     <Input placeholder="Nhập mục tiêu dự án" />
                 </Form.Item>
 
-                <div className="grid grid-cols-2 gap-4">
+                {/* <div className="grid grid-cols-2 gap-4">
                     <Form.Item
                         label="Ngân sách"
                         name="budget"
@@ -177,7 +177,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                         min={1}
                         placeholder="Nhập số ngày dự kiến"
                     />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item className="flex justify-end mb-0">
                     <button
                         type="button"

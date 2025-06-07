@@ -1,4 +1,5 @@
 import { useProjectQuery } from "@/app/services/projects/useQuery";
+import { useRolesQuery } from "@/app/services/roles/useQuery";
 import { useTaskQuery } from "@/app/services/tasks/useQuery";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
@@ -28,7 +29,7 @@ export const NewTaskModal = ({
             toast.error(error?.message);
         }
     );
-    const { data: dataTeams } = useProjectQuery.useGetTeam({ project_id: selectedProject });
+    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1 });
 
     const handleSave = async () => {
         try {
@@ -40,7 +41,7 @@ export const NewTaskModal = ({
                 priority: values.priority,
                 start_time: values.start_time ? values.start_time.format("YYYY-MM-DD") : null,
                 end_time: values.end_time ? values.end_time.format("YYYY-MM-DD") : null,
-                userIDs: JSON.stringify(values.userIDs), // Gửi mảng userIDs lên backend
+                // roleIDs: JSON.stringify(values.roleIDs), // Gửi mảng userIDs lên backend
             }
             mutate(newData);
         } catch (error) {
@@ -89,25 +90,25 @@ export const NewTaskModal = ({
                     />
                 </Form.Item>
 
-                <Form.Item
-                    label={<span className="text-[#0B0E3F] text-sm font-semibold">Thành viên thực hiện</span>}
-                    name="userIDs"
-                    rules={[{ required: true, message: "Vui lòng chọn thành viên" }]}
+                {/* <Form.Item
+                    label={<span className="text-[#0B0E3F] text-sm font-semibold">Nhóm thành viên thực hiện</span>}
+                    name="roleIDs"
+                    rules={[{ required: true, message: "Vui lòng chọn nhóm thành viên" }]}
                 >
                     <Select
                         mode="multiple"
-                        placeholder="Chọn thành viên"
+                        placeholder="Chọn nhóm thành viên"
                         className="rounded-lg text-sm text-[#5F6F94] bg-[#F9FAFF]"
-                        disabled={!selectedProject}
-                        loading={!dataTeams}
+                        // disabled={!selectedProject}
+                        loading={!dataRoles}
                     >
-                        {Array.isArray(dataTeams) && dataTeams.map((member: any) => (
+                        {Array.isArray(dataRoles) && dataRoles.map((member: any) => (
                             <Select.Option key={member.id} value={member.id}>
-                                {member.name || member.email}
+                                {member.name}
                             </Select.Option>
                         ))}
                     </Select>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                     label={<span className="text-[#0B0E3F] text-sm font-semibold">Mô tả</span>}

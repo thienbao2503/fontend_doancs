@@ -5,10 +5,10 @@ import React from "react";
 interface EmployeeCardProps {
   contact: {
     id: number;
-    name: string;
-    email: string;
-    imageSrc: string;
-    imageAlt: string;
+    user_email: string,
+    username: string,
+    role_id: number,
+    role_name: string;
   };
   view: string;
 }
@@ -16,38 +16,36 @@ interface EmployeeCardProps {
 export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
   return (
     <section
-      className={`bg-white rounded-lg p-6 relative flex ${
-        view === "grid" ? "flex-col items-center text-center" : "flex-row items-center justify-between"
-      } shadow-md transition-all duration-300 ease-in-out`}
+      className={`bg-white rounded-lg p-6 relative flex ${view === "grid" ? "flex-col items-center text-center" : "flex-row items-center justify-between"
+        } shadow-md transition-all duration-300 ease-in-out`}
     >
       <div className={`relative ${view === "grid" ? "mb-4" : "mr-4"}`}>
-        <Image
-          src={contact.imageSrc}
-          alt={contact.imageAlt}
-          width={80}
-          height={80}
-          className="w-20 h-20 rounded-full border-2 border-blue-600 object-cover"
-        />
+        <div
+          className="w-20 h-20 rounded-full border-2 border-blue-600 object-cover text-white flex items-center justify-center text-2xl font-bold bg-blue-500"
+        >
+          {contact.username.split(" ").slice(-1)[0].slice(0, 1)}
+        </div>
       </div>
       <div className={view === "list" ? "flex-1" : ""}>
-        <h2 className="text-gray-800 font-semibold text-lg mb-1">{contact.name}</h2>
-        <p className="text-gray-500 text-sm mb-4">{contact.email}</p>
+        <h2 className="text-gray-800 font-semibold text-lg mb-1">{contact.username}</h2>
+        <p className="text-gray-500 text-sm mb-4">{contact.user_email}</p>
+        <p className="text-gray-500 text-sm mb-4">{contact.role_name}</p>
       </div>
       <div className={`flex items-center justify-center space-x-4 ${view === "grid" ? "mt-4" : ""}`}>
         <button
-          aria-label={`Email ${contact.name}`}
+          aria-label={`Email ${contact.user_email}`}
           className="bg-red-100 text-red-600 p-2 rounded-full transition-colors hover:bg-red-200"
         >
           <EnvelopeIcon className="w-5 h-5" />
         </button>
         <button
-          aria-label={`Chat with ${contact.name}`}
+          aria-label={`Chat with ${contact.username}`}
           className="bg-blue-100 text-blue-600 p-2 rounded-full transition-colors hover:bg-blue-200"
         >
           <ChatBubbleLeftIcon className="w-5 h-5" />
         </button>
         <button
-          aria-label={`Call ${contact.name}`}
+          aria-label={`Call ${contact.username}`}
           className="bg-green-100 text-green-600 p-2 rounded-full transition-colors hover:bg-green-200"
         >
           <PhoneIcon className="w-5 h-5" />

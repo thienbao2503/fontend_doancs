@@ -8,6 +8,11 @@ interface ApiResponsive {
   statusCode?: number;
   message: string | null;
   data?: any;
+  pagination?: {
+    totalPages: number;
+    page: number;
+    limit: number;
+  }
   errors?: IErorrs[]
 }
 
@@ -15,10 +20,11 @@ const URL_API = process.env.NEXT_PUBLIC_API_URL
 
 const axiosClient = axios.create({
   baseURL: URL_API,
-  headers: { "Content-Type": "application/json",
+  headers: {
+    "Content-Type": "application/json",
     Accept: "application/json",
-    
-   },
+
+  },
   timeout: 10000
 });
 

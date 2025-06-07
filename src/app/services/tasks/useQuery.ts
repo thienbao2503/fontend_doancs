@@ -8,7 +8,10 @@ export const useTaskQuery = {
             queryKey: ['task', params],
             queryFn: async () => {
                 const res = await service.getAll(params);
-                if (res?.statusCode === 200) return res.data
+                if (res?.statusCode === 200) return {
+                    data: res.data,
+                    pagination: res.pagination,
+                }
                 throw res;
             },
         });
@@ -59,28 +62,60 @@ export const useTaskQuery = {
             onError,
         })
     },
-    //add team
-    // useAddTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
-    //     return useMutation({
-    //         mutationFn: async (data: any) => {
-    //             const res = await service.addTeam(data.id, data.email);
-    //             if (res?.statusCode === 200) return res
-    //             throw res;
-    //         },
-    //         onSuccess,
-    //         onError,
-    //     })
-    // },
-    // useDeleteTeam(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
-    //     return useMutation({
-    //         mutationFn: async (data: any) => {
-    //             const res = await service.deleteTeam(data.id, data.user_id);
-    //             if (res?.statusCode === 200) return res
-    //             throw res;
-    //         },
-    //         onSuccess,
-    //         onError,
-    //     })
-    // }
-
+    // assign
+    useAssign(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                const res = await service.assign(data.id, data);
+                if (res?.statusCode === 200) return res
+                throw res;
+            },
+            onSuccess,
+            onError,
+        });
+    },
+    useUpdateSupervisorProgress(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                const res = await service.updateSupervisorProgress(data.id, data);
+                if (res?.statusCode === 200) return res
+                throw res;
+            },
+            onSuccess,
+            onError,
+        });
+    },
+    useUpdateContractorProgress(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                const res = await service.updateContractorProgress(data.id, data);
+                if (res?.statusCode === 200) return res
+                throw res;
+            },
+            onSuccess,
+            onError,
+        });
+    },
+    useUploadImages(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                const res = await service.uploadImages(data.id, data.project_id, data.formData);
+                if (res?.statusCode === 200) return res
+                throw res;
+            },
+            onSuccess,
+            onError,
+        });
+    },
+    useDeleteImage(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (data: any) => {
+                const res = await service.deleteImage(data.taskId, data.imageId);
+                if (res?.statusCode === 200) return res
+                throw res;
+            },
+            onSuccess,
+            onError,
+        });
+    },
 }

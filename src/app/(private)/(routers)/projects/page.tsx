@@ -76,7 +76,10 @@ function Projects() {
 
   return (
     <div className="flex flex-col space-y-4 h-full">
-      <HeaderSearch title="Dự Án | Công Trình" handleChangeTypeLayout={(type) => setView(type)} view={view} handleOpenModalCreate={() => setIsModalOpen(true)} />
+      <HeaderSearch title="Dự Án | Công Trình" handleChangeTypeLayout={(type) => setView(type)} view={view} handleOpenModalCreate={() => {
+        setDataUpdate(null)
+        setIsModalOpen(true)
+      }} />
       <section
         aria-label="Projects list"
         className={`gap-6 ${view === "grid"

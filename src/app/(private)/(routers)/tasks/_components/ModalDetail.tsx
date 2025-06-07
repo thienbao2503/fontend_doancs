@@ -1,6 +1,8 @@
 import { useProjectQuery } from "@/app/services/projects/useQuery";
-import { Button, Modal, Tag } from "antd";
+import { useRolesQuery } from "@/app/services/roles/useQuery";
+import { Button, Modal, Tag, Image } from "antd"; // Add Image import
 import moment from "moment";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 // ViewTaskModal Component
 export const ViewTaskModal = ({
@@ -14,6 +16,9 @@ export const ViewTaskModal = ({
 }) => {
     if (!isOpen || !task) return null;
 
+    // Lấy danh sách roles thay vì teams
+    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1 });
+
     // Xử lý màu sắc cho trạng thái và mức độ ưu tiên
     const statusMap = {
         1: { label: "Đang tiến hành", color: "gold" },
@@ -25,7 +30,9 @@ export const ViewTaskModal = ({
         medium: { label: "Trung bình", color: "blue" },
         high: { label: "Cao", color: "red" },
     };
-    const { data: dataTeams } = useProjectQuery.useGetTeam({ project_id: task?.project_id });
+
+    console.log("dataRoles", dataRoles);
+
 
 
     return (
@@ -33,7 +40,7 @@ export const ViewTaskModal = ({
             open={isOpen}
             onCancel={onClose}
             footer={null}
-            width={600}
+            width={800} // Increased width for better image display
             centered
             className="rounded-2xl"
         >
@@ -56,13 +63,19 @@ export const ViewTaskModal = ({
                         <div className="text-[#5F6F94] text-base">{task.project_name}</div>
                     </div>
                     <div>
-                        <div className="text-[#0B0E3F] text-sm font-semibold">Người thực hiện</div>
+                        <div className="text-[#0B0E3F] text-sm font-semibold">Nhóm thành viên tham gia</div>
                         <div className="text-[#5F6F94] text-base">
-                            {Array.isArray(task.userIDs) && Array.isArray(dataTeams)
-                                ? dataTeams
-                                    .filter((member: any) => task.userIDs.includes(member.id))
-                                    .map((member: any) => member.name || member.email)
-                                    .join(", ")
+                            {Array.isArray(task.roleIDs) && Array.isArray(dataRoles)
+                                ? dataRoles
+                                    .filter((role: any) => task.roleIDs.includes(role.id))
+                                    .map((role: any) => {
+                                        return (
+                                            <Tag key={role.id} color="blue" className="text-base px-2 py-1 rounded-lg mr-2 mb-2">
+                                                {role.name}
+                                            </Tag>
+                                        );
+                                    })
+
                                 : "--"}
                         </div>
                     </div>
@@ -89,6 +102,41 @@ export const ViewTaskModal = ({
                         {task.description || "Không có mô tả."}
                     </div>
                 </div>
+
+                {/* Add Images Section before the close button */}
+                {task?.completed_images && task.completed_images.length > 0 && (
+                    <div className="mb-6">
+                        <div className="text-[#0B0E3F] text-sm font-semibold mb-3">
+                            Hình ảnh công việc ({task.completed_images.length})
+                        </div>
+                        <div className="grid grid-cols-4 gap-4">
+                            {task.completed_images.map((img: any) => (
+                                <div
+                                    key={img.image_id}
+                                    className="relative group rounded-lg overflow-hidden border border-[#E6E8F0]"
+                                >
+                                    <Image
+                                        src={`http://localhost:2504/uploads/${img.image_url}`}
+                                        alt={`Ảnh ${img.image_id}`}
+                                        className="w-full h-[120px] object-cover"
+                                        preview={{
+                                            mask: (
+                                                <div className="flex items-center justify-center">
+                                                    <PhotoIcon className="w-6 h-6" />
+                                                    <span className="ml-2">Xem</span>
+                                                </div>
+                                            )
+                                        }}
+                                    />
+                                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        {moment(img.created_at).format("DD/MM/YYYY HH:mm")}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 <div className="flex justify-end">
                     <Button
                         onClick={onClose}

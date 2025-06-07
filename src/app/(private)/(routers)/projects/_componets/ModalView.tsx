@@ -105,23 +105,21 @@ function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam,
                             <TextArea rows={3} placeholder="Nhập mô tả dự án" />
                         </Form.Item>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <Form.Item
-                                label="Ngày bắt đầu"
-                                name="start_date"
-                                rules={[{ required: true, message: "Vui lòng chọn ngày bắt đầu" }]}
-                            >
-                                <DatePicker format="YYYY-MM-DD" className="w-full" />
-                            </Form.Item>
+                        <Form.Item
+                            label="Ngày bắt đầu"
+                            name="start_date"
+                            rules={[{ required: true, message: "Vui lòng chọn ngày bắt đầu" }]}
+                        >
+                            <DatePicker format="YYYY-MM-DD" className="w-full" />
+                        </Form.Item>
 
-                            <Form.Item
-                                label="Ngày kết thúc"
-                                name="end_date"
-                                rules={[{ required: true, message: "Vui lòng chọn ngày kết thúc" }]}
-                            >
-                                <DatePicker format="YYYY-MM-DD" className="w-full" />
-                            </Form.Item>
-                        </div>
+                        <Form.Item
+                            label="Ngày dự kiến hoàn thành"
+                            name="end_date"
+                            rules={[{ required: true, message: "Vui lòng chọn ngày kết thúc" }]}
+                        >
+                            <DatePicker format="YYYY-MM-DD" className="w-full" />
+                        </Form.Item>
 
                         <Form.Item
                             label="Mục tiêu"
@@ -131,7 +129,7 @@ function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam,
                             <Input placeholder="Nhập mục tiêu dự án" />
                         </Form.Item>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        {/* <div className="grid grid-cols-2 gap-4">
                             <Form.Item
                                 label="Ngân sách"
                                 name="budget"
@@ -162,9 +160,9 @@ function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam,
                                     <Option value="EUR">EUR</Option>
                                 </Select>
                             </Form.Item>
-                        </div>
+                        </div> */}
 
-                        <Form.Item
+                        {/* <Form.Item
                             label="Thời gian dự kiến (ngày)"
                             name="duration"
 
@@ -178,66 +176,29 @@ function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam,
                                 min={1}
                                 placeholder="Nhập số ngày dự kiến"
                             />
-                        </Form.Item>
+                        </Form.Item> */}
 
                     </Form>
                 </div>
-                <div className="flex flex-col gap-4">
-                    <div className="gap-2 flex flex-col">
-                        <label htmlFor="">Thêm thành viên</label>
-                        <div className="flex flex-col gap-2">
-                            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Nhập email" />
-                            <Select
-                                placeholder="Chọn Quyền"
-                                dropdownRender={(menu: any) => (
-                                    <>
-                                        {menu}
-                                        <Divider style={{ margin: '8px 0' }} />
-                                        <Space style={{ padding: '0 8px 4px' }}>
-                                            <Input
-                                                placeholder="Nhập tên quyền"
-                                                ref={inputRef}
-                                                value={name}
-                                                onChange={onNameChange}
-                                                onKeyDown={(e) => e.stopPropagation()}
-                                            />
-                                            <Button type="text" icon={<PlusCircleIcon />} onClick={() => addRoleMutate({ name: name })}>
-                                                Thêm
-                                            </Button>
-                                        </Space>
-                                    </>
-                                )}
-                                value={role_id || null}
-                                onChange={(value) => setRole_id(value)}
-                                options={Array.isArray(dataRole) ? dataRole.map((item) => ({ label: item.name, value: item.id })) : []}
-                            />
-                            <Button onClick={() => {
-                                if (!email || !role_id) return toast.error("Vui lòng nhập email và quyền");
-                                addTeamProjectMutate({ id: initialValues?.id, email: email, role_id: role_id })
-                            }}>
-                                Thêm
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-3 max-h-[220px] overflow-y-auto scrollbar-hidden">
-                        {Array.isArray(initialValues?.teams) && initialValues?.teams?.map((item: any, index: number) => (
-                            <div className="flex gap-2 items-end" key={index}>
-                                <div className="flex flex-col flex-1">
-                                    <p>{item.role_name}</p>
-                                    <Input value={item?.email} disabled />
-                                </div>
-                                <Popconfirm
-                                    title="Bạn có chắc chắn muốn xóa thành viên này?"
-                                    onConfirm={() => handleDeleteTeam({ id: initialValues?.id, user_id: item?.user_id })}
-                                    okText="Xóa"
-                                    cancelText="Hủy"
-                                >
-                                    <Button>
-                                        <TrashIcon color="red" className="w-5 h-5" />
-                                    </Button>
-                                </Popconfirm>
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Nhóm thành viên tham gia</h3>
+                    <div className="bg-gray-50 rounded-lg p-4 max-h-[250px] overflow-y-auto">
+                        {Array.isArray(initialValues?.roles) && initialValues?.roles?.length > 0 ? (
+                            <div className="space-y-3">
+                                {initialValues.roles.map((item: any, index: number) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center p-3 bg-white rounded-lg shadow-sm"
+                                    >
+                                        <div className="flex-1">
+                                            <p className="font-medium text-gray-800">{item.role_name}</p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        ) : (
+                            <p className="text-gray-500 text-center py-4">Chưa có nhóm thành viên nào tham gia</p>
+                        )}
                     </div>
                 </div>
             </div>

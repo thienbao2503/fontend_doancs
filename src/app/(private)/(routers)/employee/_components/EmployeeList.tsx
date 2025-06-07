@@ -3,10 +3,10 @@ import EmployeeCard from "./EmployeeCard";
 
 interface Contact {
   id: number;
-  name: string;
-  email: string;
-  imageSrc: string;
-  imageAlt: string;
+  user_email: string,
+  username: string,
+  role_id: number,
+  role_name: string;
 }
 
 interface EmployeeListProps {
@@ -16,8 +16,8 @@ interface EmployeeListProps {
 
 export default function EmployeeList({ contacts, view }: EmployeeListProps) {
   return (
-    <main className={`w-full gap-6 ${view === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col space-y-4"}`}>
-      {contacts.map((contact) => (
+    <main className={`w-full overflow-y-auto gap-6 ${view === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col space-y-4"}`}>
+      {contacts?.map((contact) => (
         <EmployeeCard key={contact.id} contact={contact} view={view} />
       ))}
     </main>

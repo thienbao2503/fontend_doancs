@@ -70,29 +70,83 @@ export const service = {
             console.error(error);
         }
     },
-    // addTeam: async (id: number, email: any) => {
-    //     try {
-    //         const response = await axiosClient({
-    //             method: 'POST',
-    //             url: `${moduleName}/team/add-user/${id}`,
-    //             data: { email }
-    //         }) as ApiResponsive
-    //         return response
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
+    assign: async (id: number, data: any) => {
+        try {
+            const response = await axiosClient({
+                method: 'POST',
+                url: `${moduleName}/assign/${id}`,
+                data,
+                headers: {
+                    "project_id": data.project_id
+                }
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    updateContractorProgress: async (id: number, data: any) => {
+        try {
+            const response = await axiosClient({
+                method: 'PATCH',
+                url: `${moduleName}/update-progress/${id}`,
+                data,
+                headers: {
+                    "project_id": data.project_id
+                }
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    updateSupervisorProgress: async (id: number, data: any) => {
+        console.log(`Updating supervisor progress for task ID: ${id}`, data);
 
-    // },
-    // deleteTeam: async (id: number, user_id: number) => {
-    //     try {
-    //         const response = await axiosClient({
-    //             method: 'DELETE',
-    //             url: `${moduleName}/team/${id}`,
-    //             data: { user_id: user_id }
-    //         }) as ApiResponsive
-    //         return response
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+        try {
+            const response = await axiosClient({
+                method: 'PATCH',
+                url: `${moduleName}/confirm-result/${id}`,
+                data,
+                headers: {
+                    "project_id": data.project_id
+                }
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    uploadImages: async (id: number, project_id: number, formData: any) => {
+        try {
+            const response = await axiosClient({
+                method: 'POST',
+                url: `${moduleName}/upload-images/${id}`,
+                data: formData,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    deleteImage: async (taskId: number, imageId: number) => {
+        try {
+            const response = await axiosClient({
+                method: 'DELETE',
+                url: `${moduleName}/delete-image`,
+                data: {
+                    taskId,
+                    imageId
+                }
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
 }
