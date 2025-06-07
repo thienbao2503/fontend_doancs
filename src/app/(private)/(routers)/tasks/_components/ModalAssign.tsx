@@ -20,10 +20,19 @@ export const ModalAssign = ({
     onSave: () => void;
     projects: any[];
 }) => {
+
     const [form] = Form.useForm();
+
+    useEffect(() => {
+        if (task) {
+            form.setFieldsValue({
+                ...task,
+            });
+        }
+    }, [task]);
     const [selectedProject, setSelectedProject] = useState<any>(task?.project_id || null);
 
-    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1 }); // Thêm query roles
+    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1, limit: 10000 }); // Thêm query roles
 
     useEffect(() => {
         if (task) {
@@ -118,9 +127,9 @@ export const ModalAssign = ({
                         mode="multiple"
                         placeholder="Chọn nhóm thành viên"
                         className="rounded-lg text-sm text-[#5F6F94] bg-[#F9FAFF]"
-                        loading={!dataRoles}
+                        loading={!dataRoles?.data}
                     >
-                        {Array.isArray(dataRoles) && dataRoles.map((role: any) => (
+                        {Array.isArray(dataRoles?.data) && dataRoles.data.map((role: any) => (
                             <Select.Option key={role.id} value={role.id}>
                                 {role.name}
                             </Select.Option>

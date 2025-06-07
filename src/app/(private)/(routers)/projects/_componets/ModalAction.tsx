@@ -127,7 +127,7 @@ function ModalAction({ isModalOpen, handleAdd, handleUpdate, handleCancel, initi
                     name="goal"
                     rules={[{ required: true, message: "Vui lòng nhập mục tiêu" }]}
                 >
-                    <Input placeholder="Nhập mục tiêu dự án" />
+                    <TextArea rows={3} placeholder="Nhập mục tiêu dự án" />
                 </Form.Item>
 
                 {/* <div className="grid grid-cols-2 gap-4">

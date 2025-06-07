@@ -8,7 +8,11 @@ export const useRolesQuery = {
             queryKey: ['task', params],
             queryFn: async () => {
                 const res = await service.getAll(params);
-                if (res?.statusCode === 200) return res.data
+                if (res?.statusCode === 200) return {
+                    data: res.data,
+                    pagination: res.pagination,
+
+                }
                 throw res;
             },
         });

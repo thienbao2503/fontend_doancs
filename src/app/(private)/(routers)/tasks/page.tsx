@@ -81,17 +81,17 @@ const TaskList = () => {
               onView={handleViewTask}
               onEdit={handleEditTask}
               onDelete={(id) => handleDeleteTask(id)}
-              onAssignTask={() => {
-                setCurrentTask(item);
+              onAssignTask={(task) => {
+                setCurrentTask(task);
                 setIsModalOpen(true);
               }}
-              updateProgress={() => {
-                setCurrentTask(item);
+              updateProgress={(task) => {
+                setCurrentTask(task);
                 setIsModalProgressOpen(true);
               }
               }
-              addImages={() => {
-                setCurrentTask(item);
+              addImages={(task) => {
+                setCurrentTask(task);
                 setIsModalUploadImagesOpen(true);
               }}
             />
@@ -113,41 +113,63 @@ const TaskList = () => {
 
       <NewTaskModal
         isOpen={isNewTaskModalOpen}
-        onClose={() => setIsNewTaskModalOpen(false)}
+        onClose={() => {
+          setIsNewTaskModalOpen(false)
+          refetchTask();
+          setCurrentTask(null);
+        }}
         onSave={() => refetchTask()}
         projects={dataProject}
       />
       <ViewTaskModal
         isOpen={isViewTaskModalOpen}
-        onClose={() => setIsViewTaskModalOpen(false)}
+        onClose={() => {
+          setIsViewTaskModalOpen(false)
+          setCurrentTask(null);
+        }}
         task={currentTask}
       />
       <EditTaskModal
         isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
+        onClose={() => {
+          setIsEditModalOpen(false)
+          setCurrentTask(null);
+        }}
         task={currentTask}
         onSave={() => refetchTask()}
         projects={dataProject}
       />
       <ModalAssign
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false)
+          setCurrentTask(null);
+        }}
         task={currentTask}
         onSave={() => refetchTask()}
         projects={dataProject}
       />
       <ModalProgress
         isOpen={isModalProsessOpen}
-        onClose={() => setIsModalProgressOpen(false)}
+        onClose={() => {
+          setIsModalProgressOpen(false)
+          setCurrentTask(null);
+        }}
         task={currentTask}
         onSave={() => refetchTask()}
         projects={dataProject}
       />
       <ModalUpload
         isOpen={isModalUploadImagesOpen}
-        onClose={() => setIsModalUploadImagesOpen(false)}
+        onClose={() => {
+          setIsModalUploadImagesOpen(false)
+          setCurrentTask(null);
+        }}
         task={currentTask}
-        onSave={() => refetchTask()}
+        onSave={() => {
+          refetchTask()
+          setCurrentTask(null);
+        }}
       />
     </div>
 

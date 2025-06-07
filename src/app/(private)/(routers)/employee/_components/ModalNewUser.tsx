@@ -59,7 +59,7 @@ export default function ModalNewUser({ open, onClose, onSuccess }: ModalNewUserP
           rules={[{ required: true, message: "Vui lòng chọn vai trò!" }]}
         >
           <Select placeholder="Chọn vai trò">
-            {dataRoles?.map((role: any) => (
+            {dataRoles?.data?.map((role: any) => (
               <Select.Option key={role.id} value={role.id}>
                 {role.name}
               </Select.Option>

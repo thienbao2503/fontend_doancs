@@ -9,7 +9,7 @@ function HeaderSearch({ title, view, handleChangeTypeLayout, handleOpenModalCrea
         <header className="bg-white rounded-xl shadow-primary flex flex-col sm:flex-row items-center justify-between px-6 py-4">
             <h1 className="text-[#1a1a4b] text-lg font-semibold">{title}</h1>
             <div className="flex items-center space-x-3 mt-4 sm:mt-0 bg-white rounded-xl px-3 py-2">
-                <select
+                {/* <select
                     aria-label="Status filter"
                     className="text-[#1a1a4b] text-sm font-semibold h-[35px] bg-[#f7f9fc] rounded-md px-3 cursor-pointer focus:outline-none"
                     defaultValue="in-progress"
@@ -20,7 +20,7 @@ function HeaderSearch({ title, view, handleChangeTypeLayout, handleOpenModalCrea
                     <option value="in-progress">Đang tiến hành</option>
                     <option value="completed">Hoàn thành</option>
                     <option value="on-hold">Đang chờ</option>
-                </select>
+                </select> */}
                 <button
                     aria-label="Grid view"
                     onClick={() => handleChangeTypeLayout("grid")}

@@ -23,6 +23,11 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 
 .ant-layout-sider-children {
   display: flex;

@@ -20,7 +20,13 @@ export const ModalProgress = ({
     const [form] = Form.useForm();
     const [selectedProject, setSelectedProject] = useState<any>(task?.project_id || null);
 
-
+    useEffect(() => {
+        if (task) {
+            form.setFieldsValue({
+                ...task,
+            });
+        }
+    }, [task]);
     useEffect(() => {
         if (task) {
             setSelectedProject(task?.project_id);

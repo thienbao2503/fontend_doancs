@@ -10,7 +10,7 @@ interface EmployeeHeaderProps {
 export default function EmployeeHeader({ view, setView, onNewContact }: EmployeeHeaderProps) {
   return (
     <header className="w-full max-w-full bg-white rounded-lg shadow-lg flex justify-between items-center px-6 py-4 mb-8">
-      <h1 className="text-gray-800 font-semibold text-xl">Your Contacts</h1>
+      <h1 className="text-gray-800 font-semibold text-xl">Danh bạ của bạn</h1>
       <div className="flex items-center space-x-4">
         <button
           aria-label="Grid view"
@@ -35,7 +35,7 @@ export default function EmployeeHeader({ view, setView, onNewContact }: Employee
           type="button"
           onClick={onNewContact}
         >
-          New Contact
+          Liên hệ mới
         </button>
       </div>
     </header>

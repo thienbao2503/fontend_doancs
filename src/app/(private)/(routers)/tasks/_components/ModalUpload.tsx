@@ -64,6 +64,7 @@ export const ModalUpload = ({
     const { mutate: deleteImage } = useTaskQuery.useDeleteImage(
         () => {
             toast.success("Xóa ảnh thành công");
+            onSave();
         },
         (error) => {
             toast.error(error.errors?.[0]?.message || "Xóa ảnh thất bại");
@@ -178,7 +179,7 @@ export const ModalUpload = ({
                     accept="image/*"
                 >
                     {fileList.length >= 10 ? null : (
-                        <div className="flex flex-col items-center justify-center p-4">
+                        <div className="flex flex-col items-center justify-center py-4">
                             <PhotoIcon className="w-8 h-8 text-gray-400" />
                             <div className="mt-2 text-sm text-gray-500">
                                 Tải ảnh lên

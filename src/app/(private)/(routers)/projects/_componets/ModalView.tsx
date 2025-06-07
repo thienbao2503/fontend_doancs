@@ -3,8 +3,6 @@ import { Option } from "antd/es/mentions";
 import { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import TextArea from "antd/es/input/TextArea";
-import { PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useRolesQuery } from "@/app/services/roles/useQuery";
 import toast from "react-hot-toast";
 import { useProjectQuery } from "@/app/services/projects/useQuery";
 interface IProps {
@@ -17,7 +15,6 @@ interface IProps {
 }
 
 function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam, onAddTeamSuccess }: IProps) {
-    const { data: dataRole, refetch: refetchRole } = useRolesQuery.useGetAll({ page: 1, limit: 1000 })
     const { mutate: addTeamProjectMutate } = useProjectQuery.useAddTeam(
         (data) => {
             toast.success(data.message)
@@ -29,16 +26,7 @@ function ModalView({ isModalOpen, handleCancel, initialValues, handleDeleteTeam,
             toast.error(error?.errors?.[0]?.message || error?.message)
         }
     )
-    const { mutate: addRoleMutate } = useRolesQuery.useCreate(
-        () => {
-            toast.success("Thêm thành công");
-            setName('');
-            refetchRole();
-        },
-        (error) => {
-            toast.error(error.errors[0]?.message || "Thêm thất bại");
-        }
-    )
+
     const [form] = Form.useForm();
     const [email, setEmail] = useState<string>("");
     // const [items, setItems] = useState(['jack', 'lucy']);

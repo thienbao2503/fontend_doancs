@@ -17,7 +17,7 @@ export const ViewTaskModal = ({
     if (!isOpen || !task) return null;
 
     // Lấy danh sách roles thay vì teams
-    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1 });
+    const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1, limit: 10000 });
 
     // Xử lý màu sắc cho trạng thái và mức độ ưu tiên
     const statusMap = {
@@ -30,10 +30,6 @@ export const ViewTaskModal = ({
         medium: { label: "Trung bình", color: "blue" },
         high: { label: "Cao", color: "red" },
     };
-
-    console.log("dataRoles", dataRoles);
-
-
 
     return (
         <Modal
@@ -65,8 +61,8 @@ export const ViewTaskModal = ({
                     <div>
                         <div className="text-[#0B0E3F] text-sm font-semibold">Nhóm thành viên tham gia</div>
                         <div className="text-[#5F6F94] text-base">
-                            {Array.isArray(task.roleIDs) && Array.isArray(dataRoles)
-                                ? dataRoles
+                            {Array.isArray(task.roleIDs) && Array.isArray(dataRoles?.data)
+                                ? dataRoles.data
                                     .filter((role: any) => task.roleIDs.includes(role.id))
                                     .map((role: any) => {
                                         return (

@@ -24,6 +24,16 @@ export const EditTaskModal = ({
     const [selectedProject, setSelectedProject] = useState<any>(task?.project_id || null);
     const [selectStatus, setSelectStatus] = useState<any>(task?.status || null);
 
+    useEffect(() => {
+        if (task) {
+            form.setFieldsValue({
+                ...task,
+                start_time: task?.start_time ? moment(task?.start_time, "YYYY-MM-DD") : null,
+                end_time: task?.end_time ? moment(task?.end_time, "YYYY-MM-DD") : null,
+            });
+        }
+    }, [task]);
+
     const { data: dataRoles } = useRolesQuery.useGetAll({ page: 1 }); // Thêm query roles
 
     useEffect(() => {
@@ -158,7 +168,7 @@ export const EditTaskModal = ({
                         <Select.Option value="high">Cao</Select.Option>
                     </Select>
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     label={<span className="text-[#0B0E3F] text-sm font-semibold">Trạng thái</span>}
                     name="status"
                     rules={[{ required: true, message: "Vui lòng chọn trạng thái" }]}
@@ -168,7 +178,7 @@ export const EditTaskModal = ({
                         <Select.Option value={2}>Hoàn thành</Select.Option>
                         <Select.Option value={3}>Đã huỷ</Select.Option>
                     </Select>
-                </Form.Item>
+                </Form.Item> */}
                 <div className="flex space-x-4 gap-2 mb-5">
                     <Form.Item
                         label={<span className="text-[#0B0E3F] text-sm font-semibold">Ngày bắt đầu</span>}

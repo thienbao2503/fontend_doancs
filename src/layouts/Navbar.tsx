@@ -33,7 +33,7 @@ function Navbar() {
                         <EnvelopeIcon className="w-10 h-10 text-black" aria-hidden="true" />
                         <div>
                             <span className="font-semibold text-lg block" aria-label="Email Address">
-                                Email 
+                                Email
                             </span>
                             <span className="block text-base font-normal mt-1">info@example.com</span>
                         </div>
@@ -43,15 +43,10 @@ function Navbar() {
 
             <nav className="sticky top-0 z-50 bg-[#001025] text-white shadow-md">
                 <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center px-6 py-3">
-                
-                
-                
-            <div className="text-4xl font-extrabold select-none tracking-tight">
-            <img src="/Image/dacs_01_tn.png" alt="Logo" className="h-16 w-30" />
-            </div>
 
-
-
+                    <div className="text-4xl font-extrabold select-none tracking-tight">
+                        <img src="/Image/dacs_01_tn.png" alt="Logo" className="h-20 w-30 object-contain" />
+                    </div>
 
                     <ul className="flex flex-wrap justify-center md:justify-start gap-6 text-base font-semibold mt-3 md:mt-0">
                         <li>
@@ -65,7 +60,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/about" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/about"
+                                href="#gioithieu"
                             >
                                 Giới thiệu
                             </Link>
@@ -73,7 +68,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/service" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/service"
+                                href="#dichvu"
                             >
                                 Dịch vụ
                             </Link>
@@ -81,7 +76,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/team" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/team"
+                                href="#nhansu"
                             >
                                 Nhân sự
                             </Link>
@@ -89,7 +84,7 @@ function Navbar() {
                         <li>
                             <Link
                                 className={`${pathname === "/contact" ? "text-[#f9b707]" : "hover:text-[#f9b707]"} transition`}
-                                href="/contact"
+                                href="#diachi"
                             >
                                 Địa chỉ
                             </Link>

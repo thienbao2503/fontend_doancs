@@ -178,10 +178,10 @@ export default function About() {
         <div className="space-y-8">
           <Calendar />
           {/* Tasks List */}
-          <div className="bg-white rounded-xl p-6 shadow-sm">
+          {/* <div className="bg-white rounded-xl p-6 shadow-sm">
             <h2 className="text-lg font-semibold mb-4 text-[#1E1E50]">Nhiệm vụ của bạn</h2>
-            <div className="space-y-4">
-              {/* {tasks.map((task, index) => (
+            <div className="space-y-4"> */}
+          {/* {tasks.map((task, index) => (
                 <div
                   key={index}
                   className="bg-gray-50 rounded-xl p-4 flex items-center space-x-4 hover:bg-gray-100 transition-colors duration-200"
@@ -214,14 +214,14 @@ export default function About() {
                   </button>
                 </div>
               ))} */}
-            </div>
+          {/* </div>
             <button className="mt-4 w-full py-2 text-sm font-medium text-[#4F6FFF] bg-[#E6E9FF] rounded-lg hover:bg-[#D6D9FF] transition-colors duration-200 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               Thêm nhiệm vụ mới
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -4,20 +4,15 @@ import ProjectHeader from "./_component/ProjectHeader";
 import ModalRole from "./_component/ModalRole";
 import ModalConfig from "./_component/ModalConfig";
 import { useRolesQuery } from "@/app/services/roles/useQuery";
-import { Button, Popconfirm, Table, Tag } from "antd";
+import { Button, Pagination, Popconfirm, Table, Tag } from "antd";
 import toast from "react-hot-toast";
 
 export default function DeskPage() {
   const [openModal, setOpenModal] = useState(false);
   const [editRole, setEditRole] = useState(null);
-  const { data: roles, refetch } = useRolesQuery.useGetAll({ page: 1, limit: 100 });
-  const { mutate: deleteRole } = useRolesQuery.useDelete(
-    () => {
-      toast.success("Xoá quyền thành công");
-      refetch();
-    },
-    (err) => toast.error(err?.message || "Lỗi xoá quyền")
-  );
+  const [page, setPage] = useState(1);
+  const { data: roles, refetch } = useRolesQuery.useGetAll({ page: page, limit: 10 });
+
   const [openConfig, setOpenConfig] = useState(false);
   const [configPerms, setConfigPerms] = useState([]);
   const [currentRoleId, setCurrentRoleId] = useState<any>({ name: "", id: "" });
@@ -35,7 +30,7 @@ export default function DeskPage() {
     <div className="flex flex-col space-y-4 h-full bg-[#f6f8fb]">
       <ProjectHeader onNewProject={() => { setEditRole(null); setOpenModal(true); }} />
       <Table
-        dataSource={roles || []}
+        dataSource={roles?.data || []}
         rowKey="id"
         columns={[
           { title: "Tên quyền", dataIndex: "name" },
@@ -61,6 +56,16 @@ export default function DeskPage() {
         pagination={false}
         className="bg-white rounded-xl shadow"
       />
+      <div className="flex justify-center">
+        <Pagination
+          current={page}
+          total={(roles?.pagination?.totalPages)}
+          pageSize={1}
+          onChange={(page) => setPage(page)}
+          showSizeChanger={false}
+        />
+      </div>
+
       <ModalRole
         open={openModal}
         onClose={() => setOpenModal(false)}

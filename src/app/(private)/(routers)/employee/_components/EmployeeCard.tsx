@@ -56,7 +56,7 @@ export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
           className="ml-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
           type="button"
         >
-          Message
+          Nhắn tin
         </button>
       )}
       {view === "grid" && (
@@ -64,7 +64,7 @@ export default function EmployeeCard({ contact, view }: EmployeeCardProps) {
           className="mt-4 bg-blue-600 text-white px-4 py-1.5 rounded-md text-xs font-medium"
           type="button"
         >
-          Message
+          Nhắn tin
         </button>
       )}
     </section>

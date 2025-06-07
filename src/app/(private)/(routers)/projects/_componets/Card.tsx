@@ -125,15 +125,9 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                     }`}
             >
                 <div className="flex -space-x-3 mt-1">
-                    {Array.isArray(project?.teams) && project?.teams?.length > 0 ? project.teams.map((member, index) => (
+                    {/* {Array.isArray(project?.teams) && project?.teams?.length > 0 ? project.teams.map((member, index) => (
                         <div className="relative w-10 h-10" key={index}>
-                            {/* <Image
-                                src="/Image/download.jpg"
-                                alt="Team Member"
-                                fill
-                                sizes="40px"
-                                className="rounded-full border-2 border-white object-cover"
-                            /> */}
+                           
                             <div className="w-10 h-10 rounded-full bg-amber-300 flex justify-center items-center">
                                 {member?.full_name.split(" ").slice(-1)[0].slice(0, 1)}
                             </div>
@@ -143,7 +137,7 @@ function Card({ project, view, handleViewDetails, handleEditProject, handleDelet
                         <button onClick={() => handleViewDetails(project)} className="cursor-pointer w-10 h-10 bg-gray-200 rounded-full flex justify-center items-center">
                             <PlusIcon className="w-6 h-6 text-white " />
                         </button>
-                    }
+                    } */}
 
 
                 </div>
