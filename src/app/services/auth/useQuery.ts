@@ -59,7 +59,30 @@ export const useAuthQuery = {
             onSuccess,
             onError,
         })
+    },
+    useCreate2fa(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async () => {
+                const res = await service.create2FA();
+                if (res?.statusCode === 200) return res;
+                throw res;
+            },
+            onSuccess,
+            onError,
+        })
+    },
+    useVerify2fa(onSuccess?: (data: any) => void, onError?: (error: any) => void) {
+        return useMutation({
+            mutationFn: async (payload: any) => {
+                const res = await service.verify2FA(payload);
+                if (res?.statusCode === 200) return res;
+                throw res;
+            },
+            onSuccess,
+            onError,
+        })
     }
+
 
 
 }

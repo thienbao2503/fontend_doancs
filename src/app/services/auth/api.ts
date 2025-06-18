@@ -1,7 +1,6 @@
 // 5
 import { ApiResponsive, axiosClient } from "@/app/utils/axiosClient"
 import { ILogin, IRegister } from "./type"
-import { profile } from "console"
 const moduleName = 'auth'
 export const service = {
     login: async (data: ILogin) => {
@@ -57,6 +56,29 @@ export const service = {
             const response = await axiosClient({
                 method: 'PATCH',
                 url: `${moduleName}/change-password`,
+                data
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            throw error
+        }
+    },
+    create2FA: async () => {
+        try {
+            const response = await axiosClient({
+                method: 'POST',
+                url: `${moduleName}/create2fa`,
+            }) as ApiResponsive
+            return response
+        } catch (error) {
+            throw error
+        }
+    },
+    verify2FA: async (data: any) => {
+        try {
+            const response = await axiosClient({
+                method: 'POST',
+                url: `${moduleName}/verify2fa`,
                 data
             }) as ApiResponsive
             return response
